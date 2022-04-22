@@ -1,0 +1,159 @@
+figure {
+    overflow: hidden !important;
+    border-radius: 45px;
+}
+
+figure.effect-terry {
+    background: #34495e;
+    position: relative;
+    user-select: auto;
+    overflow: hidden;
+    margin: 0 8px;
+}
+
+.effect-terry__links {
+    user-select: auto;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transform: translateX(-100%);
+    padding-right: 30px;
+}
+
+figure.effect-terry img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+figure.effect-terry figcaption {
+    padding-left: 1em;
+}
+
+figure.effect-terry figcaption::before,
+figure.effect-terry figcaption::after {
+    position: absolute;
+    width: 200%;
+    height: 220%;
+    border-style: solid;
+    border-color: #101010;
+    content: "";
+    -webkit-transition: -webkit-transform 0.35s;
+    transition: transform 0.35s;
+}
+
+figure.effect-terry figcaption::before {
+    right: 0;
+    bottom: 0;
+    border-width: 0 70px 60px 0;
+    -webkit-transform: translate3d(70px, 60px, 0);
+    transform: translate3d(70px, 60px, 0);
+}
+
+figure.effect-terry figcaption::after {
+    top: 0;
+    left: 0;
+    border-width: 15px 0 0 15px;
+    -webkit-transform: translate3d(-15px, -15px, 0);
+    transform: translate3d(-15px, -15px, 0);
+}
+
+figure.effect-terry img,
+figure.effect-terry p a {
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+}
+
+figure.effect-terry img {
+    opacity: 0.85;
+}
+
+figure.effect-terry h2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0.4em 10px;
+    width: 50%;
+    -webkit-transition: -webkit-transform 0.35s;
+    transition: transform 0.35s;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+}
+
+@media screen and (max-width: 920px) {
+    figure.effect-terry h2 {
+        padding: 0.75em 10px;
+        font-size: 120%;
+    }
+}
+
+figure.effect-terry p {
+    float: right;
+    clear: both;
+    text-align: left;
+    text-transform: none;
+    font-size: 111%;
+}
+
+figure.effect-terry p a {
+    display: block;
+    color: #fff;
+    opacity: 0;
+    -webkit-transform: translate3d(90px, 0, 0);
+    transform: translate3d(90px, 0, 0);
+}
+
+figure.effect-terry p a:hover,
+figure.effect-terry p a:focus {
+    color: #f3cf3f;
+}
+
+figure.effect-terry:hover figcaption::before,
+figure.effect-terry:hover figcaption::after {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+figure.effect-terry:hover img {
+    opacity: 0.6;
+}
+
+figure.effect-terry:hover h2,
+figure.effect-terry:hover p a {
+    -webkit-transform: translateX(10px);
+    transform: translateX(10px);
+}
+
+figure.effect-terry:hover p a {
+    opacity: 1;
+}
+
+figure.effect-terry:hover p a:first-child {
+    -webkit-transition-delay: 0.025s;
+    transition-delay: 0.025s;
+}
+
+.effect-terry__links {
+    z-index: 9999;
+}
+
+figure.effect-terry:hover p a:nth-child(2) {
+    -webkit-transition-delay: 0.05s;
+    transition-delay: 0.05s;
+    cursor: pointer;
+}
+
+figure.effect-terry:hover p a:nth-child(3) {
+    -webkit-transition-delay: 0.075s;
+    transition-delay: 0.075s;
+}
+
+figure.effect-terry:hover p a:nth-child(4) {
+    -webkit-transition-delay: 0.1s;
+    transition-delay: 0.1s;
+}
+
+figure.effect-terry:hover p a:nth-child(5) {
+    -webkit-transition-delay: 0.15s;
+    transition-delay: 0.15s;
+}

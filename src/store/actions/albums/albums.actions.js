@@ -1,0 +1,6 @@
+export const GET_ALLALBUMS_REQUEST = "GET_ALLALBUMS_REQUEST";
+export const GET_ALLALBUMS_FAILURE = "GET_ALLALBUMS_FAILURE";
+export const GET_ALLALBUMS_SUCCESS = "GET_ALLALBUMS_SUCCESS";
+export const getAllAlbumsRequest = () => ({
+  type: GET_ALLALBUMS_REQUEST,
+});
