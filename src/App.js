@@ -1,14 +1,7 @@
-import { useState, useEffect, useRef } from "react";
-import ListView from "./components/ListView/ListView";
-import AlbumCard from "./components/AlbumCard/AlbumCard";
-import SongCard from "./components/SongCard/SongCard";
-import Index from "./pages/Index";
-import { Button, Link, useMediaQuery } from "@mui/material";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, FreeMode } from "swiper";
-import "swiper/css";
-import ListViewContainer from "./components/ListView/ListViewContainer";
+import { useEffect } from "react";
+import Index from "./pages/Index/Index";
 import { useDispatch } from "react-redux";
+import "swiper/css";
 import { GET_ALLALBUMS_REQUEST } from "./store/actions/albums/albums.actions";
 function App() {
   const dispatch = useDispatch();
@@ -17,7 +10,7 @@ function App() {
   }, []);
   return (
     <div className="App" style={{ width: "100vw", height: "100vh", margin: 0 }}>
-      <Index/>
+      <Index />
     </div>
   );
 }
