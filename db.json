@@ -53,115 +53,123 @@
       "album": "The Fox",
       "duration": "3:00",
       "file": "songs/The Fox.mp3"
+    }
+  ],
+  "albums": [
+    {
+      "id": 1,
+      "name": "The Fox",
+      "artist": "The Fox",
+      "cover": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg"
+    },
+    {
+      "id": 2,
+      "name": "The Fox",
+      "artist": "The Fox",
+      "cover": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg"
+    },
+    {
+      "id": 3,
+      "name": "The Fox",
+      "artist": "The Fox",
+      "cover": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg"
+    },
+    {
+      "id": 4,
+      "name": "The Fox",
+      "artist": "The Fox",
+      "cover": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg"
+    },
+    {
+      "id": 5,
+      "name": "The Fox",
+      "artist": "The Fox",
+      "cover": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg"
+    },
+    {
+      "id": 6,
+      "name": "The Fox",
+      "artist": "The Fox",
+      "cover": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg"
     },
     {
       "id": 7,
-      "poster": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg",
       "name": "The Fox",
       "artist": "The Fox",
-      "album": "The Fox",
-      "duration": "3:00",
-      "file": "songs/The Fox.mp3"
+      "cover": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg"
     },
     {
       "id": 8,
-      "poster": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg",
       "name": "The Fox",
       "artist": "The Fox",
-      "album": "The Fox",
-      "duration": "3:00"
+      "cover": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg"
+    },
+    {
+      "id": 9,
+      "name": "The Fox",
+      "artist": "The Fox",
+      "cover": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg"
+    },
+    {
+      "id": 10,
+      "name": "The Fox",
+      "artist": "The Fox",
+      "cover": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg"
+    },
+    {
+      "id": 11,
+      "name": "The Fox",
+      "artist": "The Fox",
+      "cover": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg"
     }
   ],
-  "albums":[
-    {
-    "id": 1,
-    "name": "The Fox",
-    "artist": "The Fox",
-    "cover": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg"
-  },
-  {
-    "id": 2,
-    "name": "The Fox",
-    "artist": "The Fox",
-    "cover": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg"
-  },
-  {
-    "id": 3,
-    "name": "The Fox",
-    "artist": "The Fox",
-    "cover": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg"
-  },
-  {
-    "id": 4,
-    "name": "The Fox",
-    "artist": "The Fox",
-    "cover": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg"
-  },
-  {
-    "id": 5,
-    "name": "The Fox",
-    "artist": "The Fox",
-    "cover": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg"
-  },
-  {
-    "id": 6,
-    "name": "The Fox",
-    "artist": "The Fox",
-    "cover": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg"
-  },
-  {
-    "id": 7,
-    "name": "The Fox",
-    "artist": "The Fox",
-    "cover": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg"
-  },
-  {
-    "id": 8,
-    "name": "The Fox",
-    "artist": "The Fox",
-    "cover": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg"
-  }
-  ],
-  "genres":[
-    {
-    "id": 1,
-    "name": "Pop"
-  },
-  {
-    "id": 2,
-    "name": "Rock"
-  },
-  {
-    "id": 3,
-    "name": "Jazz"
-  },
-  {
-    "id": 4,
-    "name": "Disco"
-  },
-  {
-    "id": 5,
-    "name": "System"
-  },
-  {
-    "id": 6,
-    "name": "Hard Metal"
-  },
-  {
-    "id": 7,
-    "name": "Metal"
-  },
-  {
-    "id": 8,
-    "name": "Country"
-  }],
-  "users": [
+  "genres": [
     {
       "id": 1,
+      "name": "Pop"
+    },
+    {
+      "id": 2,
+      "name": "Rock"
+    },
+    {
+      "id": 3,
+      "name": "Jazz"
+    },
+    {
+      "id": 4,
+      "name": "Disco"
+    },
+    {
+      "id": 5,
+      "name": "System"
+    },
+    {
+      "id": 6,
+      "name": "Hard Metal"
+    },
+    {
+      "id": 7,
+      "name": "Metal"
+    },
+    {
+      "id": 8,
+      "name": "Country"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
       "name": "erfan",
       "password": "123456789",
-      "email": "d@g.com"
+      "email": "dani@gmail.com"
+    },
+    {
+      "id": "2",
+      "name": "daniyal",
+      "password": "123456789",
+      "email": "dani@gmail.com"
     }
-    
-  ]
+  ],
+  "playlists": [{ "name": "erfan playlist", "userId": "1" }]
 }
