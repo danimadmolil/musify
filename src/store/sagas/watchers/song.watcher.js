@@ -8,9 +8,7 @@ import {
 } from "../../actions/songs/songs.actions";
 //watchers
 export function* initSongRequestWatcher() {
-  console.log("song saga before");
   yield takeLatest(GET_SONGS_REQUEST, initSongRequestHandler);
-  console.log("song saga after");
 }
 //handlers
 function* initSongRequestHandler() {

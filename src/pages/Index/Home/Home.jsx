@@ -30,9 +30,7 @@ export default function Home() {
             mobile: 1,
           }}
           elements={(data) => {
-            console.log("data", data);
             return data.map((item, i) => {
-              console.log("item", data);
               return (
                 <AlbumCard
                   style={{
@@ -79,9 +77,8 @@ export default function Home() {
             mobile: 1,
           }}
           elements={(data) => {
-            console.log("data", data);
             return data.map((item, i) => {
-              console.log("item", data);
+              
               return (
                 <SongCard
                   style={{

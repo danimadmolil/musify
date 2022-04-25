@@ -15,26 +15,13 @@ export default function ListView({
   action,
   devices,
 }) {
-  console.log("listView", {
-    style,
-    swiper,
-    direction,
-    elements,
-    listData,
-    slidesPerView,
-    spaceBetween,
-    title,
-    subTitle,
-    action,
-    devices,
-  });
+  
   const [currentDevice, setCurrentDevice] = useState("");
   const mobile = useMediaQuery("(max-width:500px)");
   const tablet = useMediaQuery("(min-width:501px) and (max-width:700px)");
   const laptop = useMediaQuery("(min-width:701px) and (max-width:900px)");
   const desktop = useMediaQuery("(min-width:901px) and (max-width:1600px)");
   const tv = useMediaQuery("(min-width:1600px)");
-  console.log("listData", listData.length);
   const defaultDevices = { mobile, tablet, laptop, desktop, tv };
   useEffect(() => {
     Object.keys(defaultDevices)
@@ -45,7 +32,6 @@ export default function ListView({
         }
       });
   });
-  console.log("device", currentDevice);
   return (
     <div
       className="listview_wraper"

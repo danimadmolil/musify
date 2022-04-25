@@ -26,5 +26,4 @@ server.use((req, res, next) => {
 });
 server.use(router);
 server.listen(4001, () => {
-  console.log("json server is listening on port 4001");
 });
