@@ -3,6 +3,13 @@ import { Grid, useTheme } from "@mui/material";
 import Home from "./Home/Home";
 export default function Index() {
   const theme = useTheme();
+  const options = {
+    seeked: true,
+    drag: true,
+    mode: "dark",
+    autoPlay: true,
+    showPlay: true,
+  };
   return (
     <Grid
       container
@@ -34,6 +41,7 @@ export default function Index() {
         desktop={10}
         sx={{
           height: "100%",
+          overflow: "hidden !important",
           [theme.breakpoints.up("tv")]: {
             flexBasis: "80% !important",
             maxWidth: "100%",
@@ -50,6 +58,7 @@ export default function Index() {
           <Home />
         </Grid>
         <Grid
+          className="footer"
           sx={{ width: "100%", height: "80px", background: "orange" }}
           item></Grid>
       </Grid>

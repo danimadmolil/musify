@@ -31,20 +31,18 @@ export default function Home() {
           }}
           elements={(data) => {
             console.log("data", data);
-            return data
-              ? data.map((item, i) => {
-                  console.log("item", data);
-                  return (
-                    <AlbumCard
-                      style={{
-                        height: "100%",
-                        color: "white",
-                      }}
-                      imgUrl={item ? item["poster"] : ""}
-                    />
-                  );
-                })
-              : null;
+            return data.map((item, i) => {
+              console.log("item", data);
+              return (
+                <AlbumCard
+                  style={{
+                    height: "100%",
+                    color: "white",
+                  }}
+                  imgUrl={item ? item["cover"] : ""}
+                />
+              );
+            });
           }}
           direction="horizontal"
           slidesPerView={4}
@@ -70,7 +68,7 @@ export default function Home() {
         <ListViewContainer
           title="Recent Albums"
           subTitle={"2021: 19/12"}
-          resource={"albums"}
+          resource={"songs"}
           action={<Button>SeeAll</Button>}
           spaceBetween={8}
           devices={{
@@ -82,20 +80,18 @@ export default function Home() {
           }}
           elements={(data) => {
             console.log("data", data);
-            return data
-              ? data.map((item, i) => {
-                  console.log("item", data);
-                  return (
-                    <SongCard
-                      style={{
-                        height: "100%",
-                        color: "white",
-                      }}
-                      imgUrl={item ? item["poster"] : ""}
-                    />
-                  );
-                })
-              : null;
+            return data.map((item, i) => {
+              console.log("item", data);
+              return (
+                <SongCard
+                  style={{
+                    height: "100%",
+                    color: "white",
+                  }}
+                  img={item ? item["cover"] : ""}
+                />
+              );
+            });
           }}
           direction="horizontal"
           slidesPerView={4}

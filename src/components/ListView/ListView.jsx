@@ -34,6 +34,7 @@ export default function ListView({
   const laptop = useMediaQuery("(min-width:701px) and (max-width:900px)");
   const desktop = useMediaQuery("(min-width:901px) and (max-width:1600px)");
   const tv = useMediaQuery("(min-width:1600px)");
+  console.log("listData", listData.length);
   const defaultDevices = { mobile, tablet, laptop, desktop, tv };
   useEffect(() => {
     Object.keys(defaultDevices)
@@ -65,11 +66,10 @@ export default function ListView({
           slidesPerView={devices[currentDevice]}
           modules={[FreeMode, Pagination]}
           direction={direction === "horizontal" ? "horizontal" : "vertical"}>
-          {elements(listData)
-            ? elements(listData).map((element) => (
+          {listData.length > 0 ? elements(listData).map((element) => (
                 <SwiperSlide>{element}</SwiperSlide>
               ))
-            : null}
+            : []}
         </Swiper>
       ) : undefined}
     </div>
