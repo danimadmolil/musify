@@ -1,4 +1,4 @@
-export const API_URL = "http://127.0.0.1:4001";
+export const API_URL = "http://127.0.0.1:8000";
 export function getAll(resource) {
   return fetch(`${API_URL}/${resource}`, {
     method: "get",
