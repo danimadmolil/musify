@@ -9,11 +9,12 @@ import {
   HeartBroken,
   YouTube,
 } from "@mui/icons-material";
+import defaultImage from "../../assets/images/3.jpg";
 import { useMediaQuery } from "@mui/material";
 export default function AlbumCard({ title, subTitle, imgUrl, style }) {
   return (
     <figure class="effect-terry" style={{ ...style }}>
-      <img src={!!imgUrl ? imgUrl : "null"} alt="img16" />
+      <img src={!!imgUrl ? imgUrl : defaultImage} alt="img16" />
       <figcaption>
         <h2>
           {!!title ? title : "Title"}{" "}

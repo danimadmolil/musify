@@ -47,7 +47,7 @@ export default function Home() {
           spaceBetween={1}
           style={{
             ...listViewStyle,
-            scrollContent: { height: "200px" },
+            scrollContent: { height: "250px" },
             root: {
               ...listViewStyle.root,
               margin: 0,
@@ -78,7 +78,6 @@ export default function Home() {
           }}
           elements={(data) => {
             return data.map((item, i) => {
-              
               return (
                 <SongCard
                   style={{
@@ -95,7 +94,7 @@ export default function Home() {
           spaceBetween={1}
           style={{
             ...listViewStyle,
-            scrollContent: { height: "200px" },
+            scrollContent: { height: "260px" },
             root: {
               ...listViewStyle.root,
               margin: 0,

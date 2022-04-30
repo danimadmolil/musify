@@ -13,6 +13,7 @@ import {
   PlayCircleRounded,
   PlayArrowSharp,
 } from "@mui/icons-material";
+import defaultImg from "../../assets/images/5.jpg";
 const PlayButton = styled(PlayCircleRounded).attrs({
   classes: { root: "play_button_rounded" },
 })`
@@ -62,17 +63,13 @@ export default function SongCard({
         position: "relative",
         ...style,
       }}>
-      <CardActionArea>
+      <CardActionArea sx={{ padding: 1 }}>
         <CardMedia
           height="169"
           component="img"
-          image={img}
+          image={img ? img : defaultImg}
           style={{ borderRadius: "4px" }}
-          sx={{
-            pr: 1,
-            pl: 1,
-            pt: 1,
-          }}
+          sx={{}}
         />
         <CardContent>
           <Typography
