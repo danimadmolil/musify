@@ -14,8 +14,8 @@ export function* initSongRequestWatcher() {
 //handlers
 function* initSongRequestHandler() {
   try {
-    const songs = yield call(getAll, "tracks-of-the-week");
-    const mappedSongs = songs.data.map((song) =>
+    const songs = yield call(getAll, "songs");
+    const mappedSongs = songs.map((song) =>
       objectMapper(song, {
         id: "id",
         name: "name",

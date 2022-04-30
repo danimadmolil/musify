@@ -8,17 +8,25 @@ import "raf/polyfill";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "@mui/system";
 import theme from "./theme";
 import { Provider } from "react-redux";
 import store from "./store/reduxStore";
-
+import SignUp from "./pages/SignUp/SignUp";
+import SignIn from "./pages/SignIn/SignIn";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
-      <App />
+      <Router>
+        <Switch>
+          <Route path={"/"} exact component={App} />
+          <Route path="/login" component={SignIn} />
+          <Route path="/signup" component={SignUp} />
+        </Switch>
+      </Router>
     </ThemeProvider>
   </Provider>
 );

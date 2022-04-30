@@ -3,7 +3,16 @@ const fs = require("fs");
 const server = jsonServer.create();
 const router = jsonServer.router("db.json");
 const middlewares = jsonServer.defaults();
+const auth = require("json-server-auth");
+const rules = auth.rewriter({
+  // Permission rules
+  users: 600,
+  // Other rules
+ 
+});
+server.db = router.db;
 
+server.use(rules);
 server.use(middlewares);
 //todo add custom routes here
 //customize route to update albums
@@ -19,11 +28,11 @@ server.use(middlewares);
 //   res.jsonp({ write });
 // });
 
+server.use(auth);
 server.use(jsonServer.bodyParser);
 //main entry middleware
 server.use((req, res, next) => {
   next();
 });
 server.use(router);
-server.listen(4001, () => {
-});
+server.listen(4001, () => {});

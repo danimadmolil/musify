@@ -12,7 +12,9 @@ const theme = createTheme({
   root: {
     backgroundColor: "black",
   },
+  mixins: {},
   palette: {
+    mode: "dark",
     primary: {
       main: "#1ed75f",
       900: "#007900",
@@ -26,17 +28,17 @@ const theme = createTheme({
       50: "#e5fae9",
     },
     secondary: {
-      main: "#606060",
-      900: "#3c3c3c",
-      800: "#606060",
-      700: "#818181",
-      600: "#979797",
-      500: "#c2c2c2",
-      200: "#f5f5f5",
-      300: "#f0f0f0",
-      400: "#dedede",
-      100: "#fafafa",
-      50: "#fafafa",
+      main: "#ffc200",
+      900: "#ffc200",
+      800: "#ffc200",
+      700: "#ffc200",
+      600: "#ffc200",
+      500: "#ffc200",
+      200: "#ffc200",
+      300: "#ffc200",
+      400: "#ffc200",
+      100: "#ffc200",
+      50: "#ffc200",
     },
   },
 });
