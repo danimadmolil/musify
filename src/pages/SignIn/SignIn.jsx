@@ -1,4 +1,5 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -13,8 +14,13 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useDispatch } from "react-redux";
 import { userLoginRequest } from "../../store/actions/user/user.actions";
-
-export default function SignIn() {
+import { useHistory } from "react-router-dom";
+function SignIn({ user = {} }) {
+  const history = useHistory();
+  if (user.email && user.name) {
+    console.log("useEffect push to history");
+    history.push("/");
+  }
   const dispatch = useDispatch();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -84,6 +90,9 @@ export default function SignIn() {
               <Link to="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
+              <Link to="/" variant="body2">
+                {"go to home"}
+              </Link>
             </Grid>
           </Grid>
         </Box>
@@ -91,3 +100,9 @@ export default function SignIn() {
     </Container>
   );
 }
+const mapStateToProps = (state, ownProps) => {
+  return {
+    user: state.user,
+  };
+};
+export default connect(mapStateToProps, null)(SignIn);

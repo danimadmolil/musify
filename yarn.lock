@@ -1131,6 +1131,16 @@
   resolved "https://registry.yarnpkg.com/@danimadmolil/amplitudejs/-/amplitudejs-5.3.6.tgz#67b21026f19a6611b438d2204ac62a8d60f1431c"
   integrity sha512-DiQp7z9rWTli9oIIwB9GygG9lD2vOYaTtZ2qPwR2GBw1qaAY5PRtxM5MbubbGBNoGgC6HqrlUVVrJi/VYPITsQ==
 
+"@danimadmolil/json-server-auth@^2.1.7":
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/@danimadmolil/json-server-auth/-/json-server-auth-2.1.7.tgz#173a40fc1a9c81f2859f5261c9983a1a8e80fbff"
+  integrity sha512-Y7Rs6ETEgiFQ+mf5t+/h4W7ACX96oCpJCzIf3cBf++b2ME7wNcZ+7h4ogVHE36yMBLHAna0F+tPqKEc1Lz7ZYw==
+  dependencies:
+    bcryptjs "^2.4.3"
+    cookie-parser "^1.4.6"
+    jsonwebtoken "^8.5.1"
+    yargs "^16.2.0"
+
 "@emotion/babel-plugin@^11.7.1":
   version "11.9.2"
   resolved "https://registry.yarnpkg.com/@emotion/babel-plugin/-/babel-plugin-11.9.2.tgz#723b6d394c89fb2ef782229d92ba95a740576e95"
@@ -3504,10 +3514,23 @@ convert-source-map@^1.4.0, convert-source-map@^1.5.0, convert-source-map@^1.6.0,
   dependencies:
     safe-buffer "~5.1.1"
 
+cookie-parser@^1.4.6:
+  version "1.4.6"
+  resolved "https://registry.yarnpkg.com/cookie-parser/-/cookie-parser-1.4.6.tgz#3ac3a7d35a7a03bbc7e365073a26074824214594"
+  integrity sha512-z3IzaNjdwUC2olLIB5/ITd0/setiaFMLYiZJle7xg5Fe9KWAceil7xszYfHHBtDFYLSgJduS2Ty0P1uJdPDJeA==
+  dependencies:
+    cookie "0.4.1"
+    cookie-signature "1.0.6"
+
 cookie-signature@1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/cookie-signature/-/cookie-signature-1.0.6.tgz#e303a882b342cc3ee8ca513a79999734dab3ae2c"
   integrity sha1-4wOogrNCzD7oylE6eZmXNNqzriw=
+
+cookie@0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.4.1.tgz#afd713fe26ebd21ba95ceb61f9a8116e50a537d1"
+  integrity sha512-ZwrFkGJxUR3EIoXtO+yVE69Eb7KlixbaeAWfBQB9vVsNn/o+Yw69gBWSSDK825hQNdN+wF8zELf3dFNl/kxkUA==
 
 cookie@0.4.2:
   version "0.4.2"
@@ -6331,15 +6354,6 @@ json-schema@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/json-schema/-/json-schema-0.4.0.tgz#f7de4cf6efab838ebaeb3236474cbba5a1930ab5"
   integrity sha512-es94M3nTIfsEPisRafak+HDLfHXnKBhV3vU5eqPcS3flIWqcxJWgXHXiey3YrpaNsanY5ei1VoYEbOzijuq9BA==
-
-json-server-auth@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/json-server-auth/-/json-server-auth-2.1.0.tgz#cd0925c546d0df99e5bac366354d40727e04a151"
-  integrity sha512-uf6rud43cH+bfOqA+kqSqdNdVtOj56qJ6nNKH6nAZ8bFxpMY9zzthgK9trrvkVDzihqLfvZ0rwWnGZHACNckGA==
-  dependencies:
-    bcryptjs "^2.4.3"
-    jsonwebtoken "^8.5.1"
-    yargs "^16.2.0"
 
 json-server@^0.17.0:
   version "0.17.0"

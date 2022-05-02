@@ -23,7 +23,7 @@ root.render(
       <Router>
         <Switch>
           <Route path={"/"} exact component={App} />
-          <Route path="/login" component={SignIn} />
+          <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />
         </Switch>
       </Router>

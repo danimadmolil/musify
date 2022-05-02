@@ -11,7 +11,11 @@ export const USER_LOGOUT_REQUEST = "USER_LOGOUT_REQUEST";
 export const USER_LOGOUT_SUCCESS = "USER_LOGOUT_SUCCESS";
 export const USER_LOGOUT_FAILURE = "USER_LOGOUT_FAILURE";
 
-//actoin creators
+export const USER_CHECK_AUTH_REQUEST = "USER_CHECK_AUTH_REQUEST";
+export const USER_CHECK_AUTH_SUCCESS = "USER_CHECK_AUTH_SUCCESS";
+export const USER_CHECK_AUTH_FAILURE = "USER_CHECK_AUTH_FAILURE";
+
+//User login action creators
 /**
  *
  * @param {{emali:String,password:String}}  userLoginInfo - an Object contains user credentials to login {name,emlail,password}
@@ -35,7 +39,7 @@ export function userLoginFailure(error) {
     payload: { error },
   };
 }
-
+//user signup action creators
 export function userSignupRequest(userSignupInfo) {
   return {
     type: USER_SIGNUP_REQUEST,
@@ -54,3 +58,38 @@ export function userSignupFailure(error) {
     payload: { error },
   };
 }
+//user checkAuth action creators
+export function userCheckAuthRequest() {
+  return {
+    type: USER_CHECK_AUTH_REQUEST,
+  };
+} 
+export function userCheckAuthSuccess(user) {
+  return {
+    type: USER_CHECK_AUTH_SUCCESS,
+    payload: { user },
+  };
+} 
+export function userCheckAuthFailure(error) {
+  return {
+    type: USER_CHECK_AUTH_FAILURE,
+    payload: { error },
+  };
+} 
+//user logout action creators
+export function userLogoutRequest() {
+  return {
+    type: USER_LOGOUT_REQUEST,
+  };
+} 
+export function userLogoutSuccess() {
+  return {
+    type: USER_LOGOUT_SUCCESS,
+  };
+} 
+export function userLogoutFailure(error) {
+  return {
+    type: USER_LOGOUT_FAILURE,
+    payload: { error },
+  };
+} 

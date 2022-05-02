@@ -4,6 +4,7 @@ import SongCard from "../../../components/SongCard/SongCard";
 import Scrollbar from "smooth-scrollbar";
 import ListViewContainer from "../../../components/ListView/ListViewContainer";
 import AlbumCard from "../../../components/AlbumCard/AlbumCard";
+import Header from "../../../components/Header/Header";
 
 export default function Home() {
   const scrollContainer = useRef(null);
@@ -16,6 +17,7 @@ export default function Home() {
   return (
     <div ref={scrollContainer} style={{ height: "100%" }}>
       <div className="home" style={{ width: "100%", paddingBottom: "22px" }}>
+        <Header />
         <ListViewContainer
           title="Recent Albums"
           subTitle={"2021: 19/12"}

@@ -12,7 +12,24 @@ const theme = createTheme({
   root: {
     backgroundColor: "black",
   },
-  mixins: {},
+  mixins: {
+    Header: {
+      width: "100%",
+      height: "40px",
+      backgroundColor: "gray",
+      display: "flex",
+    },
+    Link: {
+      color: "yellowgreen",
+      textDecoration: "none",
+    },
+    stickToTop: {
+      top: 0,
+    },
+    fixed: {
+      position: "fixed",
+    },
+  },
   palette: {
     mode: "dark",
     primary: {
@@ -39,6 +56,9 @@ const theme = createTheme({
       400: "#ffc200",
       100: "#ffc200",
       50: "#ffc200",
+    },
+    success: {
+      main: "#34e904",
     },
   },
 });

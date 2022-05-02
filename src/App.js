@@ -8,9 +8,11 @@ import {
   INIT_SONGS,
   GET_SONGS_REQUEST,
 } from "./store/actions/songs/songs.actions";
+import { userCheckAuthRequest } from "./store/actions/user/user.actions";
 export default React.memo(function App() {
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(userCheckAuthRequest());
     dispatch({ type: GET_ALLALBUMS_REQUEST });
     dispatch({ type: GET_SONGS_REQUEST });
   }, []);
