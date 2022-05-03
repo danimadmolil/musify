@@ -2,57 +2,83 @@
   "songs": [
     {
       "id": 1,
-      "poster": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg",
-      "name": "The Fox",
-      "artist": "The Fox",
+      "poster": "https://popmellow.com/wp-content/uploads/2021/05/Top-20-Most-Popular-Singers-Right-Now.jpg",
+      "name": "The Lakes",
+      "artist": "Taylor Swift",
       "album": "The Fox",
       "duration": "3:00",
-      "file": "songs/The Fox.mp3"
+      "file": "https://dl.digital-musics.xyz/singers/taylor-swift/Folklore/17.Taylor-Swift-The-Lakes.mp3?_=1"
     },
     {
       "id": 2,
-      "poster": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg",
-      "name": "The Fox",
-      "artist": "The Fox",
+      "poster": "https://www.liveabout.com/thmb/bybTPCpgvc8MQ5iBhZvzrF3iwiM=/1209x1043/filters:no_upscale():max_bytes(150000):strip_icc()/adele-25-56a96ce35f9b58b7d0fb52ea.jpg",
+      "name": "Hello",
+      "artist": "Adele",
       "album": "The Fox",
       "duration": "3:00",
-      "file": "songs/The Fox.mp3"
+      "file": "https://dl.digital-musics.xyz/singers/Adele/Adele%20Hello.mp3?_=1"
     },
     {
       "id": 3,
-      "poster": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg",
-      "name": "The Fox",
-      "artist": "The Fox",
+      "poster": "https://popmellow.com/wp-content/uploads/2021/05/Top-Hottest-Female-Pop-Singers-right-now.jpg",
+      "name": "Bad Guy",
+      "artist": "Billie Eilish",
       "album": "The Fox",
       "duration": "3:00",
-      "file": "songs/The Fox.mp3"
+      "file": "https://dl.digital-musics.xyz/singers/billie-eilish/Billie-Eilish-Bad-Guy-320.mp3?_=1"
     },
     {
       "id": 4,
-      "poster": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg",
-      "name": "The Fox",
-      "artist": "The Fox",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNzliZDEwNjItYmVmZi00YzMwLWFkNTctYzZmMTRlMTY3NTJiXkEyXkFqcGdeQXVyNTk1ODg5ODA@._V1_.jpg",
+      "name": "The Heart Wants What It Wants",
+      "artist": "Selena Gomez",
       "album": "The Fox",
       "duration": "3:00",
-      "file": "songs/The Fox.mp3"
+      "file": "https://dl.baarzesh.net/music/2020/11/Selena_Gomez_The_Heart_Wants_What_It_Wants_128.mp3"
     },
     {
       "id": 5,
-      "poster": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg",
-      "name": "The Fox",
-      "artist": "The Fox",
+      "poster": "https://aniportalimages.s3.amazonaws.com/media/details/katy_15.jpg",
+      "name": "E.T",
+      "artist": "Katy Perry",
       "album": "The Fox",
       "duration": "3:00",
-      "file": "songs/The Fox.mp3"
+      "file": "https://dl.digital-musics.xyz/singers/Katy%20perry/Katy%20perry%20-%20Teenage%20Dream%20(2010)/08%20-%20E.T.mp3"
     },
     {
       "id": 6,
-      "poster": "https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg",
+      "poster": "https://coverartarchive.org/release/a2e8bf36-999a-480c-a466-ec5396c0f299/28272961875.jpg",
       "name": "The Fox",
-      "artist": "The Fox",
+      "artist": "Selena Gomez",
       "album": "The Fox",
       "duration": "3:00",
-      "file": "songs/The Fox.mp3"
+      "file": "https://dl.digital-musics.xyz/singers/selena-gomez/Selena%20Gomez%20%E2%80%93%20Rare%20(2020)/01.%20Rare.mp3"
+    }
+  ],
+  "favoriteSongs": [
+    {
+      "userId": 2,
+      "songId": 5
+    },
+    {
+      "userId": 1,
+      "songId": 4
+    },
+    {
+      "userId": 1,
+      "songId": 6
+    },
+    {
+      "userId": 1,
+      "songId": 5
+    },
+    {
+      "userId": 1,
+      "songId": 2
+    },
+    {
+      "userId": 1,
+      "songId": 1
     }
   ],
   "albums": [
@@ -159,17 +185,24 @@
   ],
   "users": [
     {
-      "id": "1",
-      "name": "erfan",
-      "password": "123456789",
-      "email": "dani@gmail.com"
+      "email": "eri@g.com",
+      "password": "$2a$10$zDHBa3LW699pVSrF38H1..0i7bs3lEWgxz9pnYWlEvnGwvMw92FJe",
+      "name": "dani",
+      "lastName": "madmolil",
+      "id": 1
     },
     {
-      "id": "2",
-      "name": "daniyal",
-      "password": "123456789",
-      "email": "dani@gmail.com"
+      "email": "daniyal.madmolil@gmail.com",
+      "password": "$2a$10$wBf.VF0xaO4g3KNCefxDCu9scTzFycErcuce5auTAsUo/u9CKb06C",
+      "name": "dani",
+      "lastName": "madmolil",
+      "id": 2
     }
   ],
-  "playlists": [{ "name": "erfan playlist", "userId": "1" }]
+  "playlists": [
+    {
+      "name": "erfan playlist",
+      "userId": "1"
+    }
+  ]
 }

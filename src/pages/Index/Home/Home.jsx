@@ -79,14 +79,14 @@ export default function Home() {
             mobile: 1,
           }}
           elements={(data) => {
-            return data.map((item, i) => {
+            return data.map((song, i) => {
               return (
                 <SongCard
                   style={{
                     height: "100%",
                     color: "white",
                   }}
-                  img={item ? item["cover"] : ""}
+                  song={song}
                 />
               );
             });

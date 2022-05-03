@@ -1131,10 +1131,10 @@
   resolved "https://registry.yarnpkg.com/@danimadmolil/amplitudejs/-/amplitudejs-5.3.6.tgz#67b21026f19a6611b438d2204ac62a8d60f1431c"
   integrity sha512-DiQp7z9rWTli9oIIwB9GygG9lD2vOYaTtZ2qPwR2GBw1qaAY5PRtxM5MbubbGBNoGgC6HqrlUVVrJi/VYPITsQ==
 
-"@danimadmolil/json-server-auth@^2.1.7":
-  version "2.1.7"
-  resolved "https://registry.yarnpkg.com/@danimadmolil/json-server-auth/-/json-server-auth-2.1.7.tgz#173a40fc1a9c81f2859f5261c9983a1a8e80fbff"
-  integrity sha512-Y7Rs6ETEgiFQ+mf5t+/h4W7ACX96oCpJCzIf3cBf++b2ME7wNcZ+7h4ogVHE36yMBLHAna0F+tPqKEc1Lz7ZYw==
+"@danimadmolil/json-server-auth@^2.1.9":
+  version "2.1.9"
+  resolved "https://registry.yarnpkg.com/@danimadmolil/json-server-auth/-/json-server-auth-2.1.9.tgz#aa41a9bfd9991df0a3e6af054741706517d6e719"
+  integrity sha512-lvdt7go1sQs+wtLIZZmZL5HzeUGfO8oprgPLFZFoJygN4lblCmPYI9MVK9RI5y7UNvGrfNH8FSXAFL/wueI0hQ==
   dependencies:
     bcryptjs "^2.4.3"
     cookie-parser "^1.4.6"

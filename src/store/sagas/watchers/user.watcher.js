@@ -35,7 +35,7 @@ function* userCheckAuthRequest(action) {
   try {
     const responseUser = yield call(login, "", "auth");
     console.log("response", responseUser);
-    const { email, name, lastName } = responseUser.user[0];
+    const { email, name, lastName } = responseUser.user;
     const user = { email, name, lastName };
     yield put(userCheckAuthSuccess({ user: user }));
   } catch (error) {

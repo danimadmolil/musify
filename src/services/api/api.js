@@ -3,6 +3,7 @@ export function getAll(resource) {
   return fetch(`${API_URL}/${resource}`, {
     method: "get",
     headers: { "Content-Type": "application/json" },
+    credentials: "include",
   })
     .then((response) => {
       if (!response.ok) {
@@ -68,4 +69,17 @@ export function singUp(userSingUpInfo, path = "/auth/register") {
       console.log("error", error);
       throw error;
     });
+}
+export function toggleFavoriteRequest(songId) {
+  return fetch(`${API_URL}/toggleFavoriteSong`, {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ songId }),
+    credentials: "include",
+  }).then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+    throw Error("faild to toggle favoriteSong")
+  });
 }

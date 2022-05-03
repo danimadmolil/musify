@@ -14,13 +14,16 @@ export function* initSongRequestWatcher() {
 //handlers
 function* initSongRequestHandler() {
   try {
-    const songs = yield call(getAll, "songs");
+    const songs = yield call(getAll, "allSongs");
     const mappedSongs = songs.map((song) =>
       objectMapper(song, {
         id: "id",
         name: "name",
-        url: "url",
-        cover_art_url: "cover_url",
+        file: "url",
+        favorite: "like",
+        artist: "artist",
+        duration: "duration",
+        poster: "cover_url",
         favorite: "like",
       })
     );
