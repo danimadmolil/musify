@@ -1,49 +1,53 @@
 import React from "react";
-import { Grid, useTheme } from "@mui/material";
+import { Grid, useTheme, Box, Slider } from "@mui/material";
 import Home from "./Home/Home";
+import Footer from "../../components/Footer/Footer";
 export default function Index() {
   const theme = useTheme();
-  const options = {
-    seeked: true,
-    drag: true,
-    mode: "dark",
-    autoPlay: true,
-    showPlay: true,
-  };
   return (
     <Grid
       container
       direction="row"
       sx={{ width: "100vw", height: "100vh", margin: 0 }}>
+      {/** sidebar */}
       <Grid
         item
         className="side_bar"
-        mobile={0}
-        tablet={3}
-        laptop={3}
-        desktop={2}
+        sm={0}
+        md={3}
+        lg={3}
+        xl={2}
         sx={{
           background: "tomato",
           height: "100%",
-          [theme.breakpoints.up("tv")]: {
+          [theme.breakpoints.up("md")]: {
             flexBasis: "20% !important",
             maxWidth: "100%",
           },
+          [theme.breakpoints.between("sm", "md")]: {
+            flexBasis: "90",
+            maxWidth: "100%",
+          },
         }}></Grid>
+      {/** main content */}
       <Grid
         item
         container
         direction="column"
         className="main"
-        mobile={12}
-        tablet={9}
-        laptop={9}
-        desktop={10}
+        sm={12}
+        md={9}
+        lg={9}
+        xl={10}
         sx={{
           height: "100%",
           overflow: "hidden !important",
-          [theme.breakpoints.up("tv")]: {
+          [theme.breakpoints.up("md")]: {
             flexBasis: "80% !important",
+            maxWidth: "100%",
+          },
+          [theme.breakpoints.between("sm", "md")]: {
+            flexBasis: "90",
             maxWidth: "100%",
           },
         }}>
@@ -53,14 +57,16 @@ export default function Index() {
             width: "100%",
             height: "calc(100% - 80px)",
             maxWidth: "100%",
-            background: "yellowgreen",
+            background: "#090909",
           }}>
           <Home />
         </Grid>
         <Grid
           className="footer"
           sx={{ width: "100%", height: "80px", background: "orange" }}
-          item></Grid>
+          item>
+          <Footer />
+        </Grid>
       </Grid>
     </Grid>
   );

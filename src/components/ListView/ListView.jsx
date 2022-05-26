@@ -15,7 +15,6 @@ export default function ListView({
   action,
   devices,
 }) {
-  
   const [currentDevice, setCurrentDevice] = useState("");
   const mobile = useMediaQuery("(max-width:500px)");
   const tablet = useMediaQuery("(min-width:501px) and (max-width:700px)");
@@ -31,7 +30,7 @@ export default function ListView({
           setCurrentDevice(device);
         }
       });
-  });
+  }, [mobile, tablet, laptop, desktop, tv]);
   return (
     <div
       className="listview_wraper"
@@ -52,7 +51,8 @@ export default function ListView({
           slidesPerView={devices[currentDevice]}
           modules={[FreeMode, Pagination]}
           direction={direction === "horizontal" ? "horizontal" : "vertical"}>
-          {listData.length > 0 ? elements(listData).map((element) => (
+          {listData.length > 0
+            ? elements(listData).map((element) => (
                 <SwiperSlide>{element}</SwiperSlide>
               ))
             : []}
