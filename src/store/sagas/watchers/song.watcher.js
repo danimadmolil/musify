@@ -23,7 +23,7 @@ function* initSongRequestHandler() {
         favorite: "like",
         artist: "artist",
         duration: "duration",
-        poster: "cover_url",
+        poster: "cover_art_url",
         favorite: "like",
       })
     );

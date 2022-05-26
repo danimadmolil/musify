@@ -1126,11 +1126,6 @@
   dependencies:
     postcss-value-parser "^4.2.0"
 
-"@danimadmolil/amplitudejs@^5.3.6":
-  version "5.3.6"
-  resolved "https://registry.yarnpkg.com/@danimadmolil/amplitudejs/-/amplitudejs-5.3.6.tgz#67b21026f19a6611b438d2204ac62a8d60f1431c"
-  integrity sha512-DiQp7z9rWTli9oIIwB9GygG9lD2vOYaTtZ2qPwR2GBw1qaAY5PRtxM5MbubbGBNoGgC6HqrlUVVrJi/VYPITsQ==
-
 "@danimadmolil/json-server-auth@^2.1.9":
   version "2.1.9"
   resolved "https://registry.yarnpkg.com/@danimadmolil/json-server-auth/-/json-server-auth-2.1.9.tgz#aa41a9bfd9991df0a3e6af054741706517d6e719"
@@ -6942,6 +6937,11 @@ mute-stream@0.0.8:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.8.tgz#1630c42b2251ff81e2a283de96a5497ea92e5e0d"
   integrity sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==
+
+myamplitudejs2@^5.3.5:
+  version "5.3.5"
+  resolved "https://registry.yarnpkg.com/myamplitudejs2/-/myamplitudejs2-5.3.5.tgz#afd1536ddd2cc2b7e62b09456af95028c1012bde"
+  integrity sha512-Uib44whBYlQ3cQzp7hL2yrWYAYgaTf+8EtqVDo7MV6Ef3Nw2PdAlvQz/w7t/7EXzHf80brQ6+uCjCxDYJyPO1g==
 
 nanoid@^3.1.23:
   version "3.3.3"

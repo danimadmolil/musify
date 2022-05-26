@@ -1,14 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 const theme = createTheme({
-  breakpoints: {
-    values: {
-      mobile: 0,
-      tablet: 600,
-      laptop: 900,
-      desktop: 1200,
-      tv: 1700,
-    },
-  },
+  
   root: {
     backgroundColor: "black",
   },
@@ -60,6 +52,7 @@ const theme = createTheme({
     success: {
       main: "#34e904",
     },
+    light: { main: "#ffffff" },
   },
 });
 

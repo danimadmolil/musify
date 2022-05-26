@@ -11,26 +11,19 @@ import {
   PlayArrowOutlined,
   PlayArrowRounded,
   PlayCircleRounded,
+  PauseCircleRounded,
   PlayArrowSharp,
   Favorite,
 } from "@mui/icons-material";
 import defaultImg from "../../assets/images/5.jpg";
 import { toggleFavoriteRequest } from "../../services/api/api";
-const PlayButton = styled(PlayCircleRounded).attrs({
-  classes: { root: "play_button_rounded" },
-})`
-  opacity: 0;
-  font-size: 50px;
-  color: #00ff3ed4;
-  transition: all 0.3s;
-  will-change: all;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: scale(0.5) translate(50%, 30%);
-  transform-origin: center center;
-  cursor: pointer;
-`;
+import {
+  pause,
+  playNow,
+  resume,
+  getActiveSongMetadata,
+} from "../../utils/amplitudejs/amplitude.utils";
+import PlayButtonProgressContainer from "../player/PlayButtonProgress/PlayButtonProgressContainer";
 const SongFavoriteButton = styled(Favorite).attrs({
   classes: { root: "song_favorite_button" },
 })`
@@ -54,11 +47,18 @@ const Backdrop = styled.div`
   }
   &:hover .play_button_rounded {
     opacity: 1;
-    transform: scale(1) translate(50%, 30%);
   }
   &:hover .song_favorite_button {
     opacity: 1;
     transform: scale(1) translate(-100%, -100%);
+  }
+  &:hover .pause_container {
+    opacity: 1;
+    transform: scale(1) translate(50%, 30%);
+  }
+  &:hover .pause_button_container {
+    opacity: 1;
+    transform: scale(1) translate(50%, 30%);
   }
   top: 0px;
   left: 0px;
@@ -76,6 +76,7 @@ export default function SongCard({
   style = {},
 }) {
   const [isLiked, setIsLiked] = useState(song.like);
+  const [isPlaying, setIsPlaying] = useState(false);
   return (
     <Card
       style={{
@@ -90,7 +91,7 @@ export default function SongCard({
         <CardMedia
           height="169"
           component="img"
-          image={song.cover_url ? song.cover_url : defaultImg}
+          image={song.cover_art_url ? song.cover_art_url : defaultImg}
           style={{ borderRadius: "4px" }}
           sx={{}}
         />
@@ -108,7 +109,7 @@ export default function SongCard({
         </CardContent>
       </CardActionArea>
       <Backdrop>
-        <PlayButton />
+        <PlayButtonProgressContainer song={song} />
         <SongFavoriteButton
           onClick={() => {
             toggleFavoriteRequest(song.id).then((res) => setIsLiked(!isLiked));

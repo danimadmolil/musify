@@ -15,12 +15,19 @@ const rules = auth.rewriter({
 });
 server.use(jsonServer.bodyParser);
 server.use(cookieParser());
-server.get("/allSongs", (req, res) => {
+server.use((req, res, next) => {
+  if (req.cookies.authorization) {
+    let [scheme, token] = req.cookies.authorization.split(" ");
+    req.headers.authorization = "Bearer " + token;
+  }
   res.set({
     "Access-Control-Allow-Credentials": "true",
-    "Access-Control-Allow-Origin": "http://localhost:3000",
+    "Access-Control-Allow-Origin": req.headers.origin,
     "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, HEAD, OPTIONS",
   });
+  next();
+});
+server.get("/allSongs", (req, res) => {
   const { db } = req.app;
   const user = getUserByCookie(req);
   let songsWithFavoriteFlag;
@@ -40,14 +47,7 @@ server.get("/allSongs", (req, res) => {
   res.jsonp(db.get("songs"));
   res.send();
 });
-server.use("/favoriteSongs", (req, res, next) => {
-  if (req.cookies.authorization) {
-    let [scheme, token] = req.cookies.authorization.split(" ");
-    req.headers.authorization = "Bearer " + token;
-  }
-  console.log("headers", req.headers.authorization);
-  next();
-});
+
 server.db = router.db;
 server.use(rules);
 server.use(middlewares);
