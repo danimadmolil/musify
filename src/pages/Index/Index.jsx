@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, useTheme, Box, Slider } from "@mui/material";
+import SideBarMenu from "../../components/SideBarMenu/SideBarMenu";
 import Home from "./Home/Home";
 import Footer from "../../components/Footer/Footer";
 export default function Index() {
@@ -18,17 +19,20 @@ export default function Index() {
         lg={3}
         xl={2}
         sx={{
-          background: "tomato",
+          overflow: "hidden !important",
+          background: "black",
           height: "100%",
           [theme.breakpoints.up("md")]: {
             flexBasis: "20% !important",
             maxWidth: "100%",
           },
-          [theme.breakpoints.between("sm", "md")]: {
-            flexBasis: "90",
+          [theme.breakpoints.down("md")]: {
+            flexBasis: "0%",
             maxWidth: "100%",
           },
-        }}></Grid>
+        }}>
+        <SideBarMenu />
+      </Grid>
       {/** main content */}
       <Grid
         item
@@ -46,8 +50,8 @@ export default function Index() {
             flexBasis: "80% !important",
             maxWidth: "100%",
           },
-          [theme.breakpoints.between("sm", "md")]: {
-            flexBasis: "90",
+          [theme.breakpoints.down("md")]: {
+            flexBasis: "100%",
             maxWidth: "100%",
           },
         }}>

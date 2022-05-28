@@ -5,8 +5,10 @@ import {
   MenuItem,
   IconButton,
   Tooltip,
+  Link as MuiLink,
 } from "@mui/material";
 import { useTheme } from "@mui/system";
+import { LoginSharp, AppRegistrationRounded } from "@mui/icons-material";
 import CircularProgress from "@mui/material/CircularProgress";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -31,17 +33,43 @@ export default function AuthButtons({ user = {}, profile = defaultProfile }) {
   }
   const theme = useTheme();
   return user.isLoading === false && user.email === undefined ? (
-    <Grid container style={{ width: 300 }}>
-      <Grid item sm="6" md="6" lg="6" xl="6">
-        <Button component="a">
+    <Grid container style={{ width: 228 }}>
+      <Grid
+        item
+        xs="6"
+        sm="6"
+        md="6"
+        lg="6"
+        xl="6"
+        justifyContent="space-between"
+        container
+        item>
+        <Button
+          size="small"
+          hoverColor="primary"
+          variant="outlined"
+          color="primary"
+          component="a"
+          endIcon={<LoginSharp sx={{ color: "white" }} />}>
           <Link style={theme.mixins.Link} to="signin">
             SignIn
           </Link>
         </Button>
       </Grid>
       <Grid>
-        <Button color="success" sm="6" md="6" lg="6" xl="6">
-          <Link style={theme.mixins.Link} to="signup">
+        <Button
+          size="small"
+          background="blue"
+          variant="rounded-button"
+          hoverColor="#8686ff"
+          endIcon={<AppRegistrationRounded sx={{ color: "white" }} />}
+          color="success"
+          xs="6"
+          sm="6"
+          md="6"
+          lg="6"
+          xl="6">
+          <Link style={theme.mixins.Link} sx={{ color: "#6f223d" }} to="signup">
             SignUp
           </Link>
         </Button>
