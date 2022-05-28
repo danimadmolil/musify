@@ -25,6 +25,7 @@ import {
 import RepeatIcon from "@mui/icons-material/Repeat";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 import { bindElements } from "./../../utils/amplitudejs/amplitude.utils";
+import PlayPauseButtonContainer from "../PlayPauseButton/PlayPauseButtonContainer";
 const settings = [
   "playlist 1",
   "playlist 2",
@@ -164,7 +165,7 @@ export default function Footer() {
                 padding: 0,
                 display: "block",
               }}>
-              <PlayCircleRounded
+              <PlayPauseButtonContainer
                 color="primary"
                 style={{ width: "100%", height: "100%" }}
               />

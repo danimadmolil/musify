@@ -153,7 +153,7 @@ export default React.memo(
               if (activeSong.id === song.id && activeSong.name === song.name) {
                 if (playerState === "paused") {
                   resume();
-                  dispatch({ type: "PLAY_SONG", payload: { music: song } });
+                  dispatch({ type: "RESUME_SONG" });
                 }
               }
             }}>

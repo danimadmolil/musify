@@ -1,8 +1,35 @@
 import { createTheme } from "@mui/material/styles";
 const theme = createTheme({
-  
   root: {
     backgroundColor: "black",
+  },
+  components: {
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: "rounded-button" },
+          style: {
+            borderRadius: 48,
+            minWidth: 100,
+          },
+        },
+      ],
+      styleOverrides: {
+        root: (props) => ({
+          backgroundColor: props.background,
+          ":hover": {
+            backgroundColor: props.hoverColor,
+          },
+        }),
+      },
+    },
+    MuiLink: {
+      styleOverrides: {
+        root: (props) => ({
+          color: props.color,
+        }),
+      },
+    },
   },
   mixins: {
     Header: {
@@ -12,7 +39,7 @@ const theme = createTheme({
       display: "flex",
     },
     Link: {
-      color: "yellowgreen",
+      color: "white",
       textDecoration: "none",
     },
     stickToTop: {
@@ -35,6 +62,27 @@ const theme = createTheme({
       200: "#96e8a5",
       100: "#c1f1c9",
       50: "#e5fae9",
+    },
+    backgrounds: {
+      dark: {
+        main: "#000",
+        900: "#181818",
+        800: "#212121",
+        700: "#333333",
+        600: "#555555",
+        500: "#767676",
+        400: "#919191",
+        300: "#a5a5a5",
+        200: "#c5c5c5",
+        100: "#dbdbdb",
+      },
+      light: { main: "#fff", 500: "#7b7a7a" },
+    },
+    text: {
+      dark: {
+        main: "#fff",
+      },
+      light: { main: "#000" },
     },
     secondary: {
       main: "#ffc200",

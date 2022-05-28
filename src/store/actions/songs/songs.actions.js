@@ -5,6 +5,7 @@ export const INIT_SONGS = "INIT_SONGS";
 
 //play state actions
 export const PLAY_SONG = "PLAY_SONG";
+export const RESUME_SONG = "RESUME_SONG";
 export const SONG_ENDED = "SONG_ENDED";
 export const PAUSE_SONG = "PAUSE_SONG";
 //action creators
@@ -16,4 +17,7 @@ export function pauseSong(song) {
 }
 export function songEnded() {
   return { type: SONG_ENDED };
+}
+export function resumeSong() {
+  return { type: RESUME_SONG };
 }

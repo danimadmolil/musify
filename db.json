@@ -7,7 +7,7 @@
       "artist": "Taylor Swift",
       "album": "The Fox",
       "duration": "3:00",
-      "file": "https://dl2.hitseda.com/Music/bm/021/khareji/tylor%20swift/1/11.the%20lakes.mp3"
+      "file": "https://ts5.tarafdari.com/contents/user678699/content-sound/2_cardigan.mp3"
     },
     {
       "id": 2,
@@ -16,7 +16,7 @@
       "artist": "Adele",
       "album": "The Fox",
       "duration": "3:00",
-      "file": "https://dl.digital-musics.xyz/singers/Adele/Adele%20Hello.mp3?_=1"
+      "file": "https://www.tarafdari.com/sites/default/files/contents/user713362/content-sound/adele_-_someone_like_you_live.mp3"
     },
     {
       "id": 3,
@@ -25,7 +25,7 @@
       "artist": "Billie Eilish",
       "album": "The Fox",
       "duration": "3:00",
-      "file": "https://dl.digital-musics.xyz/singers/billie-eilish/Billie-Eilish-Bad-Guy-320.mp3?_=1"
+      "file": "https://ts4.tarafdari.com/contents/user660604/content-sound/billieeilish-badguy-320.mp3"
     },
     {
       "id": 4,
@@ -43,7 +43,7 @@
       "artist": "Katy Perry",
       "album": "The Fox",
       "duration": "3:00",
-      "file": "https://dl.digital-musics.xyz/singers/Katy%20perry/Katy%20perry%20-%20Teenage%20Dream%20(2010)/08%20-%20E.T.mp3"
+      "file": "https://ts2.tarafdari.com/contents/user300836/content-sound/chained_to_the_rhythm_-_katy_perry_ft_skip_marley.mp3"
     },
     {
       "id": 6,
@@ -82,11 +82,11 @@
     },
     {
       "userId": 1,
-      "songId": 3
+      "songId": 4
     },
     {
       "userId": 1,
-      "songId": 4
+      "songId": 2
     }
   ],
   "albums": [
