@@ -80,13 +80,12 @@ export default function SongCard({
   return (
     <Card
       style={{
-        background:
-          "linear-gradient(to top, rgb(15 15 15),rgb(19 19 19) 50%, #0e0e0e 67%,black 100%)",
         marginRight: 8,
         marginLeft: 8,
         position: "relative",
         ...style,
-      }}>
+      }}
+      sx={{ backgroundColor: (theme) => theme.palette.card.default }}>
       <CardActionArea sx={{ padding: 1 }}>
         <CardMedia
           height="169"
@@ -98,12 +97,20 @@ export default function SongCard({
         <CardContent>
           <Typography
             gutterBottom
-            sx={{ fontSize: 16 }}
+            sx={{
+              fontSize: 16,
+              color: (theme) => theme.palette.typography.light,
+            }}
             component="div"
-            color="white">
+            >
             {song.name}
           </Typography>
-          <Typography variant="body2" color="#a0a0a0" sx={{ fontSize: 11 }}>
+          <Typography
+            variant="body2"
+            sx={{
+              fontSize: 11,
+              color: (theme) => theme.palette.typography.light,
+            }}>
             {song.artist}
           </Typography>
         </CardContent>

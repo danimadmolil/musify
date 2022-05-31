@@ -1,0 +1,137 @@
+import { createTheme } from "@mui/material/styles";
+
+export default function themeCreator(mode = "dark", theme) {
+  return createTheme({
+    palette:
+      mode === "dark"
+        ? {
+            mode: "dark",
+            primary: {
+              main: "#1ed75f",
+              900: "#007900",
+              800: "#009913",
+              700: "#00ab24",
+              600: "#00be32",
+              500: "#00ce3c",
+              300: "#60e07e",
+              200: "#96e8a5",
+              100: "#c1f1c9",
+              50: "#e5fae9",
+            },
+            secondary: {
+              main: "#ffc200",
+              900: "#ffc200",
+              800: "#ffc200",
+              700: "#ffc200",
+              600: "#ffc200",
+              500: "#ffc200",
+              200: "#ffc200",
+              300: "#ffc200",
+              400: "#ffc200",
+              100: "#ffc200",
+              50: "#ffc200",
+            },
+            accent: {
+              default: "#1ed75f",
+              900: "#0f8",
+              800: "#0f8",
+              700: "#58d483",
+              600: "#0f8",
+            },
+            card: {
+              default: "#000",
+            },
+            backgrounds: {
+              default: "#000000",
+              900: "#191919",
+              800: "#2d2d2d",
+              700: "#424242",
+              600: "#565656",
+              500: "#6d6d6d",
+              400: "#828282",
+              300: "#9b9b9b",
+              200: "#b6b6b6",
+              100: "#d9d9d9",
+              50: "#f2f2f2",
+              secondary: "#2A2A2A",
+            },
+            typography: {
+              primary: "#fff",
+              disable: "#c0c0c0",
+              heading: "#FFF",
+              light:"#fff",
+              secondary: "#fff",
+            },
+
+            success: {
+              main: "#34e904",
+            },
+            light: { main: "#ffffff" },
+          }
+        : {
+            mode: "light",
+            primary: {
+              main: "#4CC9F0",
+              900: "#26FF75",
+              800: "#51FF91 ",
+              700: "#78FCA9",
+              600: "#78FCA9",
+              500: "#B6FCD0",
+              400: "#C9FBDB",
+              300: "#DBFBE7",
+              200: "#DBFBE7",
+              100: "#E8FCEE",
+              50: "#F4FBF6",
+            },
+            secondary: {
+              main: "#ffc200",
+              900: "#ffc200",
+              800: "#ffc200",
+              700: "#ffc200",
+              600: "#ffc200",
+              500: "#ffc200",
+              200: "#ffc200",
+              300: "#ffc200",
+              400: "#ffc200",
+              100: "#ffc200",
+              50: "#ffc200",
+            },
+            accent: {
+              default: "#ff0566",
+              900: "#ff1570",
+              800: "#ff2b7d",
+              700: "#ff488f",
+              600: "#ff0566",
+            },
+            backgrounds: {
+              default: "#560BAD",
+              900: "#3a0874",
+              800: "#1f0340",
+              700: "#bababa",
+              600: "#a9a9a9",
+              500: "#999999",
+              400: "#898989",
+              300: "#7a7a7a",
+              200: "#6b6b6b",
+              100: "#5c5c5c",
+              50: "#4d4d4d",
+              secondary: "#3A0CA3",
+            },
+            card: {
+              default: "#fff",
+            },
+            typography: {
+              primary: "#FFF",
+              heading: "#09ffe7",
+              disable: "#c0c0c0",
+              light: "#000",
+              secondary: "#F72585",
+            },
+            success: {
+              main: "#34e904",
+            },
+            light: { main: "#ffffff" },
+          },
+    ...theme,
+  });
+}

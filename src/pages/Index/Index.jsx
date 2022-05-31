@@ -20,7 +20,7 @@ export default function Index() {
         xl={2}
         sx={{
           overflow: "hidden !important",
-          background: "black",
+          background: (theme) => theme.palette.backgrounds["900"],
           height: "100%",
           [theme.breakpoints.up("md")]: {
             flexBasis: "20% !important",
@@ -44,6 +44,7 @@ export default function Index() {
         lg={9}
         xl={10}
         sx={{
+          backgroundColor: (theme) => theme.palette.backgrounds.default,
           height: "100%",
           overflow: "hidden !important",
           [theme.breakpoints.up("md")]: {
@@ -61,14 +62,11 @@ export default function Index() {
             width: "100%",
             height: "calc(100% - 80px)",
             maxWidth: "100%",
-            background: "#090909",
+            background: (theme) => theme.palette.backgrounds.default,
           }}>
           <Home />
         </Grid>
-        <Grid
-          className="footer"
-          sx={{ width: "100%", height: "80px", background: "orange" }}
-          item>
+        <Grid className="footer" sx={{ width: "100%", height: "80px" }} item>
           <Footer />
         </Grid>
       </Grid>

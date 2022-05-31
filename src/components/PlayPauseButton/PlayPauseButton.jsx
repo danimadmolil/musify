@@ -1,4 +1,5 @@
 import React from "react";
+import { IconButton } from "@mui/material";
 import { PlayCircleRounded, PauseCircleRounded } from "@mui/icons-material";
 import {
   playSong as playSongAction,
@@ -18,7 +19,9 @@ export default function PlayPauseButton({
         pause();
         pauseSong(pauseSongAction());
       }}>
-      <PauseCircleRounded {...rest} />
+      <IconButton variant="accent" {...rest}>
+        <PauseCircleRounded style={{ width: "100%", height: "100%" }} />
+      </IconButton>
     </span>
   ) : (
     <span
@@ -26,7 +29,9 @@ export default function PlayPauseButton({
       onClick={() => {
         playSong({ type: "RESUME_SONG" });
       }}>
-      <PlayCircleRounded {...rest} />
+      <IconButton variant="accent" {...rest}>
+        <PlayCircleRounded style={{ width: "100%", height: "100%" }} />
+      </IconButton>
     </span>
   );
 }

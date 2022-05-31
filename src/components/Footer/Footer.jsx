@@ -8,6 +8,7 @@ import {
   IconButton,
   Tooltip,
   useTheme,
+  styled,
 } from "@mui/material";
 import img from "./../../assets/images/5.jpg";
 import Menu from "@mui/material/Menu";
@@ -35,6 +36,9 @@ const settings = [
   "playlist 6",
   "playlist 7",
 ];
+const IconButtonWithTheme = styled(IconButton)(({ theme }) => ({
+  color: theme.palette.accent.default,
+}));
 export default function Footer() {
   const theme = useTheme();
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -90,7 +94,14 @@ export default function Footer() {
     }
   }
   return (
-    <Grid lg={12} container style={{ height: "100%", background: "black" }}>
+    <Grid
+      lg={12}
+      container
+      sx={{
+        width: "100%",
+        height: "100%",
+        backgroundColor: (theme) => theme.palette.backgrounds.secondary,
+      }}>
       {/*song poster */}
       <Grid
         style={{
@@ -116,13 +127,12 @@ export default function Footer() {
             margin: 0,
             display: "flex",
             alignItems: "center",
-            padding: "-888px",
           }}>
           <img
             data-amplitude-song-info="cover_art_url"
             style={{
-              width: 100,
-              height: "90%",
+              width: 70,
+              height: "85%",
               margin: 0,
               borderRadius: 8,
             }}
@@ -136,8 +146,8 @@ export default function Footer() {
         style={{ height: "100%", background: "transparent" }}
         item
         container
-        xs={7}
-        sm={6}
+        xs={5}
+        sm={8}
         md={7}
         lg={6}
         xl={8}
@@ -154,8 +164,21 @@ export default function Footer() {
             direction="row"
             alignItems={"center"}
             justifyContent={"center"}>
-            <ShuffleIcon fontSize="medium" color="light" />
-            <SkipPreviousRounded fontSize="medium" color="light" />
+            <IconButtonWithTheme>
+              <ShuffleIcon
+                sx={{ color: (theme) => theme.palette.accent["800"] }}
+                fontSize="medium"
+                color="light"
+              />
+            </IconButtonWithTheme>
+            <IconButtonWithTheme variant="IconButton-accent">
+              <SkipPreviousRounded
+                sx={{ color: (theme) => theme.palette.accent["800"] }}
+                fontSize="medium"
+                color="light"
+              />
+            </IconButtonWithTheme>
+
             <span
               class="amplitude-play"
               style={{
@@ -166,12 +189,25 @@ export default function Footer() {
                 display: "block",
               }}>
               <PlayPauseButtonContainer
-                color="primary"
-                style={{ width: "100%", height: "100%" }}
+                sx={{
+                  top: "-5px",
+                  position: "relative",
+                  color: (theme) => theme.palette.accent.default,
+                }}
               />
             </span>
-            <SkipNextRounded fontSize="medium" sx={{ color: "white" }} />
-            <RepeatIcon fontSize="medium" sx={{ color: "white" }} />
+            <IconButtonWithTheme>
+              <SkipNextRounded
+                sx={{ color: (theme) => theme.palette.accent["800"] }}
+                fontSize="medium"
+              />
+            </IconButtonWithTheme>
+            <IconButton>
+              <RepeatIcon
+                sx={{ color: (theme) => theme.palette.accent["800"] }}
+                fontSize="medium"
+              />
+            </IconButton>
           </Stack>
         </Grid>
         {/* slider */}
@@ -206,7 +242,7 @@ export default function Footer() {
                 ref={sliderRef}
                 aria-label="Temperature"
                 defaultValue={0}
-                color="primary"
+                sx={{ color: (theme) => theme.palette.accent.default }}
               />
               <span
                 style={{ color: "white" }}
@@ -217,24 +253,26 @@ export default function Footer() {
       </Grid>
       {/* volume */}
       <Grid
-        style={{ background: "transparent" }}
+        sx={{ mt: "12px" }}
         justifyContent="center"
         alignItems="center"
-        xs={5}
-        sm={6}
+        xs={7}
+        sm={4}
         md={3}
         lg={4}
         xl={2}
         item
         container>
-        <Box style={{ width: 200, background: "transparent" }}>
+        <Box style={{ width: "100%", background: "transparent" }}>
           <Stack
             spacing={2}
             direction="row"
             sx={{ mb: 1 }}
             alignItems="center"
             justifyContent="space-between">
-            <VolumeDown sx={{ color: "white" }} />
+            <VolumeDown
+              sx={{ color: (theme) => theme.palette.accent["700"] }}
+            />
             <input
               ref={volumeSlider}
               style={{ display: "none" }}
@@ -246,15 +284,25 @@ export default function Footer() {
             <Slider
               onChange={handleVolumeChange}
               value={volume}
-              color="primary"
+              sx={{ color: (theme) => theme.palette.accent.default }}
               size="small"
             />
-            <VolumeUp sx={{ color: "white" }} />
+            <VolumeUp sx={{ color: (theme) => theme.palette.accent["700"] }} />
             <Grid md={1} lg={1}>
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <ListIcon sx={{ width: 40, height: 40, color: "white" }} />
+                  <IconButton
+                    onClick={handleOpenUserMenu}
+                    sx={{
+                      p: 0,
+                    }}>
+                    <ListIcon
+                      sx={{
+                        width: 40,
+                        height: 40,
+                        color: (theme) => theme.palette.accent.default,
+                      }}
+                    />
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -284,7 +332,13 @@ export default function Footer() {
                 </Menu>
               </Box>
             </Grid>
-            <Fullscreen sx={{ color: "white", ml: "5px" }} />
+            <IconButton>
+              <Fullscreen
+                sx={{
+                  color: (theme) => theme.palette.accent.default,
+                }}
+              />
+            </IconButton>
           </Stack>
         </Box>
       </Grid>

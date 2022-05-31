@@ -46,13 +46,31 @@ export default function AuthButtons({ user = {}, profile = defaultProfile }) {
         item>
         <Button
           size="small"
-          hoverColor="primary"
-          variant="outlined"
-          color="primary"
+          hoverColor="#ffa9a9"
+          background={"#ff0e35"}
+          sx={{ borderRadius: 25 }}
           component="a"
-          endIcon={<LoginSharp sx={{ color: "white" }} />}>
-          <Link style={theme.mixins.Link} to="signin">
-            SignIn
+          endIcon={
+            <LoginSharp
+              sx={{
+                pr: "8px",
+                color: (theme) => theme.palette.typography.primary,
+              }}
+            />
+          }>
+          <Link
+            style={theme.mixins.Link}
+            sx={{ color: (theme) => "red" }}
+            to="signin">
+            <Typography
+              component="span"
+              variant="span"
+              sx={{
+                pl: "8px",
+                color: (theme) => theme.palette.typography.primary,
+              }}>
+              SingIn
+            </Typography>
           </Link>
         </Button>
       </Grid>
@@ -62,7 +80,13 @@ export default function AuthButtons({ user = {}, profile = defaultProfile }) {
           background="blue"
           variant="rounded-button"
           hoverColor="#8686ff"
-          endIcon={<AppRegistrationRounded sx={{ color: "white" }} />}
+          endIcon={
+            <AppRegistrationRounded
+              sx={{
+                color: (theme) => theme.palette.typography.primary,
+              }}
+            />
+          }
           color="success"
           xs="6"
           sm="6"
@@ -70,7 +94,13 @@ export default function AuthButtons({ user = {}, profile = defaultProfile }) {
           lg="6"
           xl="6">
           <Link style={theme.mixins.Link} sx={{ color: "#6f223d" }} to="signup">
-            SignUp
+            <Typography
+              variant="span"
+              sx={{
+                color: (theme) => theme.palette.typography.primary,
+              }}>
+              SignUp
+            </Typography>
           </Link>
         </Button>
       </Grid>

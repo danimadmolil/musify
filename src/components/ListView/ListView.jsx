@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Pagination, FreeMode } from "swiper";
-import { useMediaQuery } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useMediaQuery, Skeleton, Typography } from "@mui/material";
 export default function ListView({
   style,
   swiper = true,
@@ -36,7 +36,14 @@ export default function ListView({
       className="listview_wraper"
       style={{ position: "relative", ...style.root }}>
       <div className="listview_header" style={{ ...style.header }}>
-        {title ? <h2 style={{ ...style.title }}>{title}</h2> : undefined}
+        {title ? (
+          <Typography
+            variant="h2"
+            style={{ ...style.title }}
+            sx={{ color: (theme) => theme.palette.typography.heading }}>
+            {title}
+          </Typography>
+        ) : undefined}
         {subTitle ? (
           <h4 style={{ ...style.subTitle }}>{subTitle}</h4>
         ) : undefined}
@@ -55,9 +62,33 @@ export default function ListView({
             ? elements(listData).map((element) => (
                 <SwiperSlide>{element}</SwiperSlide>
               ))
-            : []}
+            : new Array(10).fill(
+                <SwiperSlide>
+                  <Skeleton
+                    variant="rectangular"
+                    sx={{
+                      background: "gray",
+                      borderRadius: "29px",
+                    }}
+                    width={210}
+                    height={240}
+                  />
+                </SwiperSlide>
+              )}
         </Swiper>
-      ) : undefined}
+      ) : (
+        new Array(10).fill(
+          <SwiperSlide>
+            <Skeleton
+              variant="rectangular"
+              sx={{ borderRadius: "29px", background: "gray", height: "100%" }}
+              width={210}
+              height={240}
+            />
+          </SwiperSlide>
+        )
+      )}
+      }
     </div>
   );
 }
