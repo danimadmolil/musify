@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import Scrollbar from "smooth-scrollbar";
+import Playlists from "../Playlists/Playlists";
 import {
   Grid,
   Collapse,
@@ -106,14 +107,7 @@ function NestedList() {
           )}
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemTextWithTheme primary="playlist 1" />
-              <ButtonIconWithTheme>
-                <PlayArrowIcon />
-              </ButtonIconWithTheme>
-            </ListItemButton>
-          </List>
+          <Playlists />
         </Collapse>
       </List>
     </Box>
@@ -132,7 +126,7 @@ export default function SideBarMenu() {
     <div
       ref={scrollContainer}
       style={{ height: "100%", width: "100%", overflow: "hidden" }}>
-      <NestedList />;
+      <NestedList />
     </div>
   );
 }

@@ -74,7 +74,11 @@
     },
     {
       "userId": 1,
-      "songId": 6
+      "songId": 5
+    },
+    {
+      "userId": 1,
+      "songId": 3
     },
     {
       "userId": 1,
@@ -82,11 +86,11 @@
     },
     {
       "userId": 1,
-      "songId": 4
+      "songId": 2
     },
     {
       "userId": 1,
-      "songId": 2
+      "songId": 4
     }
   ],
   "albums": [
@@ -207,10 +211,38 @@
       "id": 2
     }
   ],
+  "user_playlist": [
+    {
+      "userId": 1,
+      "playlistId": 2
+    },
+    {
+      "userId": 1,
+      "playlistId": 1
+    }
+  ],
+  "playlist_song": [
+    {
+      "playlistId": 2,
+      "songId": 1
+    },
+    {
+      "playlistId": 2,
+      "songId": 2
+    },
+    {
+      "playlistId": 1,
+      "songId": 5
+    }
+  ],
   "playlists": [
     {
-      "name": "erfan playlist",
-      "userId": "1"
+      "id": 1,
+      "name": "playlist 1"
+    },
+    {
+      "id": 2,
+      "name": "playlist 2"
     }
   ]
 }

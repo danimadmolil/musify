@@ -23,6 +23,7 @@ import { userLogoutRequest } from "../../store/actions/user/user.actions";
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export default function AuthButtons({ user = {}, profile = defaultProfile }) {
+  console.log("user rerendered ", user);
   const dispatch = useDispatch();
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   function handleOpenUserMenu(event) {
@@ -32,7 +33,7 @@ export default function AuthButtons({ user = {}, profile = defaultProfile }) {
     setAnchorElUser(null);
   }
   const theme = useTheme();
-  return user.isLoading === false && user.email === undefined ? (
+  return user.isLoading === false && !!user.name === false ? (
     <Grid container style={{ width: 228 }}>
       <Grid
         item

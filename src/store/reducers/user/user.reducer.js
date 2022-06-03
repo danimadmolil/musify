@@ -14,7 +14,9 @@ import {
 } from "../../actions/user/user.actions";
 const userReducerInitialState = {};
 export default function userReducer(state = userReducerInitialState, action) {
-  if (action.type === USER_LOGIN_REQUEST) {
+  if (action.type === "USER_NOT_AUTHENTICATED") {
+    return { isLoading: false, error: null };
+  } else if (action.type === USER_LOGIN_REQUEST) {
     return {
       ...state,
       isLoading: true,
@@ -52,6 +54,7 @@ export default function userReducer(state = userReducerInitialState, action) {
     };
   }
   if (action.type === USER_SIGNUP_FAILURE) {
+    console.log("error", action.payload.error);
     return {
       ...state,
       isLoading: false,
@@ -67,14 +70,12 @@ export default function userReducer(state = userReducerInitialState, action) {
   }
   if (action.type === USER_CHECK_AUTH_SUCCESS) {
     return {
-      ...state,
       isLoading: false,
       error: null,
       ...action.payload.user.user,
     };
   } else if (action.type === USER_CHECK_AUTH_FAILURE) {
     return {
-      ...state,
       isLoading: false,
       error: action.payload.error,
     };

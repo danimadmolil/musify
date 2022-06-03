@@ -42,10 +42,10 @@ server.get("/allSongs", (req, res) => {
     }));
     res.jsonp(songsWithFavoriteFlag);
     res.send();
+  } else {
+    res.jsonp(db.get("songs").value());
+    res.send();
   }
-
-  res.jsonp(db.get("songs"));
-  res.send();
 });
 
 server.db = router.db;
@@ -87,13 +87,28 @@ server.post("/toggleFavoriteSong", (req, res) => {
         res.send();
       }
     }
-  } catch {
+  } catch (e) {
+    console.log(e);
     res.statusCode = 401;
-    res.jsonp({ message: "You are not Authorize" });
+    res.jsonp({ message: "You are unauthenticated" });
     res.send();
   }
 });
-
+server.get("/getAllPlaylists", (req, res) => {
+  let { db } = req.app;
+  try {
+    var { id: userId } = getUserByCookie(req);
+    console.log("useriD", userId);
+    if (userId) {
+      return res.send(getUserPlaylists(db, userId));
+    } else {
+      return res.send("you are not fucking authorized");
+    }
+  } catch (e) {
+    res.statusCode = 200;
+    return res.send("error");
+  }
+});
 //main entry middleware
 server.use((req, res, next) => {
   next();
@@ -124,4 +139,26 @@ function getUerFavoriteSongs(db, user) {
     }))
     .value();
   return favoriteSongs;
+}
+function getUserPlaylists(db, userId) {
+  return db
+    .get("user_playlist")
+    .value()
+    .filter((up) => up.userId === userId)
+    .map((up) => db.get("playlists").find({ id: up.playlistId }).value())
+    .map((playlist) => ({
+      ...playlist,
+      songs: db
+        .get("playlist_song")
+        .value()
+        .filter((ps) => ps.playlistId === playlist.id)
+        .map((ps) =>
+          db
+            .get("songs")
+            .value()
+            .filter((song) => ps.songId === song.id)
+            .flat()
+        )
+        .flat(),
+    }));
 }

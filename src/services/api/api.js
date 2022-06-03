@@ -76,10 +76,13 @@ export function toggleFavoriteRequest(songId) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ songId }),
     credentials: "include",
-  }).then(res => {
+  }).then((res) => {
     if (res.ok) {
       return res.json();
     }
-    throw Error("faild to toggle favoriteSong")
+    if (res.status === 401) {
+      throw { status: 401, message: "unauthenticated" };
+    }
+    throw Error("ERROR");
   });
 }

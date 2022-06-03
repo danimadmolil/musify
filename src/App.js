@@ -22,8 +22,6 @@ const App = React.memo(
     console.log("app theme mode", themeMode);
     useEffect(() => {
       dispatch(userCheckAuthRequest());
-      dispatch({ type: GET_ALLALBUMS_REQUEST });
-      dispatch({ type: GET_SONGS_REQUEST });
       initAmplitude();
     }, []);
     const themeCustom = themeCreator(themeMode, theme);

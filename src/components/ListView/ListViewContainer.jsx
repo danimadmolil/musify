@@ -1,14 +1,24 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { connect, useDispatch } from "react-redux";
 import ListView from "./ListView";
-
-const ListViewContainer = (props) => {
-  const newProps = { ...props, listData: props.resources };
+import { GET_SONGS_REQUEST } from "../../store/actions/songs/songs.actions";
+import { GET_ALLALBUMS_REQUEST } from "../../store/actions/albums/albums.actions";
+const ListViewContainer = ({ user, listData, resource, ...restProps }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (resource === "songs") {
+      dispatch({ type: GET_SONGS_REQUEST });
+    } else if (resource === "albums") {
+      dispatch({ type: GET_ALLALBUMS_REQUEST });
+    }
+  }, [user]);
+  const newProps = { ...restProps, listData };
   return <ListView {...newProps} />;
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  resources: state[ownProps.resource],
+  listData: state[ownProps.resource],
+  resource: ownProps.resource,
 });
 
 const mapDispatchToProps = {};

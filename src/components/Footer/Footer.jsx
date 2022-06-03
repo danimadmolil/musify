@@ -27,15 +27,7 @@ import RepeatIcon from "@mui/icons-material/Repeat";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 import { bindElements } from "./../../utils/amplitudejs/amplitude.utils";
 import PlayPauseButtonContainer from "../PlayPauseButton/PlayPauseButtonContainer";
-const settings = [
-  "playlist 1",
-  "playlist 2",
-  "playlist 3",
-  "playlist 4",
-  "playlist 5",
-  "playlist 6",
-  "playlist 7",
-];
+import Playlists from "../Playlists/Playlists";
 const IconButtonWithTheme = styled(IconButton)(({ theme }) => ({
   color: theme.palette.accent.default,
 }));
@@ -202,12 +194,12 @@ export default function Footer() {
                 fontSize="medium"
               />
             </IconButtonWithTheme>
-            <IconButton>
+            <IconButtonWithTheme>
               <RepeatIcon
                 sx={{ color: (theme) => theme.palette.accent["800"] }}
                 fontSize="medium"
               />
-            </IconButton>
+            </IconButtonWithTheme>
           </Stack>
         </Grid>
         {/* slider */}
@@ -291,7 +283,7 @@ export default function Footer() {
             <Grid md={1} lg={1}>
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
-                  <IconButton
+                  <IconButtonWithTheme
                     onClick={handleOpenUserMenu}
                     sx={{
                       p: 0,
@@ -303,7 +295,7 @@ export default function Footer() {
                         color: (theme) => theme.palette.accent.default,
                       }}
                     />
-                  </IconButton>
+                  </IconButtonWithTheme>
                 </Tooltip>
                 <Menu
                   id="menu-playlists"
@@ -319,11 +311,7 @@ export default function Footer() {
                   }}
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}>
-                  {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={() => {}}>
-                      <Typography textAlign="center">{setting}</Typography>
-                    </MenuItem>
-                  ))}
+                  <Playlists playButton={false} />
                   <MenuItem>
                     <Typography textAlign="center">
                       Create New playlist
@@ -332,13 +320,13 @@ export default function Footer() {
                 </Menu>
               </Box>
             </Grid>
-            <IconButton>
+            <IconButtonWithTheme>
               <Fullscreen
                 sx={{
                   color: (theme) => theme.palette.accent.default,
                 }}
               />
-            </IconButton>
+            </IconButtonWithTheme>
           </Stack>
         </Box>
       </Grid>
