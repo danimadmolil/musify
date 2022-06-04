@@ -23,6 +23,7 @@ export default function FavoriteButton({
   songId,
   user,
   userNotAuthenticated,
+  networkError,
 }) {
   const [isLiked, setIsLiked] = useState(!!like);
   useEffect(() => {
@@ -40,7 +41,7 @@ export default function FavoriteButton({
             if (error.status === 401) {
               userNotAuthenticated(); //dispatch({ type: "USER_NOT_AUTHENTICATED", payload: { error } });
             } else {
-              console.log("errrror", error);
+              networkError();
             }
           });
       }}

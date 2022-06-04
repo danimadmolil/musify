@@ -16,6 +16,11 @@ import {
 } from "./store/actions/songs/songs.actions";
 import { userCheckAuthRequest } from "./store/actions/user/user.actions";
 import themeCreator from "./utils/ThemeCreator/ThemeCreator";
+//notistack imports
+import { Collapse } from "@mui/material";
+import { SnackbarProvider } from "notistack";
+import useNotifier from "./hooks/useNotifier";
+import MessageToaster from "./components/MessageToaster/MessageToaster";
 const App = React.memo(
   function App({ themeMode }) {
     const dispatch = useDispatch();
@@ -31,13 +36,21 @@ const App = React.memo(
         className="App"
         style={{ width: "100vw", height: "100vh", margin: 0 }}>
         <ThemeProvider theme={themeCustom}>
-          <Router>
-            <Switch>
-              <Route path={"/"} exact component={Index} />
-              <Route path="/signin" component={SignIn} />
-              <Route path="/signup" component={SignUp} />
-            </Switch>
-          </Router>
+          <SnackbarProvider
+            domRoot={document.getElementById("root")}
+            dense
+            preventDuplicate
+            maxSnack={6}
+            TransitionComponent={Collapse}>
+            <MessageToaster />
+            <Router>
+              <Switch>
+                <Route path={"/"} exact component={Index} />
+                <Route path="/signin" component={SignIn} />
+                <Route path="/signup" component={SignUp} />
+              </Switch>
+            </Router>
+          </SnackbarProvider>
         </ThemeProvider>
       </div>
     );

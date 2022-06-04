@@ -1,5 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import HomeIcon from "@mui/icons-material/Home";
+import KeyIcon from "@mui/icons-material/Key";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -82,17 +84,23 @@ function SignIn({ user = {} }) {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
+              <Button startIcon={<KeyIcon />}>
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Button>
             </Grid>
             <Grid item>
-              <Link to="/signup" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-              <Link to="/" variant="body2">
-                {"go to home"}
-              </Link>
+              <Button>
+                <Link to="/signup" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Button>
+              <Button startIcon={<HomeIcon />}>
+                <Link to="/" variant="body2">
+                  {"go to home"}
+                </Link>
+              </Button>
             </Grid>
           </Grid>
         </Box>

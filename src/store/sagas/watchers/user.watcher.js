@@ -1,5 +1,10 @@
 import { takeLatest, call, put, all } from "redux-saga/effects";
+import {
+  enqueueSnackbar,
+  closeSnackbar,
+} from "../../actions/notistack/notistack.actions";
 import { login, singUp } from "../../../services/api/api";
+import { Button } from "@mui/material";
 import {
   userCheckAuthFailure,
   userCheckAuthSuccess,
@@ -27,8 +32,32 @@ function* userLogoutRequestHandler(action) {
   try {
     const user = yield call(login, "", "signout");
     yield put(userLogoutSuccess({}));
+    yield put(
+      enqueueSnackbar({
+        message: "SuccessFull logout",
+        options: {
+          key: new Date().getTime() + Math.random(),
+          variant: "success",
+          action: (key) => (
+            <Button onClick={() => closeSnackbar(key)}>dismiss me</Button>
+          ),
+        },
+      })
+    );
   } catch (error) {
     yield put(userLogoutFailure(error));
+    yield put(
+      enqueueSnackbar({
+        message: "Failed to Logout, connection to server is lost",
+        options: {
+          key: new Date().getTime() + Math.random(),
+          variant: "warning",
+          action: (key) => (
+            <Button onClick={() => closeSnackbar(key)}>dismiss me</Button>
+          ),
+        },
+      })
+    );
   }
 }
 function* userCheckAuthRequest(action) {
@@ -43,6 +72,22 @@ function* userCheckAuthRequest(action) {
   } catch (error) {
     console.log("##response error", error);
     yield put(userCheckAuthFailure(error));
+    yield put(
+      enqueueSnackbar({
+        message: "You are not Authenticated",
+        options: {
+          key: new Date().getTime() + Math.random(),
+          variant: "warning",
+          action: function (key) {
+            return (
+              <Button onClick={() => closeSnackbar(this.key)}>
+                dismiss me
+              </Button>
+            );
+          },
+        },
+      })
+    );
   }
 }
 function* userLoginRequest(action) {
@@ -50,8 +95,32 @@ function* userLoginRequest(action) {
     const { userLoginInfo } = action.payload;
     const user = yield call(login, userLoginInfo, "signin");
     yield put(userLoginSuccess(user));
+    yield put(
+      enqueueSnackbar({
+        message: "Login SuccessFull",
+        options: {
+          key: new Date().getTime() + Math.random(),
+          variant: "success",
+          action: (key) => (
+            <Button onClick={() => closeSnackbar(key)}>dismiss me</Button>
+          ),
+        },
+      })
+    );
   } catch (error) {
     yield put(userLoginFailure(error));
+    yield put(
+      enqueueSnackbar({
+        message: "Failed to Login",
+        options: {
+          key: new Date().getTime() + Math.random(),
+          variant: "error",
+          action: (key) => (
+            <Button onClick={() => closeSnackbar(key)}>dismiss me</Button>
+          ),
+        },
+      })
+    );
   }
 }
 function* userSingUpRequest(action) {

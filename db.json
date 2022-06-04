@@ -78,10 +78,6 @@
     },
     {
       "userId": 1,
-      "songId": 3
-    },
-    {
-      "userId": 1,
       "songId": 1
     },
     {
@@ -91,6 +87,18 @@
     {
       "userId": 1,
       "songId": 4
+    },
+    {
+      "userId": 3,
+      "songId": 2
+    },
+    {
+      "userId": 3,
+      "songId": 1
+    },
+    {
+      "userId": 3,
+      "songId": 6
     }
   ],
   "albums": [
@@ -209,6 +217,13 @@
       "name": "dani",
       "lastName": "madmolil",
       "id": 2
+    },
+    {
+      "email": "user3@gmail.com",
+      "password": "$2a$10$Gg1XCGPkukuULZ9nbS..YekeajeaqcRb8kVsiPA/Ui.7w1z2csJNO",
+      "name": "user3",
+      "lastName": "user",
+      "id": 3
     }
   ],
   "user_playlist": [
