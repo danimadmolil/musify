@@ -1,15 +1,23 @@
+import NotifireDissmissButton from "../../../components/MessageToaster/NotifireDissmissButton";
 export const ENQUEUE_SNACKBAR = "ENQUEUE_SNACKBAR";
 export const CLOSE_SNACKBAR = "CLOSE_SNACKBAR";
 export const REMOVE_SNACKBAR = "REMOVE_SNACKBAR";
-
 export const enqueueSnackbar = (notification) => {
   const key = notification.options && notification.options.key;
-
+  function generateKey() {
+    return key || new Date().getTime() + Math.random();
+  }
   return {
     type: ENQUEUE_SNACKBAR,
     notification: {
-      ...notification,
-      key: key || new Date().getTime() + Math.random(),
+      ...{
+        ...notification,
+        options: {
+          action: (key) => <NotifireDissmissButton key={generateKey()} />,
+          ...notification.options,
+        },
+      },
+      key: generateKey(),
     },
   };
 };

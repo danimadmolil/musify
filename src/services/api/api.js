@@ -86,3 +86,20 @@ export function toggleFavoriteRequest(songId) {
     throw Error("ERROR");
   });
 }
+export function createRequest(path, data) {
+  path = !path.startsWith("/") ? path : `/${path}`;
+  return fetch(`${API_URL}/${path}`, {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+    credentials: "include",
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    if (res.status === 401) {
+      throw { status: 401, message: "unauthenticated" };
+    }
+    throw { message: res.json() };
+  });
+}

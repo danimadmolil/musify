@@ -6,6 +6,7 @@ import playingSong from "./playingSong/playingSong.reducer";
 import themReducer from "./theme/theme.reducer";
 import playlistReducer from "./playlist/playlist.reducer";
 import notistackReducer from "./notistack/notistack.reducer";
+import dialogReducer from "./dialog/dialog.reducer";
 export default function rootReducer() {
   return combineReducers({
     playlists: playlistReducer,
@@ -15,5 +16,6 @@ export default function rootReducer() {
     playingSong: playingSong,
     theme: themReducer,
     app: notistackReducer,
+    dialog: dialogReducer,
   });
 }

@@ -52,6 +52,73 @@ server.db = router.db;
 server.use(rules);
 server.use(middlewares);
 server.use(auth);
+server.post("/createPlaylist", (req, res) => {
+  const { db } = req.app;
+  const user = getUserByCookie(req);
+  console.log("user", user);
+  if (user) {
+    const { name } = req.body;
+    let canCreatePlaylist = true;
+    const userOwnedPlaylists = getUserPlaylists(db, user.id);
+    userOwnedPlaylists.forEach((playlist) => {
+      console.log(playlist.name === name);
+      if (playlist.name === name) {
+        canCreatePlaylist = false;
+      }
+    });
+    if (canCreatePlaylist) {
+      const playlist = db.get("playlists").insert({ name }).write();
+      const userPlaylist = db
+        .get("user_playlist")
+        .insert({ userId: user.id, playlistId: playlist.id })
+        .write();
+      res.statusCode = 201;
+      res.jsonp(playlist);
+      res.send();
+    }
+    res.statusCode = 400;
+    res.jsonp({ error: "playlist already exist" });
+    res.send();
+  }
+  res.statusCode = 401;
+  res.jsonp({ error: "you should be authentiacated to create playlist" });
+  res.send();
+});
+server.post("/deletePlaylist", (req, res) => {
+  const { db } = req.app;
+  const user = getUserByCookie(req);
+  if (user) {
+    const { playlistId } = req.body;
+    const { id: userId } = user;
+    let isPlaylistDeletable = false;
+    const userPlaylists = getUserPlaylists(db, user.id);
+    userPlaylists.forEach((up) => {
+      if (up.id === playlistId) {
+        isPlaylistDeletable = true;
+      }
+    });
+    if (isPlaylistDeletable) {
+      const playlist = db.get("playlists").remove({ id: playlistId }).write();
+      //delete pallist_songs
+      const playlistSongs = db
+        .get("playlist_song")
+        .remove({ playlistId })
+        .write();
+      //delete user_palylists
+      const userPlaylist = db
+        .get("user_playlist")
+        .remove({ playlistId, userId })
+        .write();
+
+      res.statusCode = 200;
+      res.jsonp(getUserPlaylists(db, userId));
+      res.send();
+    } else {
+      res.statusCode = 403;
+      res.send();
+    }
+  }
+});
 
 server.post("/userFavoriteSongs", (req, res) => {
   let { db } = req.app;

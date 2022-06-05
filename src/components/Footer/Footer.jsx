@@ -1,4 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { CREATE_PLAYLIST } from "../../constants/dialogTypes";
+import { openDialog } from "../../store/actions/dialog/dialog.actions";
 import {
   Box,
   Slider,
@@ -32,6 +35,7 @@ const IconButtonWithTheme = styled(IconButton)(({ theme }) => ({
   color: theme.palette.accent.default,
 }));
 export default function Footer() {
+  const dispatch = useDispatch();
   const theme = useTheme();
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   let sliderRef = useRef(null);
@@ -163,13 +167,15 @@ export default function Footer() {
                 color="light"
               />
             </IconButtonWithTheme>
-            <IconButtonWithTheme variant="IconButton-accent">
-              <SkipPreviousRounded
-                sx={{ color: (theme) => theme.palette.accent["800"] }}
-                fontSize="medium"
-                color="light"
-              />
-            </IconButtonWithTheme>
+            <span class="amplitude-prev">
+              <IconButtonWithTheme variant="IconButton-accent">
+                <SkipPreviousRounded
+                  sx={{ color: (theme) => theme.palette.accent["800"] }}
+                  fontSize="medium"
+                  color="light"
+                />
+              </IconButtonWithTheme>
+            </span>
 
             <span
               class="amplitude-play"
@@ -188,12 +194,14 @@ export default function Footer() {
                 }}
               />
             </span>
-            <IconButtonWithTheme>
-              <SkipNextRounded
-                sx={{ color: (theme) => theme.palette.accent["800"] }}
-                fontSize="medium"
-              />
-            </IconButtonWithTheme>
+            <span class="amplitude-next">
+              <IconButtonWithTheme>
+                <SkipNextRounded
+                  sx={{ color: (theme) => theme.palette.accent["800"] }}
+                  fontSize="medium"
+                />
+              </IconButtonWithTheme>
+            </span>
             <IconButtonWithTheme>
               <RepeatIcon
                 sx={{ color: (theme) => theme.palette.accent["800"] }}
@@ -311,8 +319,9 @@ export default function Footer() {
                   }}
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}>
-                  <Playlists playButton={false} />
-                  <MenuItem>
+                  <Playlists playButton={false} deleteButton={false} />
+                  <MenuItem
+                    onClick={() => dispatch(openDialog(CREATE_PLAYLIST))}>
                     <Typography textAlign="center">
                       Create New playlist
                     </Typography>

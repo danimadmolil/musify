@@ -38,9 +38,6 @@ function* userLogoutRequestHandler(action) {
         options: {
           key: new Date().getTime() + Math.random(),
           variant: "success",
-          action: (key) => (
-            <Button onClick={() => closeSnackbar(key)}>dismiss me</Button>
-          ),
         },
       })
     );
@@ -52,9 +49,6 @@ function* userLogoutRequestHandler(action) {
         options: {
           key: new Date().getTime() + Math.random(),
           variant: "warning",
-          action: (key) => (
-            <Button onClick={() => closeSnackbar(key)}>dismiss me</Button>
-          ),
         },
       })
     );
@@ -78,13 +72,6 @@ function* userCheckAuthRequest(action) {
         options: {
           key: new Date().getTime() + Math.random(),
           variant: "warning",
-          action: function (key) {
-            return (
-              <Button onClick={() => closeSnackbar(this.key)}>
-                dismiss me
-              </Button>
-            );
-          },
         },
       })
     );
@@ -101,9 +88,6 @@ function* userLoginRequest(action) {
         options: {
           key: new Date().getTime() + Math.random(),
           variant: "success",
-          action: (key) => (
-            <Button onClick={() => closeSnackbar(key)}>dismiss me</Button>
-          ),
         },
       })
     );
@@ -115,9 +99,6 @@ function* userLoginRequest(action) {
         options: {
           key: new Date().getTime() + Math.random(),
           variant: "error",
-          action: (key) => (
-            <Button onClick={() => closeSnackbar(key)}>dismiss me</Button>
-          ),
         },
       })
     );

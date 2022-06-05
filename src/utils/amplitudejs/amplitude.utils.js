@@ -46,8 +46,12 @@ export const resume = () => {
   Amplitude.play();
 };
 //playlist utils
-export const addPlaylist = (key, data, songs) => {
-  Amplitude.addPlaylist(key, data, songs);
+export const addPlaylist = (data, songs = []) => {
+  return Amplitude.addPlaylist(
+    data.name,
+    data,
+    songs.length === 0 ? data.songs : songs
+  );
 };
 export const addSongToPlaylist = (songObject, playlistKey) => {
   Amplitude.addSongToPlaylist(songObject, playlistKey);

@@ -23,9 +23,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         options: {
           key: new Date().getTime() + Math.random(),
           variant: "warning",
-          action: (key) => (
-            <Button onClick={() => closeSnackbar(key)}>dismiss me</Button>
-          ),
         },
       })
     );
@@ -37,9 +34,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         options: {
           key: new Date().getTime() + Math.random(),
           variant: "error",
-          action: (key) => (
-            <Button onClick={() => closeSnackbar(key)}>dismiss me</Button>
-          ),
         },
       })
     );

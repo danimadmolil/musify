@@ -17,10 +17,11 @@ import {
 import { userCheckAuthRequest } from "./store/actions/user/user.actions";
 import themeCreator from "./utils/ThemeCreator/ThemeCreator";
 //notistack imports
-import { Collapse } from "@mui/material";
+import { Collapse, DialogContentText } from "@mui/material";
 import { SnackbarProvider } from "notistack";
 import useNotifier from "./hooks/useNotifier";
 import MessageToaster from "./components/MessageToaster/MessageToaster";
+import DialogContainer from "./components/Dialog/DialogContainer";
 const App = React.memo(
   function App({ themeMode }) {
     const dispatch = useDispatch();
@@ -36,6 +37,7 @@ const App = React.memo(
         className="App"
         style={{ width: "100vw", height: "100vh", margin: 0 }}>
         <ThemeProvider theme={themeCustom}>
+          <DialogContainer />
           <SnackbarProvider
             domRoot={document.getElementById("root")}
             dense
