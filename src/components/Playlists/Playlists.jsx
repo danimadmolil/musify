@@ -15,8 +15,10 @@ import {
   IconButton,
   ListItemText,
   styled,
+  Badge,
 } from "@mui/material";
 import { PlayArrow, Delete } from "@mui/icons-material";
+import LibraryMusicRoundedIcon from "@mui/icons-material/LibraryMusicRounded";
 const ListItemIconWithTheme = styled(ListItemIcon)(({ theme }) => ({
   color: theme.palette.typography.secondary,
 }));
@@ -34,6 +36,7 @@ function Playlists({
   deleteButton = true,
   clickHandler,
   removePlaylist,
+  countBadge = false,
   addToPlaylist,
 }) {
   useEffect(() => {
@@ -57,6 +60,16 @@ function Playlists({
                 clickHandler(playlists[playlistName]);
             }}>
             <ListItemTextWithTheme primary={playlistName} />
+            {countBadge === true && (
+              <Badge
+                color="secondary"
+                badgeContent={playlists[playlistName].songs.length}>
+                <LibraryMusicRoundedIcon
+                  sx={{ color: "typography.secondary" }}
+                />
+              </Badge>
+            )}
+
             {deleteButton && (
               <ButtonIconWithTheme
                 onClick={() => {

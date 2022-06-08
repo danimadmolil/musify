@@ -107,7 +107,7 @@ function NestedList() {
           )}
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
-          <Playlists />
+          <Playlists countBadge={true} />
         </Collapse>
       </List>
     </Box>
