@@ -6,6 +6,7 @@ import {
   CardContent,
   CardMedia,
   Typography,
+  IconButton,
 } from "@mui/material";
 import {
   PlayArrowOutlined,
@@ -14,7 +15,11 @@ import {
   PauseCircleRounded,
   PlayArrowSharp,
   Favorite,
+  PlaylistAdd,
 } from "@mui/icons-material";
+import { ADD_SONG_TO_PLAYLIST } from "../../constants/dialogTypes";
+import { openDialog } from "../../store/actions/dialog/dialog.actions";
+import { useDispatch } from "react-redux";
 import defaultImg from "../../assets/images/5.jpg";
 import {
   pause,
@@ -45,6 +50,12 @@ const Backdrop = styled.div`
     opacity: 1;
     transform: scale(1) translate(50%, 30%);
   }
+  &:hover .playlist_add_icon {
+    opacity: 1;
+    transform: scale(1);
+    top: 54%;
+    left: 60%;
+  }
   top: 0px;
   left: 0px;
   font-size: 120px;
@@ -55,6 +66,7 @@ const Backdrop = styled.div`
 `;
 export default React.memo(
   function SongCard({ song, playButton = false, title, subtitle, style = {} }) {
+    const dispatch = useDispatch();
     console.log("songCard render", song);
 
     const [isPlaying, setIsPlaying] = useState(false);
@@ -98,6 +110,20 @@ export default React.memo(
         <Backdrop>
           <PlayButtonProgressContainer song={song} />
           <FavoriteButtonContainer like={song.like} songId={song.id} />
+          <IconButton
+            onClick={() => dispatch(openDialog(ADD_SONG_TO_PLAYLIST, { song }))}
+            classes={{ root: "playlist_add_icon" }}
+            sx={{
+              opacity: 0,
+              transition: "all 0.3s",
+              color: "white",
+              position: "relative",
+              top: "58%",
+              left: "65%",
+              transform: "translate(-0%,-0%) scale(0.3)",
+            }}>
+            <PlaylistAdd />
+          </IconButton>
         </Backdrop>
       </Card>
     );

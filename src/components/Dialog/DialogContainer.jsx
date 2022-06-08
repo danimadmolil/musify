@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import Dialog from "./Dialog";
+import Playlists from "../Playlists/Playlists";
 import {
   Button,
   DialogContent,
@@ -9,6 +10,7 @@ import {
 } from "@mui/material";
 //import playlist action creators
 import {
+  ADD_TO_PLAYLIST,
   createPlaylist,
   createPlaylistSuccess,
   createPlaylistFail,
@@ -32,6 +34,7 @@ export const DialogContainer = ({
   closeDialog,
   createPlaylistAction,
   conformation,
+  addToPlaylist,
 }) => {
   const playlistNameRef = useRef(null);
   if (dialogType === CREATE_PLAYLIST) {
@@ -61,6 +64,15 @@ export const DialogContainer = ({
         <DialogTitle>
           <Typography component={"h2"}>ADD song to playlist</Typography>
         </DialogTitle>
+        <DialogContent>
+          <Playlists
+            deleteButton={false}
+            playButton={false}
+            clickHandler={(playlist) => {
+              addToPlaylist(playlist);
+            }}
+          />
+        </DialogContent>
       </Dialog>
     );
   } else if (dialogType === CONFORMATION) {
@@ -100,6 +112,8 @@ const mapDispatchToProps = (dispatch) => ({
   conformation: () => {
     dispatch(userConfirm());
   },
+  addToPlaylist: (playlist) =>
+    dispatch({ type: ADD_TO_PLAYLIST, payload: { playlist } }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DialogContainer);

@@ -11,10 +11,18 @@ import {
   GET_PLAYLISTS,
   GET_PLAYLIST_SUCCESS,
   GET_PLAYLIST_FAIL,
+  ADD_SONG_TO_PLAYLIST_SUCCESS,
 } from "../../actions/playlist/playlist.action";
 import { userConfirm, USER_CONFIRM } from "../../actions/user/user.actions";
-import { CONFORMATION } from "../../../constants/dialogTypes";
-import { openDialog } from "../../actions/dialog/dialog.actions";
+import {
+  CONFORMATION,
+  ADD_SONG_TO_PLAYLIST,
+} from "../../../constants/dialogTypes";
+import {
+  openDialog,
+  closeDialog,
+  OPEN_DIALOG,
+} from "../../actions/dialog/dialog.actions";
 import mapArrayToObject from "../../../utils/mappers/mapArrayToObject.mapper";
 import objectMapper from "../../../utils/mappers/object.maper";
 import { createRequest, getAll } from "../../../services/api/api";
@@ -40,9 +48,33 @@ export default function* playlistSaga() {
     takeLatest("GET_PLAYLISTS", getPlaylistsRequest),
     takeLatest(CREATE_PLAYLIST, createPlaylistRequest),
     takeLatest(REMOVE_PLAYLIST, removePlaylistRequest),
+    takeEvery(OPEN_DIALOG, addSongToPlaylistHandler),
   ]);
 }
+function* addSongToPlaylistHandler(action) {
+  const { song } = action.payload;
+  console.log("song", song);
+  let {
+    payload: { playlist },
+  } = yield take("ADD_TO_PLAYLIST");
+  console.log("after take");
+  try {
+    let result = yield call(createRequest, "/addSongToPlaylist", {
+      songId: song.id,
+      playlistId: playlist.id,
+    });
+    console.log("playlist before put", playlist);
+    yield put({
+      type: "ADD_SONG_TO_PLAYLIST_SUCCESS",
+      payload: { song, playlist },
+    });
+    console.log("playlist after put", playlist);
 
+    yield put(closeDialog());
+  } catch (e) {
+    console.log("error playlist watcher", e);
+  }
+}
 // create and delete playlist saga handlers
 function* createPlaylistRequest(action) {
   try {
@@ -51,8 +83,8 @@ function* createPlaylistRequest(action) {
       "createPlaylist",
       action.payload.playlist
     );
-    yield put(createPlaylistSuccess(response));
-    addPlaylist(action.payload.playlist);
+    yield put(createPlaylistSuccess({...response,songs:[]}));
+    addPlaylist({ ...action.payload.playlist });
     yield put(
       enqueueSnackbar({
         message: "playlist created",

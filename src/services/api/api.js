@@ -87,8 +87,8 @@ export function toggleFavoriteRequest(songId) {
   });
 }
 export function createRequest(path, data) {
-  path = !path.startsWith("/") ? path : `/${path}`;
-  return fetch(`${API_URL}/${path}`, {
+  path = path.startsWith("/") ? path : `/${path}`;
+  return fetch(`${API_URL}${path}`, {
     method: "post",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),

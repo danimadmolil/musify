@@ -54,7 +54,30 @@ export const addPlaylist = (data, songs = []) => {
   );
 };
 export const addSongToPlaylist = (songObject, playlistKey) => {
-  Amplitude.addSongToPlaylist(songObject, playlistKey);
+  // ? check if song is already in playlist
+  let canAddSongToPlaylist = true;
+  // console.log("playlistKey", playlistKey);
+  if (Amplitude.getConfig().playlists[playlistKey] !== undefined) {
+    if (
+      typeof Amplitude.getConfig().playlists[playlistKey].songs === "object"
+    ) {
+      Amplitude.getConfig().playlists[playlistKey].songs.forEach((song) => {
+        if (song.id === songObject.id) {
+          canAddSongToPlaylist = false;
+        }
+      });
+    } else if (
+      Amplitude.getConfig().playlists[playlistKey].songs === undefined
+    ) {
+      Amplitude.getConfig().playlists[playlistKey].songs = [];
+      Amplitude.getConfig().playlists[playlistKey].songs.forEach((song) => {
+        if (song.id === songObject.id) {
+          canAddSongToPlaylist = false;
+        }
+      });
+    }
+  }
+  canAddSongToPlaylist && Amplitude.addSongToPlaylist(songObject, playlistKey);
 };
 export const playPlaylistSongAtIndex = (playlistIndex, playlistKey) => {
   Amplitude.playPlaylistSongAtIndex(playlistIndex, playlistKey);

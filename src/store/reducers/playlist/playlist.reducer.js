@@ -8,6 +8,7 @@ import {
   REMOVE_PLAYLIST,
   REMOVE_PLAYLIST_SUCCESS,
   REMOVE_PLAYLIST_FAIL,
+  ADD_SONG_TO_PLAYLIST_SUCCESS,
 } from "../../actions/playlist/playlist.action";
 import { USER_LOGOUT_SUCCESS } from "../../actions/user/user.actions";
 const playListInitialState = {};
@@ -72,6 +73,21 @@ const playListReducer = (state = playListInitialState, action) => {
       ...state,
       loading: false,
       error: action.payload.error,
+    };
+  } else if (action.type === ADD_SONG_TO_PLAYLIST_SUCCESS) {
+    const {
+      playlist: { name: playlistName },
+      song,
+    } = action.payload;
+    return {
+      loading: false,
+      data: {
+        ...state.data,
+        [action.payload.playlist.name]: {
+          ...state.data[playlistName],
+          songs: [...state.data[playlistName].songs, song],
+        },
+      },
     };
   }
   return state;

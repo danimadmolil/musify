@@ -7,6 +7,7 @@ const server = jsonServer.create();
 const router = jsonServer.router("db.json");
 const middlewares = jsonServer.defaults();
 var auth = require("@danimadmolil/json-server-auth");
+
 const rules = auth.rewriter({
   // Permission rules
   // users: 600,
@@ -83,6 +84,24 @@ server.post("/createPlaylist", (req, res) => {
   res.statusCode = 401;
   res.jsonp({ error: "you should be authentiacated to create playlist" });
   res.send();
+});
+server.post("/addSongToPlaylist", (req, res) => {
+  const { db } = req.app;
+  const { songId, playlistId } = req.body;
+  let songAlreadyExistOnPlaylist = false;
+  const user = getUserByCookie(req);
+  let playlists = getUserPlaylists(db, user.id);
+  playlists = mapArrayToObject(playlists, "id");
+  playlists[playlistId]["songs"]["forEach"]((song) => {
+    if (song.id === songId) {
+      songAlreadyExistOnPlaylist = true;
+    }
+  });
+  if (!songAlreadyExistOnPlaylist) {
+    db.get("playlist_song").insert({ playlistId, songId }).write();
+    res.statusCode = 200;
+    res.jsonp({ message: "successfull add song to playlist" });
+  }
 });
 server.post("/deletePlaylist", (req, res) => {
   const { db } = req.app;
@@ -228,4 +247,16 @@ function getUserPlaylists(db, userId) {
         )
         .flat(),
     }));
+}
+function mapArrayToObject(arr, key) {
+  return arr.reduce((ac, next) => {
+    if (typeof next === "object") {
+      ac[next[key]] = next;
+      return ac;
+    } else {
+      throw Error(
+        `each item of array that you want map to object should be an object with key of ${key} on it`
+      );
+    }
+  }, {});
 }

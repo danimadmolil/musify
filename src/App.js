@@ -22,13 +22,13 @@ import { SnackbarProvider } from "notistack";
 import useNotifier from "./hooks/useNotifier";
 import MessageToaster from "./components/MessageToaster/MessageToaster";
 import DialogContainer from "./components/Dialog/DialogContainer";
+import Amplitude from "./components/Amplitude/Amplitude";
 const App = React.memo(
   function App({ themeMode }) {
     const dispatch = useDispatch();
     console.log("app theme mode", themeMode);
     useEffect(() => {
       dispatch(userCheckAuthRequest());
-      initAmplitude();
     }, []);
     const themeCustom = themeCreator(themeMode, theme);
     console.log("theme", themeCustom);
@@ -36,6 +36,7 @@ const App = React.memo(
       <div
         className="App"
         style={{ width: "100vw", height: "100vh", margin: 0 }}>
+        <Amplitude />
         <ThemeProvider theme={themeCustom}>
           <DialogContainer />
           <SnackbarProvider

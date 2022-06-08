@@ -32,8 +32,9 @@ function Playlists({
   getPlaylists,
   playButton = true,
   deleteButton = true,
-  onClick,
+  clickHandler,
   removePlaylist,
+  addToPlaylist,
 }) {
   useEffect(() => {
     getPlaylists();
@@ -49,7 +50,12 @@ function Playlists({
     <List component="div" disablePadding>
       {playlists &&
         Object.keys(playlists).map((playlistName) => (
-          <ListItemButton sx={{ pl: 4 }} onClick={onClick}>
+          <ListItemButton
+            sx={{ pl: 4 }}
+            onClick={() => {
+              typeof clickHandler === "function" &&
+                clickHandler(playlists[playlistName]);
+            }}>
             <ListItemTextWithTheme primary={playlistName} />
             {deleteButton && (
               <ButtonIconWithTheme

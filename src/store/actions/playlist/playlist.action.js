@@ -1,6 +1,8 @@
 export const GET_PLAYLISTS = "GET_PLAYLISTS";
 export const GET_PLAYLIST_SUCCESS = "GET_PLAYLIST_SUCCESS";
 export const GET_PLAYLIST_FAIL = "GET_PLAYLIST_FAIL";
+export const ADD_TO_PLAYLIST = "ADD_TO_PLAYLIST";
+export const ADD_SONG_TO_PLAYLIST_SUCCESS = "ADD_SONG_TO_PLAYLIST_SUCCESS";
 
 // create and remove action constatns and action creators
 export const CREATE_PLAYLIST = "CREATE_PLAYLIST";
