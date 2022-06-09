@@ -151,10 +151,8 @@ export default React.memo(
                 };
               }
               if (activeSong.id === song.id && activeSong.name === song.name) {
-                if (playerState === "paused") {
-                  resume();
-                  dispatch({ type: "RESUME_SONG" });
-                }
+                resume();
+                dispatch({ type: "RESUME_SONG" });
               }
             }}>
             <PlayCircleRounded

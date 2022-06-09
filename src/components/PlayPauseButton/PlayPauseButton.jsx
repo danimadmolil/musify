@@ -5,14 +5,19 @@ import {
   playSong as playSongAction,
   pauseSong as pauseSongAction,
 } from "../../store/actions/songs/songs.actions";
-import { pause, resume } from "../../utils/amplitudejs/amplitude.utils";
+import {
+  pause,
+  resume,
+  getAmplitude,
+} from "../../utils/amplitudejs/amplitude.utils";
+const amplitude = getAmplitude();
 export default function PlayPauseButton({
   playingSong,
   playSong,
   pauseSong,
   ...rest
 }) {
-  return playingSong.isPlaying && playingSong.url ? (
+  return amplitude.getPlayerState() === "playing" ? (
     <span
       className="amplitude-pause"
       onClick={() => {
