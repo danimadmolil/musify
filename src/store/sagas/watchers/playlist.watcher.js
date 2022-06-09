@@ -83,7 +83,7 @@ function* createPlaylistRequest(action) {
       "createPlaylist",
       action.payload.playlist
     );
-    yield put(createPlaylistSuccess({...response,songs:[]}));
+    yield put(createPlaylistSuccess({ ...response, songs: [] }));
     addPlaylist({ ...action.payload.playlist });
     yield put(
       enqueueSnackbar({
@@ -148,7 +148,7 @@ export function* getPlaylistsRequest() {
         ...playlist,
         activeIndex: 1,
         songs: playlist.songs.map((song) =>
-          objectMapper(song, { file: "url" })
+          objectMapper(song, { file: "url", poster: "cover_art_url" })
         ),
       };
     });
