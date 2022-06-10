@@ -13,6 +13,7 @@ import {
   ListSubheader,
 } from "@mui/material";
 import { InboxIcon, SendIcon, LibraryMusicIcon } from "@mui/icons-material";
+import AddIcon from "@mui/icons-material/Add";
 import LyricsIcon from "@mui/icons-material/Lyrics";
 import FeaturedPlayListIcon from "@mui/icons-material/FeaturedPlayList";
 import PodcastsIcon from "@mui/icons-material/Podcasts";
@@ -24,6 +25,9 @@ import Typography from "@mui/material/Typography";
 import StarBorder from "@mui/icons-material/StarBorder";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { styled } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { openDialog } from "../../store/actions/dialog/dialog.actions";
+import { CREATE_PLAYLIST } from "../../constants/dialogTypes";
 const ListItemIconWithTheme = styled(ListItemIcon)(({ theme }) => ({
   color: theme.palette.typography.secondary,
 }));
@@ -33,7 +37,7 @@ const ButtonIconWithTheme = styled(IconButton)(({ theme }) => ({
 const ListItemTextWithTheme = styled(ListItemText)(({ theme }) => ({
   color: theme.palette.typography.secondary,
 }));
-function NestedList() {
+function NestedList({ dispatch }) {
   const [open, setOpen] = useState(true);
 
   const handleClick = () => {
@@ -96,15 +100,24 @@ function NestedList() {
             <FeaturedPlayListIcon />
           </ListItemIconWithTheme>
           <ListItemTextWithTheme primary="Playlists" />
-          {open ? (
-            <ExpandLess
-              sx={{ color: (theme) => theme.palette.typography.secondary }}
-            />
-          ) : (
-            <ExpandMore
-              sx={{ color: (theme) => theme.palette.typography.secondary }}
-            />
-          )}
+          <>
+            {open ? (
+              <ExpandLess
+                sx={{ color: (theme) => theme.palette.typography.secondary }}
+              />
+            ) : (
+              <ExpandMore
+                sx={{ color: (theme) => theme.palette.typography.secondary }}
+              />
+            )}
+            <IconButton
+              onClick={(e) => {
+                e.stopPropagation();
+                dispatch(openDialog(CREATE_PLAYLIST));
+              }}>
+              <AddIcon sx={{ color: "typography.secondary" }} />
+            </IconButton>
+          </>
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <Playlists countBadge={true} />
@@ -116,6 +129,7 @@ function NestedList() {
 
 export default function SideBarMenu() {
   const scrollContainer = useRef(null);
+  const dispatch = useDispatch();
   useEffect(() => {
     Scrollbar.init(scrollContainer.current, {
       alwaysShowTracks: true,
@@ -126,7 +140,7 @@ export default function SideBarMenu() {
     <div
       ref={scrollContainer}
       style={{ height: "100%", width: "100%", overflow: "hidden" }}>
-      <NestedList />
+      <NestedList dispatch={dispatch} />
     </div>
   );
 }
