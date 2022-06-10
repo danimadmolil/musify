@@ -1,8 +1,10 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Grid, useTheme, Box, Slider } from "@mui/material";
 import SideBarMenu from "../../components/SideBarMenu/SideBarMenu";
 import Home from "./Home/Home";
 import Footer from "../../components/Footer/Footer";
+import RecentSongPage from "../../pages/Index/RecentSongs/RecentSong.page";
 export default function Index() {
   const theme = useTheme();
   return (
@@ -64,7 +66,10 @@ export default function Index() {
             maxWidth: "100%",
             background: (theme) => theme.palette.backgrounds.default,
           }}>
-          <Home />
+          <Switch>
+            <Route exact path="/recentSongs" component={RecentSongPage} />
+            <Route index component={Home} />
+          </Switch>
         </Grid>
         <Grid className="footer" sx={{ width: "100%", height: "80px" }} item>
           <Footer />

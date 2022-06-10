@@ -3,6 +3,7 @@ import { Pagination, FreeMode } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useMediaQuery, Skeleton, Typography } from "@mui/material";
 export default function ListView({
+  page,
   style,
   swiper = true,
   direction = "vertical",
@@ -48,7 +49,10 @@ export default function ListView({
           <h4 style={{ ...style.subTitle }}>{subTitle}</h4>
         ) : undefined}
         {action
-          ? React.cloneElement(action, { style: style.action })
+          ? React.cloneElement(action, {
+              style: style.action,
+              to: "/recentSongs",
+            })
           : undefined}
       </div>
       {swiper ? (

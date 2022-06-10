@@ -195,6 +195,16 @@ server.get("/getAllPlaylists", (req, res) => {
     return res.send("error");
   }
 });
+server.get("/recentSongs", (req, res) => {
+  const { db } = req.app;
+  const MAX_SONG_COUNT = 20;
+  const recentSongs = db
+    .get("songs")
+    .value()
+    .filter((song, index) => index < MAX_SONG_COUNT);
+  res.jsonp(recentSongs);
+  res.send();
+});
 //main entry middleware
 server.use((req, res, next) => {
   next();

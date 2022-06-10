@@ -5,6 +5,7 @@ import Scrollbar from "smooth-scrollbar";
 import ListViewContainer from "../../../components/ListView/ListViewContainer";
 import AlbumCard from "../../../components/AlbumCard/AlbumCard";
 import Header from "../../../components/Header/Header";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const scrollContainer = useRef(null);
@@ -66,10 +67,15 @@ export default function Home() {
           }}
         />
         <ListViewContainer
-          title="Recent Albums"
+          page="recentSongs"
+          title="Recent Songs"
           subTitle={"2021: 19/12"}
           resource={"songs"}
-          action={<Button>SeeAll</Button>}
+          action={
+            <Link>
+              <Button>See All</Button>
+            </Link>
+          }
           spaceBetween={8}
           devices={{
             tv: 5,

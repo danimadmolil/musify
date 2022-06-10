@@ -80,7 +80,7 @@ export default React.memo(
     useEffect(() => {
       setInterval(() => {
         let activeSong = getActiveSongMetadata();
-        if (activeSong.id === song.id && activeSong.name === song.name) {
+        if (activeSong.id === song.id) {
           setProgress(getSongPlayedPercentage());
         }
       }, 1000);
@@ -93,7 +93,7 @@ export default React.memo(
     useEffect(() => {
       let activeSong = getActiveSongMetadata();
 
-      if (activeSong.id !== song.id && activeSong.name !== song.name) {
+      if (activeSong.id !== song.id) {
         if (playState === "ended") {
           setProgress(0);
         }
@@ -113,7 +113,7 @@ export default React.memo(
             onClick={() => {
               let activeSong = getActiveSongMetadata();
 
-              if (activeSong.id === song.id && activeSong.name === song.name) {
+              if (activeSong.id === song.id) {
                 pause();
                 dispatch({ type: "PAUSE_SONG" });
               }
@@ -134,10 +134,7 @@ export default React.memo(
             onClick={() => {
               let activeSong = getActiveSongMetadata();
               let playerState = Amplitude.getPlayerState();
-              if (
-                playerState === "stopped" ||
-                (activeSong.id !== song.id && activeSong.name !== song.name)
-              ) {
+              if (playerState === "stopped" || activeSong.id !== song.id) {
                 playNow(song);
                 // dispatch({ type: "SONG_ENDED" });
                 dispatch({ type: "PLAY_SONG", payload: { music: song } });
@@ -150,7 +147,7 @@ export default React.memo(
                   setProgress(0);
                 };
               }
-              if (activeSong.id === song.id && activeSong.name === song.name) {
+              if (activeSong.id === song.id) {
                 resume();
                 dispatch({ type: "RESUME_SONG" });
               }
@@ -192,7 +189,7 @@ export default React.memo(
       ended: pEnded,
     } = nextProps.playingSong;
 
-    if (song.id === pId && song.name === pName) {
+    if (song.id === pId) {
       return false;
     } else if (song.id === id) {
       return false;

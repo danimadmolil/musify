@@ -86,13 +86,14 @@ export function toggleFavoriteRequest(songId) {
     throw Error("ERROR");
   });
 }
-export function createRequest(path, data) {
+export function createRequest(path, data, options = {}) {
   path = path.startsWith("/") ? path : `/${path}`;
   return fetch(`${API_URL}${path}`, {
     method: "post",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
     credentials: "include",
+    ...options,
   }).then((res) => {
     if (res.ok) {
       return res.json();
@@ -102,4 +103,16 @@ export function createRequest(path, data) {
     }
     throw { message: res.json() };
   });
+}
+export function createGetRequest(path, options = {}) {
+  path = path.startsWith("/") ? path : `/${path}`;
+  return fetch(`${API_URL}${path}`, { method: "get", ...options }).then(
+    (res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw { error: `failed to get request on ${API_URL}${path}` };
+      }
+    }
+  );
 }

@@ -23,6 +23,7 @@ import useNotifier from "./hooks/useNotifier";
 import MessageToaster from "./components/MessageToaster/MessageToaster";
 import DialogContainer from "./components/Dialog/DialogContainer";
 import Amplitude from "./components/Amplitude/Amplitude";
+import RecentSongPage from "./pages/Index/RecentSongs/RecentSong.page";
 const App = React.memo(
   function App({ themeMode }) {
     const dispatch = useDispatch();
@@ -48,9 +49,9 @@ const App = React.memo(
             <MessageToaster />
             <Router>
               <Switch>
-                <Route path={"/"} exact component={Index} />
-                <Route path="/signin" component={SignIn} />
-                <Route path="/signup" component={SignUp} />
+                <Route exact path="/signin" component={SignIn} />
+                <Route exact path="/signup" component={SignUp} />
+                <Route index component={Index} />
               </Switch>
             </Router>
           </SnackbarProvider>
