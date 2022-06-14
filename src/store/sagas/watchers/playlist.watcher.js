@@ -49,10 +49,11 @@ export default function* playlistSaga() {
     takeLatest(CREATE_PLAYLIST, createPlaylistRequest),
     takeLatest(REMOVE_PLAYLIST, removePlaylistRequest),
     takeEvery(OPEN_DIALOG, addSongToPlaylistHandler),
+    takeLatest("PLAY_SONG", addSongToPlaylistHandler),
   ]);
 }
 function* addSongToPlaylistHandler(action) {
-  const { song } = action.payload;
+  const song = action.payload.song || action.payload.music;
   console.log("song", song);
   let {
     payload: { playlist },

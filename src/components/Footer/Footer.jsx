@@ -319,7 +319,16 @@ export default function Footer() {
                   }}
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}>
-                  <Playlists playButton={false} deleteButton={false} />
+                  <Playlists
+                    playButton={false}
+                    deleteButton={false}
+                    clickHandler={(playlist) =>
+                      dispatch({
+                        type: "ADD_TO_PLAYLIST",
+                        payload: { playlist },
+                      })
+                    }
+                  />
                   <MenuItem
                     onClick={() => dispatch(openDialog(CREATE_PLAYLIST))}>
                     <Typography textAlign="center">
