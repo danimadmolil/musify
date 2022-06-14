@@ -18,12 +18,16 @@ export default function Home() {
   return (
     <div ref={scrollContainer} style={{ height: "100%" }}>
       <div className="home" style={{ width: "100%", paddingBottom: "22px" }}>
-        <Header />
+        
         <ListViewContainer
           title="Recent Albums"
           subTitle={"2021: 19/12"}
           resource={"albums"}
-          action={<Button>SeeAll</Button>}
+          action={
+            <Button>
+              <Link to="/albums">SeeAll</Link>
+            </Button>
+          }
           spaceBetween={8}
           devices={{
             tv: 5,
@@ -40,7 +44,7 @@ export default function Home() {
                     height: "100%",
                     color: "white",
                   }}
-                  imgUrl={item ? item["cover"] : ""}
+                  album={item}
                 />
               );
             });
@@ -49,16 +53,16 @@ export default function Home() {
           slidesPerView={4}
           spaceBetween={1}
           style={{
-            ...listViewStyle,
+          
             scrollContent: { height: "250px" },
             root: {
-              ...listViewStyle.root,
+             
               margin: 0,
               padding: 0,
               width: "100%",
             },
             action: {
-              ...listViewStyle.action,
+              
               position: "absolute",
               left: "100%",
               top: "100%",
@@ -101,16 +105,16 @@ export default function Home() {
           slidesPerView={4}
           spaceBetween={1}
           style={{
-            ...listViewStyle,
+            
             scrollContent: { height: "260px" },
             root: {
-              ...listViewStyle.root,
+             
               margin: 0,
               padding: 0,
               width: "100%",
             },
             action: {
-              ...listViewStyle.action,
+              
               position: "absolute",
               left: "100%",
               top: "100%",
@@ -122,29 +126,3 @@ export default function Home() {
     </div>
   );
 }
-const listViewStyle = {
-  root: { paddingTop: "80px" },
-  scrollContent: {
-    width: "100%",
-    height: "269px",
-    marginBottom: "88px",
-  },
-  header: { position: "relative" },
-  title: {
-    fontSize: "22px",
-    marginLeft: "16px",
-    position: "relative",
-    top: "10px",
-  },
-  subTitle: { color: "gray", marginLeft: "16px" },
-  action: {
-    minWidth: "80px",
-    width: "max-content",
-    position: "absolute",
-    top: "100%",
-    left: "100%",
-    transform: "translate(-120%,-50%)",
-    paddingRight: "22px",
-    whiteSpace: "no-wrap",
-  },
-};

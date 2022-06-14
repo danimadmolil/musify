@@ -148,6 +148,7 @@ server.post("/userFavoriteSongs", (req, res) => {
     .filter((favSong) => favSong.userId === userId)
     .map((favSong) => ({
       ...db.get("songs").find({ id: favSong.songId }).value(),
+      like: true,
     }))
     .value();
   res.jsonp({ favoriteSongs });
@@ -203,6 +204,38 @@ server.get("/recentSongs", (req, res) => {
     .value()
     .filter((song, index) => index < MAX_SONG_COUNT);
   res.jsonp(recentSongs);
+  res.send();
+});
+server.get("/albumPage", (req, res) => {
+  //get top 10 albums with most likes
+  const MOST_VISITED_ALBUM_MAX = 20;
+  const MOST_LIKED_ALBUM_MAX = 20;
+  const { db } = req.app;
+  const albums = db
+    .get("albums")
+    .value()
+    .sort((a, b) => b.likes - a.likes)
+    .slice(0, MOST_LIKED_ALBUM_MAX);
+  //get most visited albums
+  const mostVisitedAlbums = db
+    .get("albums")
+    .value()
+    .sort((a, b) => b.visits - a.visits)
+    .slice(0, MOST_VISITED_ALBUM_MAX);
+
+  res.jsonp({ hots: albums, mostVisited: mostVisitedAlbums });
+  res.send();
+});
+server.post("/albumDetail", (req, res) => {
+  const { db } = req.app;
+  const { albumId } = req.body;
+  const album = db.get("albums").find({ id: albumId }).value();
+  const songs = db
+    .get("album_song")
+    .value()
+    .filter((albumSong) => albumSong.albumId === albumId)
+    .map((albumSong) => db.get("songs").find({ id: albumSong.songId }).value());
+  res.jsonp({ ...album, songs });
   res.send();
 });
 //main entry middleware

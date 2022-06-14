@@ -6,6 +6,7 @@
 
 export default function objectMapper(mapObject = {}, mapKeys = {}) {
   const song = {};
+  mapObject = { ...mapObject };
   Object.keys(mapKeys).forEach((key) => {
     song[mapKeys[key]] = mapObject[key];
     delete mapObject[key];

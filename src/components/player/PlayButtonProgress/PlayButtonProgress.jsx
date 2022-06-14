@@ -16,7 +16,6 @@ const PauseButton = styled(PauseCircleRounded).attrs({
   classes: { root: "song_pause_button" },
 })`
   opacity: 1;
-  font-size: 50px;
   color: #00ff3ed4;
   transition: all 0.3s;
   will-change: all;
@@ -33,8 +32,7 @@ const PlayButton = styled(PlayCircleRounded).attrs((props) => ({
 }))`
   width: 100%;
   height: 100%;
-  opacity: 0;
-  font-size: 50px;
+
   color: #00ff3ed4;
   transition: all 0.3s;
   will-change: all;
@@ -42,22 +40,16 @@ const PlayButton = styled(PlayCircleRounded).attrs((props) => ({
   transform-origin: center center;
   cursor: pointer;
 `;
-const PauseContainer = styled(Box).attrs((props) => ({
+const PlayPauseWraper = styled(Box).attrs((props) => ({
   onClick: props.onClick,
   classes: { root: "pause_button_container" },
 }))`
+  position: relative;
   width: 50px;
   height: 50px;
-  opacity: 0;
-  font-size: 50px;
   color: #00ff3ed4;
   transition: all 0.3s;
   will-change: all;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: scale(0.5) translate(50%, 30%);
-  transform-origin: center center;
   cursor: pointer;
 `;
 const Amplitude = getAmplitude();
@@ -100,7 +92,7 @@ export default React.memo(
       }
     }, [isPlaying]);
     return (
-      <PauseContainer className={"pause_container"} {...rest}>
+      <PlayPauseWraper className={"pause_container"} {...rest}>
         {getActiveSongMetadata().id === song.id && isPlaying ? (
           <span
             style={{
@@ -130,7 +122,12 @@ export default React.memo(
         ) : (
           <span
             className="amplitude-pause"
-            style={{ zIndex: 99999999 }}
+            style={{
+              zIndex: 99999999,
+              width: "100%",
+              height: "100%",
+              position: "absolute",
+            }}
             onClick={() => {
               let activeSong = getActiveSongMetadata();
               let playerState = Amplitude.getPlayerState();
@@ -153,7 +150,12 @@ export default React.memo(
               }
             }}>
             <PlayCircleRounded
-              style={{ width: "100%", height: "100%", zIndex: "-1" }}
+              style={{
+                width: "100%",
+                height: "100%",
+                position: "absolute",
+                zIndex: "-1",
+              }}
             />
           </span>
         )}
@@ -175,7 +177,7 @@ export default React.memo(
                 : 0
               : 0
           }></CircularProgress>
-      </PauseContainer>
+      </PlayPauseWraper>
     );
   },
   (prevProps, nextProps) => {

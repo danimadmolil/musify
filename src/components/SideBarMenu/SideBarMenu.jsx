@@ -28,6 +28,7 @@ import { styled } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { openDialog } from "../../store/actions/dialog/dialog.actions";
 import { CREATE_PLAYLIST } from "../../constants/dialogTypes";
+import { Link } from "react-router-dom";
 const ListItemIconWithTheme = styled(ListItemIcon)(({ theme }) => ({
   color: theme.palette.typography.secondary,
 }));
@@ -90,6 +91,14 @@ function NestedList({ dispatch }) {
           <ListItemTextWithTheme primary="Podcast" />
         </ListItemButton>
         <ListItemButton>
+          <Link
+            to="/favorites"
+            style={{
+              width: "100%",
+              height: "100%",
+              display: "block",
+              position: "absolute",
+            }}></Link>
           <ListItemIconWithTheme>
             <FavoriteIcon />
           </ListItemIconWithTheme>

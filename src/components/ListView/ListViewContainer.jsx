@@ -17,7 +17,9 @@ const ListViewContainer = ({ user, listData, resource, ...restProps }) => {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  listData: state[ownProps.resource],
+  listData: !!state[ownProps.resource]
+    ? state[ownProps.resource]
+    : ownProps.data,
   resource: ownProps.resource,
 });
 

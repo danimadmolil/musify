@@ -2,9 +2,35 @@ import React, { useRef, useEffect, useState } from "react";
 import { Pagination, FreeMode } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useMediaQuery, Skeleton, Typography } from "@mui/material";
+const listViewStyle = {
+  root: { paddingTop: "0px" },
+  scrollContent: {
+    width: "100%",
+    height: "269px",
+    marginBottom: "88px",
+  },
+  header: { position: "relative" },
+  title: {
+    fontSize: "22px",
+    marginLeft: "16px",
+    position: "relative",
+    top: "10px",
+  },
+  subTitle: { color: "gray", marginLeft: "16px" },
+  action: {
+    minWidth: "80px",
+    width: "max-content",
+    position: "absolute",
+    top: "100%",
+    left: "100%",
+    transform: "translate(-120%,-50%)",
+    paddingRight: "22px",
+    whiteSpace: "no-wrap",
+  },
+};
 export default function ListView({
   page,
-  style,
+  style = {},
   swiper = true,
   direction = "vertical",
   elements,
@@ -35,64 +61,84 @@ export default function ListView({
   return (
     <div
       className="listview_wraper"
-      style={{ position: "relative", ...style.root }}>
-      <div className="listview_header" style={{ ...style.header }}>
+      style={{
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        ...listViewStyle.root,
+        ...style.root,
+      }}>
+      <div
+        className="listview_header"
+        style={{ height: "20%", ...listViewStyle.header, ...style.header }}>
         {title ? (
           <Typography
             variant="h2"
-            style={{ ...style.title }}
+            style={{ ...listViewStyle.title, ...style.title }}
             sx={{ color: (theme) => theme.palette.typography.heading }}>
             {title}
           </Typography>
         ) : undefined}
         {subTitle ? (
-          <h4 style={{ ...style.subTitle }}>{subTitle}</h4>
+          <h4 style={{ ...listViewStyle.subTitle, ...style.subTitle }}>
+            {subTitle}
+          </h4>
         ) : undefined}
         {action
           ? React.cloneElement(action, {
-              style: style.action,
+              style: { ...listViewStyle.actin, ...style.action },
               to: "/recentSongs",
             })
           : undefined}
       </div>
-      {swiper ? (
-        <Swiper
-          style={{ ...style.scrollContent }}
-          spaceBetween={spaceBetween}
-          slidesPerView={devices[currentDevice]}
-          modules={[FreeMode, Pagination]}
-          direction={direction === "horizontal" ? "horizontal" : "vertical"}>
-          {listData.length > 0
-            ? elements(listData).map((element) => (
-                <SwiperSlide>{element}</SwiperSlide>
-              ))
-            : new Array(10).fill(
-                <SwiperSlide>
-                  <Skeleton
-                    variant="rectangular"
-                    sx={{
-                      background: "gray",
-                      borderRadius: "29px",
-                    }}
-                    width={210}
-                    height={240}
-                  />
-                </SwiperSlide>
-              )}
-        </Swiper>
-      ) : (
-        new Array(10).fill(
-          <SwiperSlide>
-            <Skeleton
-              variant="rectangular"
-              sx={{ borderRadius: "29px", background: "gray", height: "100%" }}
-              width={210}
-              height={240}
-            />
-          </SwiperSlide>
-        )
-      )}
-      }
+      <div style={{ height: "70%" }}>
+        {swiper ? (
+          <Swiper
+            style={{ ...listViewStyle.scrollContent, ...style.scrollContent }}
+            spaceBetween={spaceBetween}
+            slidesPerView={
+              !!devices
+                ? typeof devices[currentDevice] === "number"
+                  ? devices[currentDevice]
+                  : slidesPerView
+                : slidesPerView
+            }
+            modules={[FreeMode, Pagination]}
+            direction={direction === "horizontal" ? "horizontal" : "vertical"}>
+            {!!listData && listData.length > 0
+              ? elements(listData).map((element) => (
+                  <SwiperSlide>{element}</SwiperSlide>
+                ))
+              : new Array(1).fill(
+                  <SwiperSlide>
+                    <Skeleton
+                      variant="rectangular"
+                      sx={{
+                        background: "gray",
+                        borderRadius: "29px",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    />
+                  </SwiperSlide>
+                )}
+          </Swiper>
+        ) : (
+          new Array(10).fill(
+            <SwiperSlide>
+              <Skeleton
+                variant="rectangular"
+                sx={{
+                  borderRadius: "29px",
+                  background: "gray",
+                  height: "100%",
+                  width: "100%",
+                }}
+              />
+            </SwiperSlide>
+          )
+        )}
+      </div>
     </div>
   );
 }

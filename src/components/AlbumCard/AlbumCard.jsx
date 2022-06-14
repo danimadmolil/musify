@@ -11,14 +11,29 @@ import {
 } from "@mui/icons-material";
 import defaultImage from "../../assets/images/3.jpg";
 import { useMediaQuery } from "@mui/material";
-export default function AlbumCard({ title, subTitle, imgUrl, style }) {
+import { Link } from "react-router-dom";
+export default function AlbumCard({
+  album: { id, name, likes, cover, visits },
+  style,
+}) {
+  console.log("album", id);
   return (
     <figure class="effect-terry" style={{ ...style }}>
-      <img src={!!imgUrl ? imgUrl : defaultImage} alt="img16" />
+      <Link
+        to={{
+          pathname: `albums/${id}`,
+          state: { album: { id, name, likes, cover } },
+        }}
+        style={{
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          zIndex: 25,
+        }}></Link>
+      <img src={!!cover ? cover : defaultImage} alt="img16" />
       <figcaption>
         <h2>
-          {!!title ? title : "Title"}{" "}
-          <span>{!!subTitle ? subTitle : "subtitle"}</span>
+          {!!name ? name : "name"} <span>{!!likes ? likes : "likes"}</span>
         </h2>
         <p className="effect-terry__links">
           <a href="#">

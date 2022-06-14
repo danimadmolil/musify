@@ -35,20 +35,21 @@ const Backdrop = styled.div`
     background-color: #000000ba;
     transition: 0.3s background;
   }
-  &:hover .play_button_rounded {
-    opacity: 1;
-  }
   &:hover .song_favorite_button {
     opacity: 1;
     transform: scale(1) translate(-100%, -100%);
   }
-  &:hover .pause_container {
-    opacity: 1;
-    transform: scale(1) translate(50%, 30%);
+  .play_button_progress {
+    opacity: 0;
+    position: absolute;
+    top: 40%;
+    left: 52%;
+    transition: all 0.3s;
+    transform: translate(0%, 8%) scale(0);
   }
-  &:hover .pause_button_container {
+  &:hover .play_button_progress {
     opacity: 1;
-    transform: scale(1) translate(50%, 30%);
+    transform: translate(50%, 30%) scale(1);
   }
   &:hover .playlist_add_icon {
     opacity: 1;
@@ -108,7 +109,11 @@ export default React.memo(
           </CardContent>
         </CardActionArea>
         <Backdrop>
-          <PlayButtonProgressContainer song={song} />
+          <PlayButtonProgressContainer
+            song={song}
+            style={{ width: 50, height: 50 }}
+            className={"play_button_progress"}
+          />
           <FavoriteButtonContainer like={song.like} songId={song.id} />
           <IconButton
             onClick={() => dispatch(openDialog(ADD_SONG_TO_PLAYLIST, { song }))}

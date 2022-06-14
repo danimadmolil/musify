@@ -15,8 +15,6 @@ function* getAllAlbums() {
     const albums = yield call(getAll, "albums");
     const mappedAlbums = albums.map((album) =>
       objectMapper(album, {
-        id: "id",
-        name: "albumName",
         description: "detail",
       })
     );

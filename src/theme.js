@@ -34,7 +34,7 @@ const theme = {
   mixins: {
     Header: {
       width: "100%",
-      height: "40px",
+      height: "69px",
       backgroundColor: "gray",
       display: "flex",
     },

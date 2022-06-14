@@ -86,7 +86,7 @@ export function toggleFavoriteRequest(songId) {
     throw Error("ERROR");
   });
 }
-export function createRequest(path, data, options = {}) {
+export function createRequest(path, data = {}, options = {}) {
   path = path.startsWith("/") ? path : `/${path}`;
   return fetch(`${API_URL}${path}`, {
     method: "post",

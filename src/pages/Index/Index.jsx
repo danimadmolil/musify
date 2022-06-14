@@ -5,6 +5,10 @@ import SideBarMenu from "../../components/SideBarMenu/SideBarMenu";
 import Home from "./Home/Home";
 import Footer from "../../components/Footer/Footer";
 import RecentSongPage from "../../pages/Index/RecentSongs/RecentSong.page";
+import AlbumsPage from "./Albums/Albums.page";
+import Header from "../../components/Header/Header";
+import Favorites from "./Favorites/Favorites.page";
+import AlbumPage from "./Albums/Album.page";
 export default function Index() {
   const theme = useTheme();
   return (
@@ -35,7 +39,7 @@ export default function Index() {
         }}>
         <SideBarMenu />
       </Grid>
-      {/** main content */}
+
       <Grid
         item
         container
@@ -58,20 +62,33 @@ export default function Index() {
             maxWidth: "100%",
           },
         }}>
+        <Header />
+        {/*  Content */}
         <Grid
           className="main__content"
           sx={{
             width: "100%",
-            height: "calc(100% - 80px)",
+            height: "calc(100% - 80px - 70px)",
             maxWidth: "100%",
             background: (theme) => theme.palette.backgrounds.default,
           }}>
           <Switch>
             <Route exact path="/recentSongs" component={RecentSongPage} />
+            <Route exact path="/albums" component={AlbumsPage} />
+            <Route path="/albums/:albumName">
+              <AlbumPage />
+            </Route>
+            <Route exact path="/favorites">
+              <Favorites />
+            </Route>
             <Route index component={Home} />
           </Switch>
         </Grid>
-        <Grid className="footer" sx={{ width: "100%", height: "80px" }} item>
+        {/*  Footer */}
+        <Grid
+          className="footer"
+          sx={{ width: "100%", height: "80px", zIndex: 50 }}
+          item>
           <Footer />
         </Grid>
       </Grid>

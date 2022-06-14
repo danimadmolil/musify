@@ -62,7 +62,7 @@ export default function AuthButtons({ user = {}, profile = defaultProfile }) {
           <Link
             style={theme.mixins.Link}
             sx={{ color: (theme) => "red" }}
-            to="signin">
+            to="/signin">
             <Typography
               component="span"
               variant="span"
@@ -94,7 +94,10 @@ export default function AuthButtons({ user = {}, profile = defaultProfile }) {
           md="6"
           lg="6"
           xl="6">
-          <Link style={theme.mixins.Link} sx={{ color: "#6f223d" }} to="signup">
+          <Link
+            style={theme.mixins.Link}
+            sx={{ color: "#6f223d" }}
+            to="/signup">
             <Typography
               variant="span"
               sx={{
