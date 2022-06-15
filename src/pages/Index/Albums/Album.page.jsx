@@ -9,6 +9,7 @@ import {
   TableRow,
   TableCell,
   Paper,
+  Typography,
 } from "@mui/material";
 
 import React, { useState, useEffect } from "react";
@@ -37,7 +38,17 @@ export default function AlbumPage() {
             src={album.cover}></img>
         </Grid>
       </Grid>
-
+      <Typography
+        sx={{
+          color: "accent.default",
+          fontSize: 90,
+          position: "absolute",
+          left: "50%",
+          top: 390,
+          transform: "translate(-50%,-50%)",
+        }}>
+        {album.name}
+      </Typography>
       <Table component={Paper}>
         <TableHead>
           <TableRow>

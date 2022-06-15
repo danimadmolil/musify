@@ -16,7 +16,6 @@ const PauseButton = styled(PauseCircleRounded).attrs({
   classes: { root: "song_pause_button" },
 })`
   opacity: 1;
-  color: #00ff3ed4;
   transition: all 0.3s;
   will-change: all;
   cursor: pointer;
@@ -32,8 +31,6 @@ const PlayButton = styled(PlayCircleRounded).attrs((props) => ({
 }))`
   width: 100%;
   height: 100%;
-
-  color: #00ff3ed4;
   transition: all 0.3s;
   will-change: all;
   position: absolute;
@@ -111,11 +108,12 @@ export default React.memo(
               }
             }}>
             <PauseButton
-              style={{
+              sx={{
                 position: "absolute",
                 width: "100%",
                 height: "100%",
                 zIndex: "-1",
+                color: "accent.default",
               }}
             />
           </span>
@@ -150,11 +148,12 @@ export default React.memo(
               }
             }}>
             <PlayCircleRounded
-              style={{
+              sx={{
                 width: "100%",
                 height: "100%",
                 position: "absolute",
                 zIndex: "-1",
+                color: "primary.main",
               }}
             />
           </span>
