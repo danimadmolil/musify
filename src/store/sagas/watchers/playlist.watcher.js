@@ -43,37 +43,59 @@ import {
   removePlaylistFail,
 } from "../../actions/playlist/playlist.action";
 import { Button } from "@mui/material";
+import { SnowboardingSharp } from "@mui/icons-material";
 export default function* playlistSaga() {
   yield all([
     takeLatest("GET_PLAYLISTS", getPlaylistsRequest),
     takeLatest(CREATE_PLAYLIST, createPlaylistRequest),
     takeLatest(REMOVE_PLAYLIST, removePlaylistRequest),
-    takeEvery(OPEN_DIALOG, addSongToPlaylistHandler),
-    takeLatest("PLAY_SONG", addSongToPlaylistHandler),
+    takeLatest([OPEN_DIALOG, "PLAY_SONG"], addSongToPlaylistHandler),
   ]);
 }
 function* addSongToPlaylistHandler(action) {
   const song = action.payload.song || action.payload.music;
   console.log("song", song);
-  let {
-    payload: { playlist },
-  } = yield take("ADD_TO_PLAYLIST");
-  console.log("after take");
-  try {
-    let result = yield call(createRequest, "/addSongToPlaylist", {
-      songId: song.id,
-      playlistId: playlist.id,
-    });
-    console.log("playlist before put", playlist);
-    yield put({
-      type: "ADD_SONG_TO_PLAYLIST_SUCCESS",
-      payload: { song, playlist },
-    });
-    console.log("playlist after put", playlist);
+  while (true) {
+    let {
+      payload: { playlist },
+    } = yield take("ADD_TO_PLAYLIST");
+    console.log("after take");
 
-    yield put(closeDialog());
-  } catch (e) {
-    console.log("error playlist watcher", e);
+    try {
+      console.log("before request", song);
+      let result = yield call(createRequest, "/addSongToPlaylist", {
+        songId: song.id,
+        playlistId: playlist.id,
+      });
+      console.log("playlist before put", playlist);
+      yield put({
+        type: "ADD_SONG_TO_PLAYLIST_SUCCESS",
+        payload: { song, playlist },
+      });
+      console.log("playlist after put", playlist);
+
+      yield put(closeDialog());
+      yield put(
+        enqueueSnackbar({
+          message: "song added to playlist",
+          options: {
+            key: new Date().getTime() + Math.random() * 10,
+            variant: "success",
+          },
+        })
+      );
+    } catch (e) {
+      yield put(
+        enqueueSnackbar({
+          message:
+            "adding song to playlist failed!(song already is in playlist or network is broken)",
+          options: {
+            key: new Date().getTime() + Math.random() * 10,
+            variant: "error",
+          },
+        })
+      );
+    }
   }
 }
 // create and delete playlist saga handlers

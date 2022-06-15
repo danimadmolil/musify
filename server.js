@@ -101,6 +101,9 @@ server.post("/addSongToPlaylist", (req, res) => {
     db.get("playlist_song").insert({ playlistId, songId }).write();
     res.statusCode = 200;
     res.jsonp({ message: "successfull add song to playlist" });
+  } else {
+    res.statusCode = 400;
+    res.jsonp({ error: "song is already in playlist" });
   }
 });
 server.post("/deletePlaylist", (req, res) => {
