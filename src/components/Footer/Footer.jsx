@@ -11,7 +11,6 @@ import {
   IconButton,
   Tooltip,
   useTheme,
-  styled,
 } from "@mui/material";
 import img from "./../../assets/images/5.jpg";
 import Menu from "@mui/material/Menu";
@@ -20,20 +19,13 @@ import {
   VolumeUp,
   VolumeDown,
   List as ListIcon,
-  PlayCircleRounded,
-  PauseCircleRounded,
-  SkipPreviousRounded,
-  SkipNextRounded,
   Fullscreen,
 } from "@mui/icons-material";
-import RepeatIcon from "@mui/icons-material/Repeat";
-import ShuffleIcon from "@mui/icons-material/Shuffle";
 import { bindElements } from "./../../utils/amplitudejs/amplitude.utils";
 import PlayPauseButtonContainer from "../PlayPauseButton/PlayPauseButtonContainer";
 import Playlists from "../Playlists/Playlists";
-const IconButtonWithTheme = styled(IconButton)(({ theme }) => ({
-  color: theme.palette.accent.default,
-}));
+import ControlButtonsContainer from "../player/ControlButtons/ControlButtonsContainer";
+import IconButtonWithTheme from "../IconButtonWithTheme/IconButtonWithTheme";
 export default function Footer() {
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -156,59 +148,7 @@ export default function Footer() {
           md={4}
           sm={12}
           justifyContent="center">
-          <Stack
-            direction="row"
-            alignItems={"center"}
-            justifyContent={"center"}>
-            <IconButtonWithTheme>
-              <ShuffleIcon
-                sx={{ color: (theme) => theme.palette.accent["800"] }}
-                fontSize="medium"
-                color="light"
-              />
-            </IconButtonWithTheme>
-            <span class="amplitude-prev">
-              <IconButtonWithTheme variant="IconButton-accent">
-                <SkipPreviousRounded
-                  sx={{ color: (theme) => theme.palette.accent["800"] }}
-                  fontSize="medium"
-                  color="light"
-                />
-              </IconButtonWithTheme>
-            </span>
-
-            <span
-              class="amplitude-play"
-              style={{
-                width: 50,
-                height: 40,
-                margin: 0,
-                padding: 0,
-                display: "block",
-              }}>
-              <PlayPauseButtonContainer
-                sx={{
-                  top: "-5px",
-                  position: "relative",
-                  color: (theme) => theme.palette.accent.default,
-                }}
-              />
-            </span>
-            <span class="amplitude-next">
-              <IconButtonWithTheme>
-                <SkipNextRounded
-                  sx={{ color: (theme) => theme.palette.accent["800"] }}
-                  fontSize="medium"
-                />
-              </IconButtonWithTheme>
-            </span>
-            <IconButtonWithTheme>
-              <RepeatIcon
-                sx={{ color: (theme) => theme.palette.accent["800"] }}
-                fontSize="medium"
-              />
-            </IconButtonWithTheme>
-          </Stack>
+          <ControlButtonsContainer />
         </Grid>
         {/* slider */}
         <Grid

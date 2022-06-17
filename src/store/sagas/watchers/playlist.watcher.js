@@ -6,12 +6,19 @@ import {
   call,
   put,
 } from "redux-saga/effects";
-import { addPlaylist } from "../../../utils/amplitudejs/amplitude.utils";
+import {
+  addPlaylist,
+  setRepeatPlaylist,
+  setRepeat,
+} from "../../../utils/amplitudejs/amplitude.utils";
 import {
   GET_PLAYLISTS,
   GET_PLAYLIST_SUCCESS,
   GET_PLAYLIST_FAIL,
   ADD_SONG_TO_PLAYLIST_SUCCESS,
+  PLAY_PLAYLIST,
+  TOGGLE_PLAYLIST_REPEAT,
+  TOGGLE_PLAYLIST_REPEAT_SUCCESS,
 } from "../../actions/playlist/playlist.action";
 import { userConfirm, USER_CONFIRM } from "../../actions/user/user.actions";
 import {
@@ -50,7 +57,21 @@ export default function* playlistSaga() {
     takeLatest(CREATE_PLAYLIST, createPlaylistRequest),
     takeLatest(REMOVE_PLAYLIST, removePlaylistRequest),
     takeLatest([OPEN_DIALOG, "PLAY_SONG"], addSongToPlaylistHandler),
+    takeLatest(TOGGLE_PLAYLIST_REPEAT, playlistRepeatHandler),
+    takeLatest(PLAY_PLAYLIST, playlistPlayHandler),
   ]);
+}
+function* playlistPlayHandler(action) {
+  console.log("action play", action);
+  setRepeat(action.payload.playlist.repeat);
+}
+function* playlistRepeatHandler({ payload: { playlist } }) {
+  setRepeat(!playlist.repeat);
+  setRepeatPlaylist(playlist.name, !playlist.repeat);
+  yield put({
+    type: TOGGLE_PLAYLIST_REPEAT_SUCCESS,
+    payload: { repeat: !playlist.repeat },
+  });
 }
 function* addSongToPlaylistHandler(action) {
   const song = action.payload.song || action.payload.music;

@@ -2,7 +2,7 @@ import Amplitude from "myamplitudejs2";
 export const initAmplitude = () => {
   window.Amplitude = Amplitude;
   Amplitude.init({
-    songs: [{ url: "", name: "dani" }],
+    songs: [],
     debug: true,
     callbacks: {
       stop: function () {
@@ -16,17 +16,19 @@ export const initAmplitude = () => {
   Amplitude.setDebug(true);
 };
 export const addSong = (songObj) => {
-  if (Amplitude.getConfig().songs.length === 0) {
-    console.log("amp if", Amplitude.getConfig());
-    Amplitude.addSong(songObj);
-    console.log("amp if aftere addSong", window.Amplitude.getConfig());
-    Amplitude.playNow(songObj);
-    Amplitude.bindNewElements();
-  } else {
-    console.log("amp else", Amplitude.getConfig());
+  Amplitude.removeSong(0);
+  Amplitude.addSong(songObj);
 
-    Amplitude.addSong(songObj);
-  }
+  // if (Amplitude.getConfig().songs.length === 0) {
+  //   console.log("amp if", Amplitude.getConfig());
+  //   Amplitude.addSong(songObj);
+  //   console.log("amp if aftere addSong", window.Amplitude.getConfig());
+  //   Amplitude.playNow(songObj);
+  //   Amplitude.bindNewElements();
+  // } else {
+  //   console.log("amp else", Amplitude.getConfig());
+  //   Amplitude.addSong(songObj);
+  // }
   Amplitude.bindNewElements();
 };
 export const bindElements = () => {
@@ -34,6 +36,15 @@ export const bindElements = () => {
 };
 export const getPlayerState = () => {
   return Amplitude.getPlayerState();
+};
+export const setRepeat = (globalRepeatState) => {
+  Amplitude.setRepeat(globalRepeatState);
+};
+export const setRepeatSong = (repeatSongState) => {
+  Amplitude.setRepeatSong(repeatSongState);
+};
+export const setRepeatPlaylist = (playlistKey, playlistRepeatState) => {
+  Amplitude.setRepeatPlaylist(playlistKey, playlistRepeatState);
 };
 export const playNow = (song) => {
   Amplitude.playNow(song);

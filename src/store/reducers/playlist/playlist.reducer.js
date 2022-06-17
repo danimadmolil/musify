@@ -9,11 +9,27 @@ import {
   REMOVE_PLAYLIST_SUCCESS,
   REMOVE_PLAYLIST_FAIL,
   ADD_SONG_TO_PLAYLIST_SUCCESS,
+  PLAY_PLAYLIST,
 } from "../../actions/playlist/playlist.action";
 import { USER_LOGOUT_SUCCESS } from "../../actions/user/user.actions";
-const playListInitialState = {};
+const playListInitialState = { data: [], playingPlaylist: null };
 const playListReducer = (state = playListInitialState, action) => {
   //clear playlist when user logout
+  if (action.type === "TOGGLE_PLAYLIST_REPEAT_SUCCESS") {
+    return {
+      ...state,
+      playingPlaylist: {
+        ...state.playingPlaylist,
+        repeat: action.payload.repeat,
+      },
+    };
+  }
+  if (action.type === PLAY_PLAYLIST) {
+    return { ...state, playingPlaylist: { ...action.payload.playlist } };
+  }
+  if (action.type === "PLAY_SONG") {
+    return { ...state, playingPlaylist: null };
+  }
   if (action.type === "USER_NOT_AUTHENTICATED") {
     return { ...state, data: {} };
   } else if (action.type === USER_LOGOUT_SUCCESS) {

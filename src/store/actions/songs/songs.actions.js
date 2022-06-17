@@ -8,7 +8,12 @@ export const PLAY_SONG = "PLAY_SONG";
 export const RESUME_SONG = "RESUME_SONG";
 export const SONG_ENDED = "SONG_ENDED";
 export const PAUSE_SONG = "PAUSE_SONG";
+export const TOGGLE_SONG_REPEAT = "TOGGLE_SONG_REPEAT";
 //action creators
+export const toggleSongRepeat = (song) => ({
+  type: TOGGLE_SONG_REPEAT,
+  payload: { song },
+});
 export function playSong(song) {
   return { type: PLAY_SONG, payload: { song: song } };
 }
