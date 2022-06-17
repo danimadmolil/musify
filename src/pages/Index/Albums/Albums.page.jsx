@@ -90,11 +90,26 @@ export default function AlbumsPage() {
               ))
             }></ListView>
         </Grid>
-        <Grid container item xl={3} lg={3} md={3} sx={{ background: "red" }}>
+        <Grid
+          container
+          item
+          xl={3}
+          lg={3}
+          md={3}
+          sx={{ background: (theme) => theme.palette.backgrounds["500"] }}>
           <ListView
+            title={"Most Visited Songs In the world"}
             style={{
               root: { width: "100%", paddingBottom: "8px", height: 350 },
               scrollContent: { height: "100%" },
+              header: {
+                minHeight: 45,
+                margin: 0,
+                padding: "0px 20px",
+                width: "90%",
+                justifyText: "word-wrap",
+                textAlign: "center",
+              },
             }}
             devices={{ tv: 1, desktop: 1, laptop: 1, tablet: 1, mobile: 1 }}
             listData={[{}, {}, {}]}
@@ -102,72 +117,74 @@ export default function AlbumsPage() {
             direction="horizontal"
             elements={(el) =>
               el.map((el) => (
-                <SwiperSlide>
-                  <Card
-                    variant="outlined"
+                <Card
+                  variant="outlined"
+                  sx={{
+                    display: "flex",
+                    flexDirection: {
+                      xs: "column",
+                      sm: "row",
+                      lg: "column",
+                      md: "column",
+                    },
+                    width: "100%",
+                    height: "100%",
+                  }}>
+                  <CardMedia
+                    component="img"
+                    width="124"
+                    height="124"
+                    alt="Beside Myself album cover"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS89PTVK-YsYeBu6FQDYzjEXnGl0BcnHh4foC3cUIhWGDQN1Nlqjgj7VbljZdwaiyeyzQ0&usqp=CAU"
                     sx={{
-                      p: 1,
-                      display: "flex",
-                      flexDirection: { xs: "column", sm: "row" },
-                      width: "100%",
-                      height: 200,
-                    }}>
-                    <CardMedia
-                      component="img"
-                      width="124"
-                      height="124"
-                      alt="Beside Myself album cover"
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS89PTVK-YsYeBu6FQDYzjEXnGl0BcnHh4foC3cUIhWGDQN1Nlqjgj7VbljZdwaiyeyzQ0&usqp=CAU"
+                      borderRadius: 0.5,
+                      width: "clamp(124px, (304px - 100%) * 999 , 100%)",
+                    }}
+                  />
+                  <Box sx={{ alignSelf: "center", px: { xs: 0, sm: 2 } }}>
+                    <Typography
+                      variant="body1"
+                      color="text.primary"
+                      fontWeight={600}
                       sx={{
-                        borderRadius: 0.5,
-                        width: "clamp(124px, (304px - 100%) * 999 , 100%)",
-                      }}
-                    />
-                    <Box sx={{ alignSelf: "center", px: { xs: 0, sm: 2 } }}>
-                      <Typography
-                        variant="body1"
-                        color="text.primary"
-                        fontWeight={600}
-                        sx={{
-                          textAlign: { xs: "center", sm: "start" },
-                          mt: { xs: 1.5, sm: 0 },
-                        }}>
-                        Ultraviolet
-                      </Typography>
-                      <Typography
-                        component="div"
-                        variant="caption"
-                        color="text.secondary"
-                        fontWeight={500}
-                        sx={{ textAlign: { xm: "center", sm: "start" } }}>
-                        Basement • Beside Myself
-                      </Typography>
-                      <Stack
-                        direction="row"
-                        spacing={1}
-                        sx={{
-                          mt: 2,
-                          justifyContent: {
-                            xs: "space-between",
-                            sm: "flex-start",
-                          },
-                        }}>
-                        <IconButton aria-label="fast rewind" disabled>
-                          <FastRewindRounded />
-                        </IconButton>
-                        <IconButton
-                          aria-label={paused ? "play" : "pause"}
-                          sx={{ mx: 1 }}
-                          onClick={() => setPaused((val) => !val)}>
-                          {paused ? <PlayArrowRounded /> : <PauseRounded />}
-                        </IconButton>
-                        <IconButton aria-label="fast forward" disabled>
-                          <FastForwardRounded />
-                        </IconButton>
-                      </Stack>
-                    </Box>
-                  </Card>
-                </SwiperSlide>
+                        textAlign: { xs: "center", sm: "start" },
+                        mt: { xs: 1.5, sm: 0 },
+                      }}>
+                      Ultraviolet
+                    </Typography>
+                    <Typography
+                      component="div"
+                      variant="caption"
+                      color="text.secondary"
+                      fontWeight={500}
+                      sx={{ textAlign: { xm: "center", sm: "start" } }}>
+                      Basement • Beside Myself
+                    </Typography>
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      sx={{
+                        mt: 2,
+                        justifyContent: {
+                          xs: "space-between",
+                          sm: "flex-start",
+                        },
+                      }}>
+                      <IconButton aria-label="fast rewind" disabled>
+                        <FastRewindRounded />
+                      </IconButton>
+                      <IconButton
+                        aria-label={paused ? "play" : "pause"}
+                        sx={{ mx: 1 }}
+                        onClick={() => setPaused((val) => !val)}>
+                        {paused ? <PlayArrowRounded /> : <PauseRounded />}
+                      </IconButton>
+                      <IconButton aria-label="fast forward" disabled>
+                        <FastForwardRounded />
+                      </IconButton>
+                    </Stack>
+                  </Box>
+                </Card>
               ))
             }></ListView>
         </Grid>
