@@ -1,7 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
 import ControlButtons from "./ControlButtons";
-export const ControlButtonsContainer = ({ playingPlaylist }) => {
+export const ControlButtonsContainer = ({ playingPlaylist, playingSong }) => {
+  console.log("controlButtonContainer", playingPlaylist);
+  console.log("controlButtonContainer", playingSong);
+  function getRepeat() {
+    if (playingPlaylist && playingPlaylist.repeat === true) {
+      return true;
+    } else if (playingPlaylist && playingPlaylist.repeat === false) {
+      return false;
+    }
+    if (playingSong.repeat === true) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  console.log("controlButtonContainer", getRepeat());
   return (
     <ControlButtons
       prevButton={
@@ -19,12 +34,14 @@ export const ControlButtonsContainer = ({ playingPlaylist }) => {
           : "disable" //default state for nextButton
       }
       playingPlaylist={playingPlaylist}
-      repeatButton={playingPlaylist && playingPlaylist.repeat}
+      playingSong={playingSong}
+      repeatButton={getRepeat()}
     />
   );
 };
 const mapStateToProps = (state) => ({
   playingPlaylist: state.playlists && state.playlists.playingPlaylist,
+  playingSong: state.playingSong,
 });
 const mapDispatchToProps = {};
 export default connect(
