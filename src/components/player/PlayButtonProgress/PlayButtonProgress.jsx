@@ -166,7 +166,7 @@ export default React.memo(
             position: "absolute",
             left: 0,
             top: 0,
-            zIndex: "-1",
+            zIndex: "5",
           }}
           variant="determinate"
           value={

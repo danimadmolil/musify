@@ -74,8 +74,12 @@ export default function ListView({
         {title ? (
           <Typography
             variant="h2"
-            style={{ ...listViewStyle.title, ...style.title }}
-            sx={{ color: (theme) => theme.palette.typography.heading }}>
+            sx={{
+              color: (theme) => theme.palette.typography.heading,
+              margin: "0px",
+              ...listViewStyle.title,
+              ...style.title,
+            }}>
             {title}
           </Typography>
         ) : undefined}
