@@ -1,4 +1,7 @@
-export const API_URL = "https://heather-faint-porter.glitch.me";
+export const API_URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.REACT_APP_PRODUCTION_API
+    : process.env.REACT_APP_DEVELOPMENT_API;
 export function getAll(resource) {
   return fetch(`${API_URL}/${resource}`, {
     method: "get",
