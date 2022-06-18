@@ -51,7 +51,7 @@ export default function AlbumPage() {
         }}>
         {!!album ? album.name : albumDetail.name}
       </Typography>
-      <Link to={`${location.pathname}/fsdfsdf`}>fsjdlfkjsdf</Link>
+
       <Table component={Paper}>
         <TableHead>
           <TableRow>
