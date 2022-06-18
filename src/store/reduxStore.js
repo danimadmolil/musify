@@ -9,11 +9,13 @@ import createSagaMiddleware from "redux-saga";
 const sagaMiddleWare = createSagaMiddleware();
 const store = createStore(
   rootReducer(),
-  compose(
-    applyMiddleware(sagaMiddleWare),
-    window.__REDUX_DEVTOOLS_EXTENSION__ &&
-      window.__REDUX_DEVTOOLS_EXTENSION__({ trace: true })
-  )
+  process.env.NODE_ENV === "development"
+    ? compose(
+        applyMiddleware(sagaMiddleWare),
+        window.__REDUX_DEVTOOLS_EXTENSION__ &&
+          window.__REDUX_DEVTOOLS_EXTENSION__({ trace: true })
+      )
+    : compose(applyMiddleware(sagaMiddleWare))
 );
 sagaMiddleWare.run(rootSaga);
 export default store;
