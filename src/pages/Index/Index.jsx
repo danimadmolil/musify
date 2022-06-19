@@ -9,6 +9,8 @@ import AlbumsPage from "./Albums/Albums.page";
 import Header from "../../components/Header/Header";
 import Favorites from "./Favorites/Favorites.page";
 import AlbumPage from "./Albums/Album.page";
+import SideBarMenuContainer from "../../components/SideBarMenu/SideBarMenuContainer";
+import HeaderContainer from "../../components/Header/HeaderContainer";
 export default function Index() {
   const theme = useTheme();
   return (
@@ -17,29 +19,12 @@ export default function Index() {
       direction="row"
       sx={{ width: "100vw", height: "100vh", margin: 0 }}>
       {/** sidebar */}
-      <Grid
-        item
-        className="side_bar"
-        sm={0}
-        md={3}
-        lg={3}
-        xl={2}
-        sx={{
-          overflow: "hidden !important",
-          background: (theme) => theme.palette.backgrounds["900"],
-          height: "100%",
-          [theme.breakpoints.up("md")]: {
-            flexBasis: "20% !important",
-            maxWidth: "100%",
-          },
-          [theme.breakpoints.down("md")]: {
-            flexBasis: "0%",
-            maxWidth: "100%",
-          },
-        }}>
-        <SideBarMenu />
-      </Grid>
 
+      <SideBarMenuContainer
+       
+      />
+
+      {/**content right side */}
       <Grid
         item
         container
@@ -50,19 +35,24 @@ export default function Index() {
         lg={9}
         xl={10}
         sx={{
+          transition: "padding 0.3s ease-in-out",
+          willChange: "padding",
+
+          paddingLeft: "20vw",
           backgroundColor: (theme) => theme.palette.backgrounds.default,
           height: "100%",
           overflow: "hidden !important",
           [theme.breakpoints.up("md")]: {
-            flexBasis: "80% !important",
+            flexBasis: "100% !important",
             maxWidth: "100%",
           },
           [theme.breakpoints.down("md")]: {
             flexBasis: "100%",
             maxWidth: "100%",
+            paddingLeft: 0,
           },
         }}>
-        <Header />
+        <HeaderContainer />
         {/*  Content */}
         <Grid
           className="main__content"

@@ -1,17 +1,37 @@
-import { Container, Stack, Typography, useTheme } from "@mui/material";
-import React from "react";
+import {
+  Container,
+  Stack,
+  Typography,
+  useTheme,
+  Grid,
+  Button,
+  useMediaQuery,
+  IconButton,
+} from "@mui/material";
+import { MenuOpen, MenuOpenOutlined, MenuRounded } from "@mui/icons-material";
+import React, { useEffect } from "react";
 import AuthContainer from "../Auth/AuthContainer";
-import { Grid, Button } from "@mui/material";
 import ThemeToggleSwitch from "../ThemeToggleSwith/ThemeToggleSitch";
 import { Link, useLocation } from "react-router-dom";
-export default function Header() {
+import { useDispatch } from "react-redux";
+export default function Header({ openSidebar, closeSidebar, sidebarState }) {
   const location = useLocation();
-  console.log("location", location);
+  const dispatch = useDispatch();
   const theme = useTheme();
+  const mobile = useMediaQuery((theme) => theme.breakpoints.down("md"));
+  const notMobile = useMediaQuery((theme) => theme.breakpoints.up("md"));
+  console.log("mobile", mobile);
   let path = location.pathname;
   path = path.startsWith("/") && path.slice(1);
   let paths = path.split("/");
   let route = "";
+  useEffect(() => {
+    if (mobile) {
+      // dispatch(closeSidebar());
+    } else if (notMobile) {
+      // dispatch(openSidebar());
+    }
+  }, [mobile, notMobile]);
   return (
     <Container
       sx={{
@@ -22,6 +42,7 @@ export default function Header() {
         paddingBottom: 2,
       }}>
       <ThemeToggleSwitch />
+      {/** BreadCrumb navigation*/}
       <Stack direction="row" alignItems={"center"} sx={{ height: 10 }}>
         {location.pathname !== "/" && (
           <Button size="small">
@@ -57,6 +78,17 @@ export default function Header() {
         <Grid item justifySelf={"flex-end"}>
           <AuthContainer />
         </Grid>
+        {mobile === true ? (
+          sidebarState === "open" ? (
+            <IconButton onClick={() => closeSidebar()}>
+              <MenuOpenOutlined sx={{ color: "typography.light" }} />
+            </IconButton>
+          ) : (
+            <IconButton onClick={() => openSidebar()}>
+              <MenuRounded sx={{ color: "typography.light" }} />
+            </IconButton>
+          )
+        ) : null}
       </Grid>
     </Container>
   );

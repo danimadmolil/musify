@@ -7,8 +7,10 @@ import themReducer from "./theme/theme.reducer";
 import playlistReducer from "./playlist/playlist.reducer";
 import notistackReducer from "./notistack/notistack.reducer";
 import dialogReducer from "./dialog/dialog.reducer";
+import uiOptionsReducer from "./uiOptions/uiOptions.reducer";
 export default function rootReducer() {
   return combineReducers({
+    uiOptions: uiOptionsReducer,
     playlists: playlistReducer,
     albums: albumReducer,
     songs: songsReducer,

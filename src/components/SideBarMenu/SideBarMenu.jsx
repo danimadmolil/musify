@@ -29,6 +29,7 @@ import { useDispatch } from "react-redux";
 import { openDialog } from "../../store/actions/dialog/dialog.actions";
 import { CREATE_PLAYLIST } from "../../constants/dialogTypes";
 import { Link } from "react-router-dom";
+import { useTheme } from "@emotion/react";
 const ListItemIconWithTheme = styled(ListItemIcon)(({ theme }) => ({
   color: theme.palette.typography.secondary,
 }));
@@ -38,6 +39,7 @@ const ButtonIconWithTheme = styled(IconButton)(({ theme }) => ({
 const ListItemTextWithTheme = styled(ListItemText)(({ theme }) => ({
   color: theme.palette.typography.secondary,
 }));
+
 function NestedList({ dispatch }) {
   const [open, setOpen] = useState(true);
 
@@ -64,7 +66,9 @@ function NestedList({ dispatch }) {
             <Grid container item alignItems="center">
               <ListItemIconWithTheme>
                 <LyricsIcon
-                  sx={{ color: (theme) => theme.palette.typography.secondary }}
+                  sx={{
+                    color: (theme) => theme.palette.typography.secondary,
+                  }}
                 />
               </ListItemIconWithTheme>
               <Typography
@@ -136,8 +140,13 @@ function NestedList({ dispatch }) {
   );
 }
 
-export default function SideBarMenu() {
+export default function SideBarMenu({
+  sidebarState,
+  closeSidebar,
+  ...restProps
+}) {
   const scrollContainer = useRef(null);
+  const theme = useTheme();
   const dispatch = useDispatch();
   useEffect(() => {
     Scrollbar.init(scrollContainer.current, {
@@ -146,10 +155,34 @@ export default function SideBarMenu() {
     });
   }, []);
   return (
-    <div
-      ref={scrollContainer}
-      style={{ height: "100%", width: "100%", overflow: "hidden" }}>
-      <NestedList dispatch={dispatch} />
-    </div>
+    <Grid
+      item
+      className="side_bar"
+      sm={0}
+      md={3}
+      lg={3}
+      xl={2}
+      sx={{
+        position: "fixed",
+        height: "100%",
+        transition: "left 0.3s ease-in-out",
+        background: (theme) => theme.palette.backgrounds["900"],
+        zIndex: 55,
+        overflow: "hidden !important",
+        [theme.breakpoints.up("md")]: {
+          width: "20vw !important",
+          maxWidth: "100%",
+        },
+        [theme.breakpoints.down("md")]: {
+          left: sidebarState === "open" ? "0" : "-100%",
+          maxWidth: "100%",
+        },
+      }}>
+      <div
+        ref={scrollContainer}
+        style={{ height: "100%", width: "100%", overflow: "hidden" }}>
+        <NestedList dispatch={dispatch} />
+      </div>
+    </Grid>
   );
 }
