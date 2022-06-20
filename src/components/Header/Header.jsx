@@ -37,9 +37,7 @@ export default function Header({ openSidebar, closeSidebar, sidebarState }) {
       sx={{
         ...theme.mixins.Header,
         backgroundColor: "transparent",
-        paddingTop: "1rem",
         alignItems: "center",
-        paddingBottom: 2,
       }}>
       <ThemeToggleSwitch />
       {/** BreadCrumb navigation*/}

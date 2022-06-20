@@ -11,6 +11,7 @@ import {
   IconButton,
   Tooltip,
   useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import img from "./../../assets/images/5.jpg";
 import Menu from "@mui/material/Menu";
@@ -33,6 +34,7 @@ export default function Footer() {
   let sliderRef = useRef(null);
   let volumeSlider = useRef(null);
   let volumeMuiSlider = useRef(null);
+  const isMobile = useMediaQuery("@media only screen and (max-width:600px)");
   let [volume, setVolume] = useState(100);
   let slider = useRef(null);
   let [value, setValue] = useState(0);
@@ -134,7 +136,7 @@ export default function Footer() {
         style={{ height: "100%", background: "transparent" }}
         item
         container
-        xs={5}
+        xs={7}
         sm={8}
         md={7}
         lg={6}
@@ -196,7 +198,7 @@ export default function Footer() {
         sx={{ mt: "12px" }}
         justifyContent="center"
         alignItems="center"
-        xs={7}
+        xs={5}
         sm={4}
         md={3}
         lg={4}
@@ -210,74 +212,89 @@ export default function Footer() {
             sx={{ mb: 1 }}
             alignItems="center"
             justifyContent="space-between">
-            <VolumeDown
-              sx={{ color: (theme) => theme.palette.accent["700"] }}
-            />
-            <input
-              ref={volumeSlider}
-              style={{ display: "none" }}
-              value={volume}
-              className="amplitude-volume-slider"
-              type="range"
-              step="0.1"
-            />
-            <Slider
-              onChange={handleVolumeChange}
-              value={volume}
-              sx={{ color: (theme) => theme.palette.accent.default }}
-              size="small"
-            />
-            <VolumeUp sx={{ color: (theme) => theme.palette.accent["700"] }} />
-            <Grid md={1} lg={1}>
-              <Box sx={{ flexGrow: 0 }}>
-                <Tooltip title="Open settings">
-                  <IconButtonWithTheme
-                    onClick={handleOpenUserMenu}
-                    sx={{
-                      p: 0,
-                    }}>
-                    <ListIcon
-                      sx={{
-                        width: 40,
-                        height: 40,
-                        color: (theme) => theme.palette.accent.default,
-                      }}
-                    />
-                  </IconButtonWithTheme>
-                </Tooltip>
-                <Menu
-                  id="menu-playlists"
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
+            <Stack
+              sx={{ width: 180 }}
+              alignItems="center"
+              direction={isMobile ? "column" : "row"}>
+              <VolumeDown
+                sx={{
+                  color: (theme) => theme.palette.accent["700"],
+                  [theme.breakpoints.down("md")]: {
+                    display: "none",
+                  },
+                }}
+              />
+              <input
+                ref={volumeSlider}
+                style={{ display: "none" }}
+                value={volume}
+                className="amplitude-volume-slider"
+                type="range"
+                step="0.1"
+              />
+              <Slider
+                onChange={handleVolumeChange}
+                value={volume}
+                orientation={isMobile ? "horizontal" : "horizontal"}
+                sx={{
+                  color: (theme) => theme.palette.accent.default,
+                }}
+                size="small"
+              />
+              <VolumeUp
+                sx={{
+                  color: (theme) => theme.palette.accent["700"],
+                  [theme.breakpoints.down("md")]: {
+                    display: "none",
+                  },
+                }}
+              />
+            </Stack>
+
+            <Tooltip title="Open settings">
+              <IconButtonWithTheme
+                onClick={handleOpenUserMenu}
+                sx={{
+                  p: 0,
+                }}>
+                <ListIcon
+                  sx={{
+                    width: 30,
+                    height: 30,
+                    color: (theme) => theme.palette.accent.default,
                   }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "bottom",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}>
-                  <Playlists
-                    playButton={false}
-                    deleteButton={false}
-                    clickHandler={(playlist) =>
-                      dispatch({
-                        type: "ADD_TO_PLAYLIST",
-                        payload: { playlist },
-                      })
-                    }
-                  />
-                  <MenuItem
-                    onClick={() => dispatch(openDialog(CREATE_PLAYLIST))}>
-                    <Typography textAlign="center">
-                      Create New playlist
-                    </Typography>
-                  </MenuItem>
-                </Menu>
-              </Box>
-            </Grid>
+                />
+              </IconButtonWithTheme>
+            </Tooltip>
+            <Menu
+              id="menu-playlists"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}>
+              <Playlists
+                playButton={false}
+                deleteButton={false}
+                clickHandler={(playlist) =>
+                  dispatch({
+                    type: "ADD_TO_PLAYLIST",
+                    payload: { playlist },
+                  })
+                }
+              />
+              <MenuItem onClick={() => dispatch(openDialog(CREATE_PLAYLIST))}>
+                <Typography textAlign="center">Create New playlist</Typography>
+              </MenuItem>
+            </Menu>
+
             <IconButtonWithTheme>
               <Fullscreen
                 sx={{
