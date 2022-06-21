@@ -17,7 +17,7 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import { Link } from "react-router-dom";
-import defaultProfile from "../../assets/images/1.jpg";
+import defaultProfile from "../../assets/images/4.jpg";
 import { useDispatch } from "react-redux";
 import { userLogoutRequest } from "../../store/actions/user/user.actions";
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -34,81 +34,51 @@ export default function AuthButtons({ user = {}, profile = defaultProfile }) {
   }
   const theme = useTheme();
   return user.isLoading === false && !!user.name === false ? (
-    <Grid container style={{ width: 228 }}>
-      <Grid
-        item
-        xs="6"
-        sm="6"
-        md="6"
-        lg="6"
-        xl="6"
-        justifyContent="space-between"
-        container
-        item>
-        <Button
-          size="small"
-          hoverColor="#ffa9a9"
-          background={"#ff0e35"}
-          sx={{ borderRadius: 25 }}
-          component="a"
-          endIcon={
-            <LoginSharp
-              sx={{
-                pr: "8px",
-                color: (theme) => theme.palette.typography.primary,
-              }}
-            />
-          }>
+    <Box sx={{ flexGrow: 0 }}>
+      <Tooltip title="Open settings">
+        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+          <Avatar alt="Remy Sharp" />
+        </IconButton>
+      </Tooltip>
+      <Menu
+        sx={{ mt: "45px" }}
+        id="menu-appbar"
+        anchorEl={anchorElUser}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        keepMounted
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        open={Boolean(anchorElUser)}
+        onClose={handleCloseUserMenu}>
+        <MenuItem key={"signin"}>
           <Link
-            style={theme.mixins.Link}
-            sx={{ color: (theme) => "red" }}
-            to="/signin">
-            <Typography
-              component="span"
-              variant="span"
-              sx={{
-                pl: "8px",
-                color: (theme) => theme.palette.typography.primary,
-              }}>
-              SingIn
-            </Typography>
-          </Link>
-        </Button>
-      </Grid>
-      <Grid>
-        <Button
-          size="small"
-          background="blue"
-          variant="rounded-button"
-          hoverColor="#8686ff"
-          endIcon={
-            <AppRegistrationRounded
-              sx={{
-                color: (theme) => theme.palette.typography.primary,
-              }}
-            />
-          }
-          color="success"
-          xs="6"
-          sm="6"
-          md="6"
-          lg="6"
-          xl="6">
+            to="/signin"
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              zIndex: 100,
+            }}></Link>
+          <Typography textAlign="center">Sign In</Typography>
+        </MenuItem>
+        <MenuItem key={"signup"}>
           <Link
-            style={theme.mixins.Link}
-            sx={{ color: "#6f223d" }}
-            to="/signup">
-            <Typography
-              variant="span"
-              sx={{
-                color: (theme) => theme.palette.typography.primary,
-              }}>
-              SignUp
-            </Typography>
-          </Link>
-        </Button>
-      </Grid>
-    </Grid>
+            to={"/signup"}
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              zIndex: 100,
+            }}></Link>
+          <Typography textAlign="center">Sign Up</Typography>
+        </MenuItem>
+      </Menu>
+    </Box>
   ) : user.isLoading === true ? (
     <CircularProgress />
   ) : (

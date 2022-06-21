@@ -72,16 +72,12 @@ export default function Header({ openSidebar, closeSidebar, sidebarState }) {
             );
           })}
       </Stack>
-      <Grid container sx={{ width: "100%" }} justifyContent="end">
+      <Grid container sx={{ width: "100%" }} justifyContent="flex-end">
         <Grid item justifySelf={"flex-end"}>
           <AuthContainer />
         </Grid>
         {mobile === true ? (
-          sidebarState === "open" ? (
-            <IconButton onClick={() => closeSidebar()}>
-              <MenuOpenOutlined sx={{ color: "typography.light" }} />
-            </IconButton>
-          ) : (
+          sidebarState === "open" ? null : (
             <IconButton onClick={() => openSidebar()}>
               <MenuRounded sx={{ color: "typography.light" }} />
             </IconButton>

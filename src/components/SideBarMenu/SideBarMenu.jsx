@@ -11,6 +11,8 @@ import {
   IconButton,
   ListItemButton,
   ListSubheader,
+  Backdrop,
+  useMediaQuery,
 } from "@mui/material";
 import { InboxIcon, SendIcon, LibraryMusicIcon } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
@@ -148,6 +150,14 @@ export default function SideBarMenu({
   const scrollContainer = useRef(null);
   const theme = useTheme();
   const dispatch = useDispatch();
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("md"));
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleToggle = () => {
+    setOpen(!open);
+  };
   useEffect(() => {
     Scrollbar.init(scrollContainer.current, {
       alwaysShowTracks: true,
@@ -166,7 +176,7 @@ export default function SideBarMenu({
         position: "fixed",
         height: "100%",
         transition: "left 0.3s ease-in-out",
-        background: (theme) => theme.palette.backgrounds["900"],
+
         zIndex: 55,
         overflow: "hidden !important",
         [theme.breakpoints.up("md")]: {
@@ -175,14 +185,23 @@ export default function SideBarMenu({
         },
         [theme.breakpoints.down("md")]: {
           left: sidebarState === "open" ? "0" : "-100%",
-          maxWidth: "100%",
+          maxWidth: "50%",
         },
       }}>
       <div
         ref={scrollContainer}
-        style={{ height: "100%", width: "100%", overflow: "hidden" }}>
+        style={{
+          height: "100%",
+          width: "100%",
+          overflow: "hidden",
+          background: "black",
+        }}>
         <NestedList dispatch={dispatch} />
-      </div>
+      </div>{" "}
+      <Backdrop
+        onClick={() => closeSidebar()}
+        sx={{ color: "#fff", zIndex: (theme) => "-1" }}
+        open={isMobile === true && sidebarState === "open"}></Backdrop>
     </Grid>
   );
 }
