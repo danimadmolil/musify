@@ -1139,10 +1139,10 @@
   dependencies:
     postcss-value-parser "^4.2.0"
 
-"@danimadmolil/json-server-auth@^2.1.10":
-  version "2.1.10"
-  resolved "https://registry.yarnpkg.com/@danimadmolil/json-server-auth/-/json-server-auth-2.1.10.tgz#c6547ab287968613e9daac8e6ccfa7eb98c64067"
-  integrity sha512-uXSqMKtOEiasxp/xG2CtB6ZthALOii1koysUIkuwM4BH65qcT/SxNHEYQvYzKltPCeb/Y3dpyUuQJrnAyftLcg==
+"@danimadmolil/json-server-auth@^2.1.12":
+  version "2.1.12"
+  resolved "https://registry.yarnpkg.com/@danimadmolil/json-server-auth/-/json-server-auth-2.1.12.tgz#427d38fd87e12467fff416ebeda28b9f8fd9a2ae"
+  integrity sha512-Yd/wYEhsUSLSKtk2hZasGDwa1KkEEh0aPS9SAo5CLBy0kEFaKo0xWENsTbx22Ru8b6te4TBvHwCd99QUSXIgmw==
   dependencies:
     bcryptjs "^2.4.3"
     cookie-parser "^1.4.6"
@@ -9177,7 +9177,7 @@ renderkid@^3.0.0:
 require-directory@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"
-  integrity sha1-jGStX9MNqxyXbiNE/+f3kqam30I=
+  integrity sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==
 
 require-from-string@^2.0.2:
   version "2.0.2"

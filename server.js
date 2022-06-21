@@ -17,11 +17,12 @@ const rules = auth.rewriter({
 server.use(jsonServer.bodyParser);
 server.use(cookieParser());
 server.use((req, res, next) => {
-  if (req.cookies.authorization) {
-    let [scheme, token] = req.cookies.authorization.split(" ");
-    req.headers.authorization = "Bearer " + token;
+  if (req.cookies.Authorization) {
+    let [scheme, token] = req.cookies.Authorization.split(" ");
+    req.headers.Authorization = "Bearer " + token;
   }
   res.set({
+    "Access-Control-Allow-Headers": ["Content-Type", "Authorization"],
     "Access-Control-Allow-Credentials": "true",
     "Access-Control-Allow-Origin": req.headers.origin,
     "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, HEAD, OPTIONS",
@@ -157,6 +158,7 @@ server.post("/userFavoriteSongs", (req, res) => {
   res.jsonp({ favoriteSongs });
 });
 server.post("/toggleFavoriteSong", (req, res) => {
+  console.log(req.hostname);
   let { db } = req.app;
   let { songId } = req.body;
   try {
@@ -251,8 +253,8 @@ server.listen(4001, () => {});
 //utils
 function getUserByCookie(req) {
   let { db } = req.app;
-  const [schema, token] = req.cookies.authorization
-    ? req.cookies.authorization.split(" ")
+  const [schema, token] = req.cookies.Authorization
+    ? req.cookies.Authorization.split(" ")
     : [undefined, undefined];
   if (token && schema) {
     const { email } = jwt.verify(token, constants.JWT_SECRET_KEY);
