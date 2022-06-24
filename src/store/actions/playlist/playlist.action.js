@@ -24,9 +24,9 @@ export const playPlaylist = (playlist) => ({
   type: PLAY_PLAYLIST,
   payload: { playlist },
 });
-export const createPlaylist = (playlist) => ({
+export const createPlaylist = (playlist, payload) => ({
   type: CREATE_PLAYLIST,
-  payload: { playlist },
+  payload: { playlist, ...payload },
 });
 export const createPlaylistSuccess = (playlist) => ({
   type: CREATE_PLAYLIST_SUCCESS,
@@ -50,6 +50,7 @@ export const removePlaylistFail = (error) => ({
   payload: error,
 });
 
-export const getPlaylists = () => ({
+export const getPlaylists = (payload) => ({
   type: GET_PLAYLISTS,
+  payload,
 });

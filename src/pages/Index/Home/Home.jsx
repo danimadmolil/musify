@@ -18,7 +18,6 @@ export default function Home() {
   return (
     <div ref={scrollContainer} style={{ height: "100%" }}>
       <div className="home" style={{ width: "100%", paddingBottom: "22px" }}>
-        
         <ListViewContainer
           title="Recent Albums"
           subTitle={"2021: 19/12"}
@@ -53,16 +52,13 @@ export default function Home() {
           slidesPerView={4}
           spaceBetween={1}
           style={{
-          
             scrollContent: { height: "250px" },
             root: {
-             
               margin: 0,
               padding: 0,
               width: "100%",
             },
             action: {
-              
               position: "absolute",
               left: "100%",
               top: "100%",
@@ -90,6 +86,7 @@ export default function Home() {
           }}
           elements={(data) => {
             return data.map((song, i) => {
+              
               return (
                 <SongCard
                   style={{
@@ -105,16 +102,13 @@ export default function Home() {
           slidesPerView={4}
           spaceBetween={1}
           style={{
-            
             scrollContent: { height: "260px" },
             root: {
-             
               margin: 0,
               padding: 0,
               width: "100%",
             },
             action: {
-              
               position: "absolute",
               left: "100%",
               top: "100%",

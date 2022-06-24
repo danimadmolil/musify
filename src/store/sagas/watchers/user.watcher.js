@@ -55,27 +55,27 @@ function* userLogoutRequestHandler(action) {
   }
 }
 function* userCheckAuthRequest(action) {
-  try {
-    const responseUser = yield call(login, "", "auth");
-    console.log("##response", responseUser);
-    const { email, name, lastName } = responseUser.user;
-    const user = { email, name, lastName };
-    console.log("##response before success", user);
-    yield put(userCheckAuthSuccess({ user: user }));
-    console.log("##response after success", user);
-  } catch (error) {
-    console.log("##response error", error);
-    yield put(userCheckAuthFailure(error));
-    yield put(
-      enqueueSnackbar({
-        message: "You are not Authenticated",
-        options: {
-          key: new Date().getTime() + Math.random(),
-          variant: "warning",
-        },
-      })
-    );
-  }
+  // try {
+  //   const responseUser = yield call(login, "", "auth");
+  //   console.log("##response", responseUser);
+  //   const { email, name, lastName } = responseUser.user;
+  //   const user = { email, name, lastName };
+  //   console.log("##response before success", user);
+  //   yield put(userCheckAuthSuccess({ user: user }));
+  //   console.log("##response after success", user);
+  // } catch (error) {
+  //   console.log("##response error", error);
+  //   yield put(userCheckAuthFailure(error));
+  //   yield put(
+  //     enqueueSnackbar({
+  //       message: "You are not Authenticated",
+  //       options: {
+  //         key: new Date().getTime() + Math.random(),
+  //         variant: "warning",
+  //       },
+  //     })
+  //   );
+  // }
 }
 function* userLoginRequest(action) {
   try {

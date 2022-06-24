@@ -11,7 +11,7 @@ function FavoriteButtonContainer(props) {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  user: state.user,
+  
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

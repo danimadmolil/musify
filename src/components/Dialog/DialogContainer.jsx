@@ -27,6 +27,7 @@ import {
 } from "../../constants/dialogTypes";
 import { userConfirm } from "../../store/actions/user/user.actions";
 import { closeDialog } from "./../../store/actions/dialog/dialog.actions";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const DialogContainer = ({
   open,
@@ -34,8 +35,9 @@ export const DialogContainer = ({
   closeDialog,
   createPlaylistAction,
   conformation,
-  addToPlaylist,
+  addSongToPlaylist,
 }) => {
+  const { getAccessTokenSilently, user, isAuthenticated } = useAuth0();
   const playlistNameRef = useRef(null);
   if (dialogType === CREATE_PLAYLIST) {
     return (
@@ -46,8 +48,12 @@ export const DialogContainer = ({
         <DialogContent>
           <TextField inputRef={playlistNameRef} placeholder="playlist name" />
           <Button
-            onClick={() => {
-              createPlaylistAction({ name: playlistNameRef.current.value });
+            onClick={async () => {
+              const jwt = await getAccessTokenSilently();
+              createPlaylistAction(
+                { name: playlistNameRef.current.value },
+                { jwt }
+              );
             }}
             type="success"
             sx={{ width: "100%", color: "typography.secondary" }}>
@@ -69,7 +75,9 @@ export const DialogContainer = ({
             deleteButton={false}
             playButton={false}
             clickHandler={(playlist) => {
-              addToPlaylist(playlist);
+              getAccessTokenSilently().then((jwt) => {
+                addSongToPlaylist({ playlist, jwt });
+              });
             }}
           />
         </DialogContent>
@@ -83,8 +91,9 @@ export const DialogContainer = ({
         </DialogTitle>
         <Button
           type="success"
-          onClick={() => {
-            conformation();
+          onClick={async () => {
+            const jwt = await getAccessTokenSilently();
+            conformation({ jwt });
             closeDialog();
           }}>
           Ok
@@ -106,14 +115,13 @@ const mapDispatchToProps = (dispatch) => ({
   closeDialog: () => {
     dispatch(closeDialog());
   },
-  createPlaylistAction: (playlist) => {
-    dispatch(createPlaylist(playlist));
+  createPlaylistAction: (playlist, payload) => {
+    dispatch(createPlaylist(playlist, payload));
   },
-  conformation: () => {
-    dispatch(userConfirm());
+  conformation: (payload) => {
+    dispatch(userConfirm(payload));
   },
-  addToPlaylist: (playlist) =>
-    dispatch({ type: ADD_TO_PLAYLIST, payload: { playlist } }),
+  addSongToPlaylist: (payload) => dispatch({ type: ADD_TO_PLAYLIST, payload }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DialogContainer);

@@ -1,5 +1,5 @@
 import { takeLatest, call, put, all } from "redux-saga/effects";
-import { getAll } from "../../../services/api/api";
+import { createRequest, getAll } from "../../../services/api/api";
 import {
   addSong,
   setRepeat,
@@ -32,10 +32,24 @@ function* playSongHandler(action) {
   setRepeat(false);
   // setRepeatSong(true);
 }
-function* initSongRequestHandler() {
+function* initSongRequestHandler(action) {
+  const jwt = yield action.payload.jwt;
   try {
-    const songs = yield call(getAll, "allSongs");
-    const mappedSongs = songs.map((song) =>
+    let songs;
+    if (jwt) {
+      songs = yield call(createRequest, "allSongs", null, {
+        headers: { authorization: `Bearer ${jwt}` },
+        method: "get",
+      });
+    } else {
+      songs = yield call(createRequest, "allSongs2", null, {
+        headers: { authorization: `Bearer ${jwt}` },
+        method: "get",
+      });
+    }
+
+    console.log("jljlj", songs);
+    const mappedSongs = songs.data.map((song) =>
       objectMapper(song, {
         id: "id",
         name: "name",

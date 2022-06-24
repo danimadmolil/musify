@@ -20,10 +20,18 @@ import { Link } from "react-router-dom";
 import defaultProfile from "../../assets/images/4.jpg";
 import { useDispatch } from "react-redux";
 import { userLogoutRequest } from "../../store/actions/user/user.actions";
+import { useAuth0 } from "@auth0/auth0-react";
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-export default function AuthButtons({ user = {}, profile = defaultProfile }) {
-  console.log("user rerendered ", user);
+export default function AuthButtons({ profile = defaultProfile }) {
+  const {
+    isLoading,
+    loginWithPopup,
+    logout,
+    getAccessTokenSilently,
+    user,
+    isAuthenticated,
+  } = useAuth0();
   const dispatch = useDispatch();
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   function handleOpenUserMenu(event) {
@@ -33,7 +41,9 @@ export default function AuthButtons({ user = {}, profile = defaultProfile }) {
     setAnchorElUser(null);
   }
   const theme = useTheme();
-  return user.isLoading === false && !!user.name === false ? (
+  return isLoading ? (
+    <CircularProgress />
+  ) : !isAuthenticated ? (
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -55,37 +65,23 @@ export default function AuthButtons({ user = {}, profile = defaultProfile }) {
         }}
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}>
-        <MenuItem key={"signin"}>
-          <Link
-            to="/signin"
-            style={{
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-              zIndex: 100,
-            }}></Link>
+        <MenuItem
+          key={"signin"}
+          onClick={() => {
+            loginWithPopup();
+          }}>
           <Typography textAlign="center">Sign In</Typography>
         </MenuItem>
         <MenuItem key={"signup"}>
-          <Link
-            to={"/signup"}
-            style={{
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-              zIndex: 100,
-            }}></Link>
           <Typography textAlign="center">Sign Up</Typography>
         </MenuItem>
       </Menu>
     </Box>
-  ) : user.isLoading === true ? (
-    <CircularProgress />
   ) : (
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar alt="Remy Sharp" src={profile} />
+          <Avatar alt="Remy Sharp" src={user.picture} />
         </IconButton>
       </Tooltip>
       <Menu
@@ -108,6 +104,7 @@ export default function AuthButtons({ user = {}, profile = defaultProfile }) {
             key={setting}
             onClick={() => {
               if (setting === "Logout") {
+                logout({ returnTo: window.location.origin });
                 dispatch(userLogoutRequest());
               }
               handleCloseUserMenu();

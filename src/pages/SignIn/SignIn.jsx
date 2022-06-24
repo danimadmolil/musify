@@ -17,12 +17,33 @@ import Container from "@mui/material/Container";
 import { useDispatch } from "react-redux";
 import { userLoginRequest } from "../../store/actions/user/user.actions";
 import { useHistory } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
 function SignIn({ user = {} }) {
+  const {
+    loginWithPopup,
+    loginWithRedirect,
+    user: authUser,
+    logout,
+    isAuthenticated,
+    getAccessTokenSilently,
+  } = useAuth0();
   const history = useHistory();
   if (user.email && user.name) {
     console.log("useEffect push to history");
     history.push("/");
   }
+  React.useEffect(() => {
+    (async () => {
+      const jwt = await getAccessTokenSilently();
+      axios
+        .get("http://localhost:4001/protected", {
+          headers: { authorization: `Bearer ${jwt}` },
+        })
+        .then((res) => console.log("protected route response", res.data))
+        .catch((error) => console.log("Error", error));
+    })();
+  }, [authUser]);
   const dispatch = useDispatch();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -105,6 +126,38 @@ function SignIn({ user = {} }) {
           </Grid>
         </Box>
       </Box>
+      <Button onClick={loginWithPopup}>Auth0 Popup</Button>
+      <Button onClick={loginWithRedirect}>Auth0 Redirct</Button>
+      <Button onClick={logout}>Logout</Button>
+      <Button
+        onClick={() => {
+          axios
+            .get("http://localhost:4001/allSongs")
+            .then((res) => console.log("response", res.data))
+            .catch((error) => console.log("Error", error));
+        }}>
+        Call Api
+      </Button>
+      <Button
+        onClick={async () => {
+          const jwt = await getAccessTokenSilently();
+          axios
+            .get("http://localhost:4001/protected", {
+              headers: { authorization: `Bearer ${jwt}` },
+            })
+            .then((res) => console.log("protected route response", res.data))
+            .catch((error) => console.log("Error", error));
+        }}>
+        Call Protected Api
+      </Button>
+      <div>{JSON.stringify(authUser, null, 2)}</div>
+      <Button
+        onClick={async function () {
+          const jwt = await getAccessTokenSilently();
+          console.log(jwt);
+        }}>
+        log access token
+      </Button>
     </Container>
   );
 }

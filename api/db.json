@@ -329,51 +329,11 @@
     },
     {
       "userId": 1,
-      "songId": 6
-    },
-    {
-      "userId": 1,
-      "songId": 3
-    },
-    {
-      "userId": 1,
-      "songId": 7
-    },
-    {
-      "userId": 1,
-      "songId": 16
-    },
-    {
-      "userId": 1,
-      "songId": 9
-    },
-    {
-      "userId": 1,
-      "songId": 8
-    },
-    {
-      "userId": 1,
-      "songId": 11
-    },
-    {
-      "userId": 1,
-      "songId": 14
-    },
-    {
-      "userId": 1,
       "songId": 18
     },
     {
       "userId": 1,
       "songId": 15
-    },
-    {
-      "userId": 1,
-      "songId": 19
-    },
-    {
-      "userId": 1,
-      "songId": 13
     },
     {
       "userId": 1,
@@ -385,19 +345,28 @@
     },
     {
       "userId": 1,
-      "songId": 21
-    },
-    {
-      "userId": 1,
       "songId": 22
     },
     {
       "userId": 1,
-      "songId": 23
+      "songId": 2
+    },
+    {
+      "userId": 1
+    },
+    {
+      "userId": 1
+    },
+    {
+      "userId": 1
     },
     {
       "userId": 1,
-      "songId": 2
+      "songId": 5
+    },
+    {
+      "userId": 1,
+      "songId": 7
     },
     {
       "userId": 1,
@@ -405,7 +374,7 @@
     },
     {
       "userId": 1,
-      "songId": 17
+      "songId": 3
     }
   ],
   "albums": [
@@ -674,166 +643,63 @@
   ],
   "users": [
     {
-      "email": "eri@g.com",
-      "password": "$2a$10$zDHBa3LW699pVSrF38H1..0i7bs3lEWgxz9pnYWlEvnGwvMw92FJe",
-      "name": "dani",
-      "lastName": "madmolil",
-      "id": 1
-    },
-    {
+      "sub": "auth0|62b2e6c7836975d34ffd2d2a",
+      "nickname": "daniyal.madmolil",
+      "name": "daniyal.madmolil@gmail.com",
+      "picture": "https://s.gravatar.com/avatar/f255885dd9087553b1f6642291510cc2?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fda.png",
+      "updated_at": "2022-06-22T22:29:59.332Z",
       "email": "daniyal.madmolil@gmail.com",
-      "password": "$2a$10$wBf.VF0xaO4g3KNCefxDCu9scTzFycErcuce5auTAsUo/u9CKb06C",
-      "name": "dani",
-      "lastName": "madmolil",
-      "id": 2
-    },
-    {
-      "email": "user3@gmail.com",
-      "password": "$2a$10$Gg1XCGPkukuULZ9nbS..YekeajeaqcRb8kVsiPA/Ui.7w1z2csJNO",
-      "name": "user3",
-      "lastName": "user",
-      "id": 3
+      "email_verified": true,
+      "id": 1
     }
   ],
   "user_playlist": [
     {
       "userId": 1,
-      "playlistId": 5,
-      "id": 5
+      "playlistId": 1,
+      "id": 1
     },
     {
       "userId": 1,
-      "playlistId": 6,
-      "id": 6
-    },
-    {
-      "userId": 1,
-      "playlistId": 8,
-      "id": 8
-    },
-    {
-      "userId": 1,
-      "playlistId": 9,
-      "id": 9
-    },
-    {
-      "userId": 1,
-      "playlistId": 10,
-      "id": 10
+      "playlistId": 2,
+      "id": 2
     }
   ],
   "playlist_song": [
     {
-      "playlistId": 5,
-      "songId": 7,
-      "id": 33
+      "playlistId": 1,
+      "songId": 4,
+      "id": 1
     },
     {
-      "playlistId": 5,
-      "songId": 6,
-      "id": 34
-    },
-    {
-      "playlistId": 6,
-      "songId": 27,
-      "id": 35
-    },
-    {
-      "playlistId": 6,
-      "songId": 26,
-      "id": 36
-    },
-    {
-      "playlistId": 6,
-      "songId": 25,
-      "id": 37
-    },
-    {
-      "playlistId": 6,
-      "songId": 24,
-      "id": 38
-    },
-    {
-      "playlistId": 6,
-      "songId": 5,
-      "id": 39
-    },
-    {
-      "playlistId": 8,
-      "songId": 8,
-      "id": 43
-    },
-    {
-      "playlistId": 8,
-      "songId": 13,
-      "id": 44
-    },
-    {
-      "playlistId": 8,
-      "songId": 15,
-      "id": 45
-    },
-    {
-      "playlistId": 9,
-      "songId": 7,
-      "id": 46
-    },
-    {
-      "playlistId": 9,
-      "songId": 8,
-      "id": 47
-    },
-    {
-      "playlistId": 9,
-      "songId": 9,
-      "id": 48
-    },
-    {
-      "playlistId": 9,
-      "songId": 11,
-      "id": 49
-    },
-    {
-      "playlistId": 9,
+      "playlistId": 1,
       "songId": 3,
-      "id": 50
+      "id": 2
     },
     {
-      "playlistId": 9,
-      "songId": 14,
-      "id": 51
+      "playlistId": 1,
+      "songId": 2,
+      "id": 3
     },
     {
-      "playlistId": 10,
-      "songId": 25,
-      "id": 52
+      "playlistId": 2,
+      "songId": 3,
+      "id": 4
     },
     {
-      "playlistId": 10,
-      "songId": 11,
-      "id": 53
+      "playlistId": 2,
+      "songId": 1,
+      "id": 5
     }
   ],
   "playlists": [
     {
-      "name": "k",
-      "id": 5
+      "name": "fdsfrgfd",
+      "id": 1
     },
     {
-      "name": "abcdef",
-      "id": 6
-    },
-    {
-      "name": "favorites",
-      "id": 8
-    },
-    {
-      "name": "fdsfsd",
-      "id": 9
-    },
-    {
-      "name": "sfsdf",
-      "id": 10
+      "name": "cxz",
+      "id": 2
     }
   ]
 }

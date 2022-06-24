@@ -19,6 +19,7 @@ import {
 } from "@mui/material";
 import { PlayArrow, Delete } from "@mui/icons-material";
 import LibraryMusicRoundedIcon from "@mui/icons-material/LibraryMusicRounded";
+import { useAuth0 } from "@auth0/auth0-react";
 const ListItemIconWithTheme = styled(ListItemIcon)(({ theme }) => ({
   color: theme.palette.typography.secondary,
 }));
@@ -30,7 +31,6 @@ const ListItemTextWithTheme = styled(ListItemText)(({ theme }) => ({
 }));
 function Playlists({
   playlists,
-  user,
   getPlaylists,
   playButton = true,
   deleteButton = true,
@@ -39,8 +39,16 @@ function Playlists({
   countBadge = false,
   addToPlaylist,
 }) {
+  const { getAccessTokenSilently, user, isAuthenticated } = useAuth0();
+
   useEffect(() => {
-    getPlaylists();
+    (async () => {
+      if (isAuthenticated) {
+        const jwt = await getAccessTokenSilently();
+        getPlaylists({ jwt });
+      }
+      console.log('user',user)
+    })();
   }, [user]);
   useEffect(() => {
     if (playlists) {
@@ -102,7 +110,9 @@ const mapStateToProps = (state, ownProps) => ({
   user: state.user,
 });
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  getPlaylists: () => dispatch(getPlaylistsAction()),
+  getPlaylists: async (payload) => {
+    dispatch(getPlaylistsAction(payload));
+  },
   removePlaylist: (playlistId) => dispatch(removePlaylistAction(playlistId)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Playlists);

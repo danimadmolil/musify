@@ -65,38 +65,39 @@ export function userCheckAuthRequest() {
   return {
     type: USER_CHECK_AUTH_REQUEST,
   };
-} 
+}
 export function userCheckAuthSuccess(user) {
   return {
     type: USER_CHECK_AUTH_SUCCESS,
     payload: { user },
   };
-} 
+}
 export function userCheckAuthFailure(error) {
   return {
     type: USER_CHECK_AUTH_FAILURE,
     payload: { error },
   };
-} 
+}
 //user logout action creators
 export function userLogoutRequest() {
   return {
     type: USER_LOGOUT_REQUEST,
   };
-} 
+}
 export function userLogoutSuccess() {
   return {
     type: USER_LOGOUT_SUCCESS,
   };
-} 
+}
 export function userLogoutFailure(error) {
   return {
     type: USER_LOGOUT_FAILURE,
     payload: { error },
   };
-} 
-export function userConfirm() {
+}
+export function userConfirm(payload) {
   return {
-    type:USER_CONFIRM
-  }
+    type: USER_CONFIRM,
+    payload,
+  };
 }

@@ -78,16 +78,19 @@ function* addSongToPlaylistHandler(action) {
   console.log("song", song);
   while (true) {
     let {
-      payload: { playlist },
+      payload: { playlist, jwt },
     } = yield take("ADD_TO_PLAYLIST");
-    console.log("after take");
-
     try {
       console.log("before request", song);
-      let result = yield call(createRequest, "/addSongToPlaylist", {
-        songId: song.id,
-        playlistId: playlist.id,
-      });
+      let result = yield call(
+        createRequest,
+        "/addSongToPlaylist",
+        {
+          songId: song.id,
+          playlistId: playlist.id,
+        },
+        { headers: { authorization: `Bearer ${jwt}` } }
+      );
       console.log("playlist before put", playlist);
       yield put({
         type: "ADD_SONG_TO_PLAYLIST_SUCCESS",
@@ -125,9 +128,10 @@ function* createPlaylistRequest(action) {
     const response = yield call(
       createRequest,
       "createPlaylist",
-      action.payload.playlist
+      action.payload.playlist,
+      { headers: { authorization: `Bearer ${action.payload.jwt}` } }
     );
-    yield put(createPlaylistSuccess({ ...response, songs: [] }));
+    yield put(createPlaylistSuccess({ name: response.data.name, songs: [] }));
     addPlaylist({ ...action.payload.playlist });
     yield put(
       enqueueSnackbar({
@@ -153,14 +157,17 @@ function* createPlaylistRequest(action) {
 }
 function* removePlaylistRequest(action) {
   yield put(openDialog(CONFORMATION));
-  yield take(USER_CONFIRM);
+  const {
+    payload: { jwt },
+  } = yield take(USER_CONFIRM);
   try {
     const response = yield call(
       createRequest,
       "deletePlaylist",
-      action.payload
+      action.payload,
+      { headers: { authorization: `Bearer ${jwt}` } }
     );
-    yield put(removePlaylistSuccess(mapArrayToObject(response, "name")));
+    yield put(removePlaylistSuccess(mapArrayToObject(response.data, "name")));
     yield put(
       enqueueSnackbar({
         message: "playlist removed",
@@ -184,9 +191,11 @@ function* removePlaylistRequest(action) {
   }
 }
 
-export function* getPlaylistsRequest() {
+export function* getPlaylistsRequest(action) {
   try {
-    let playlists = yield call(getAll, "getAllPlaylists");
+    let playlists = yield call(getAll, "getAllPlaylists", {
+      headers: { authorization: `Bearer ${action.payload.jwt}` },
+    });
     playlists = playlists.map((playlist) => {
       return {
         ...playlist,

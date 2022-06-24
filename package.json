@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@danimadmolil/json-server-auth": "^2.1.12",
+    "@auth0/auth0-react": "^1.10.1",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.6.2",
@@ -12,9 +12,7 @@
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "axios": "^0.26.1",
-    "cookie-parser": "^1.4.6",
     "core-js": "^3.22.0",
-    "json-server": "^0.17.0",
     "less": "^4.1.2",
     "myamplitudejs2": "^5.3.5",
     "notistack": "^2.0.5",
@@ -38,6 +36,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:all": "concurrently \"yarn:start\" \" cd /api && yarn:start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -63,7 +62,7 @@
   },
   "devDependencies": {
     "commander": "^9.2.0",
-    "concurrently": "^7.1.0",
+    "concurrently": "^7.2.2",
     "inquirer": "^8.2.2",
     "node-cmd": "^5.0.0"
   }

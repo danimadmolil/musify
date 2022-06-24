@@ -13,10 +13,19 @@ import { Provider } from "react-redux";
 import store from "./store/reduxStore";
 import SignUp from "./pages/SignUp/SignUp";
 import SignIn from "./pages/SignIn/SignIn";
+import { Auth0Provider } from "@auth0/auth0-react";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <App />
+    <Auth0Provider
+      domain="musify-auth-service.eu.auth0.com"
+      clientId="wo1ZaafEhnz7SFbUbOnIaMO0L1ixXRD6"
+      redirectUri={window.location.origin}
+      audience="musflix-auth-express-api"
+      scope="openid profile email">
+      <App />
+    </Auth0Provider>
   </Provider>
 );
 // If you want to start measuring performance in your app, pass a function
