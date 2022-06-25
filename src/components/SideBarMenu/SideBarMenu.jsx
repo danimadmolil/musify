@@ -86,12 +86,30 @@ function NestedList({ dispatch }) {
         }>
         <ListItemButton>
           <ListItemIconWithTheme>
+            <Link
+              to="/"
+              style={{
+                width: "100%",
+                height: "100%",
+                position: "absolute",
+                left: 0,
+                top: 0,
+                zIndex: 100,
+              }}></Link>
             <HomeIcon />
           </ListItemIconWithTheme>
           <ListItemTextWithTheme primary="Home" />
         </ListItemButton>
         <ListItemButton>
           <ListItemIconWithTheme>
+            <Link
+              to="/podcast"
+              style={{
+                width: "100%",
+                height: "100%",
+                position: "absolute",
+                zIndex: 1000,
+              }}></Link>
             <PodcastsIcon />
           </ListItemIconWithTheme>
           <ListItemTextWithTheme primary="Podcast" />

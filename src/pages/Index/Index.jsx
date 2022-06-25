@@ -11,6 +11,7 @@ import Favorites from "./Favorites/Favorites.page";
 import AlbumPage from "./Albums/Album.page";
 import SideBarMenuContainer from "../../components/SideBarMenu/SideBarMenuContainer";
 import HeaderContainer from "../../components/Header/HeaderContainer";
+import PodcastPage from "../Podcast/Podcast.page";
 export default function Index() {
   const theme = useTheme();
   return (
@@ -64,6 +65,9 @@ export default function Index() {
           <Switch>
             <Route exact path="/recentSongs" component={RecentSongPage} />
             <Route exact path="/albums" component={AlbumsPage} />
+            <Route exact path="/podcast">
+              <PodcastPage />
+            </Route>
             <Route path="/albums/:albumName">
               <AlbumPage />
             </Route>
