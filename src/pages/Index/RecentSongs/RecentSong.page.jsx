@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { Box } from "@mui/material";
+import { Backdrop, Box, CircularProgress } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import Scrollbar from "smooth-scrollbar";
@@ -10,6 +10,7 @@ import { createGetRequest, createRequest } from "../../../services/api/api";
 import objectMapper from "../../../utils/mappers/object.maper";
 function RecentSong() {
   const [songs, setSongs] = useState(null);
+  const [loading, setLoading] = useState(true);
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
   useEffect(() => {
     if (isAuthenticated) {
@@ -18,18 +19,24 @@ function RecentSong() {
         createRequest("auth/recentSongs", null, {
           method: "get",
           headers: { authorization: `Bearer ${jwt}` },
-        }).then((res) => setSongs(res.data));
+        }).then((res) => {
+          setSongs(res.data);
+          setLoading(false);
+        });
       })();
     } else {
-      createRequest("/recentSongs", null, { method: "get" }).then((res) =>
-        setSongs(res.data)
-      );
+      createRequest("/recentSongs", null, { method: "get" }).then((res) => {
+        setLoading(false);
+        setSongs(res.data);
+      });
     }
   }, [isAuthenticated, user]);
   return (
-    <SmoothScroll>
+    <SmoothScroll style={{ width: "100%", height: "100%" }}>
       <Box
         sx={{
+          width: "100%",
+          minHeight: "100%",
           display: "grid",
           gridTemplateColumns: [
             "1fr",
@@ -38,6 +45,7 @@ function RecentSong() {
             "1fr 1fr 1fr 1fr",
           ],
         }}>
+        {loading ? <CircularProgress /> : <React.Fragment></React.Fragment>}
         {songs &&
           songs.map((song) => (
             <SongCard
