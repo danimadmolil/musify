@@ -1,45 +1,55 @@
+import { useAuth0 } from "@auth0/auth0-react";
+import { Box } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import Scrollbar from "smooth-scrollbar";
+import SmoothScroll from "../../../components/SmoothScroll/SmoothScroll";
 import SongCard from "../../../components/SongCard/SongCard";
-import { createGetRequest } from "../../../services/api/api";
+import { useApi } from "../../../hooks/useApi";
+import { createGetRequest, createRequest } from "../../../services/api/api";
 import objectMapper from "../../../utils/mappers/object.maper";
 function RecentSong() {
   const [songs, setSongs] = useState(null);
-  const scrollContainer = useRef(null);
+  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
   useEffect(() => {
-    Scrollbar.init(scrollContainer.current, {
-      alwaysShowTracks: true,
-      clip: true,
-    });
-    // dispatch("GET_SONGS_REQUEST");
-    createGetRequest("/recentSongs", {}, { method: "get" }).then((res) =>
-      setSongs(
-        res.map((song) =>
-          objectMapper(song, { file: "url", poster: "cover_art_url" })
-        )
-      )
-    );
-  }, []);
+    if (isAuthenticated) {
+      (async () => {
+        const jwt = await getAccessTokenSilently();
+        createRequest("auth/recentSongs", null, {
+          method: "get",
+          headers: { authorization: `Bearer ${jwt}` },
+        }).then((res) => setSongs(res.data));
+      })();
+    } else {
+      createRequest("/recentSongs", null, { method: "get" }).then((res) =>
+        setSongs(res.data)
+      );
+    }
+  }, [isAuthenticated, user]);
   return (
-    <div
-      ref={scrollContainer}
-      style={{
-        height: "100%",
-        width: "100%",
-      }}>
-      <div
-        style={{
-          background: "black",
-          width: "100%",
+    <SmoothScroll>
+      <Box
+        sx={{
           display: "grid",
-          gap: "12px",
-          gridTemplateColumns: "1fr 1fr 1fr 1fr",
-          gridAutoRows: "max-content",
+          gridTemplateColumns: [
+            "1fr",
+            "1fr 1fr",
+            "1fr 1fr 1fr",
+            "1fr 1fr 1fr 1fr",
+          ],
         }}>
-        {!!songs && songs.map((song) => <SongCard song={song} />)}
-      </div>
-    </div>
+        {songs &&
+          songs.map((song) => (
+            <SongCard
+              song={objectMapper(song, {
+                file: "url",
+                poster: "cover_art_url",
+                favorite: "like",
+              })}
+            />
+          ))}
+      </Box>
+    </SmoothScroll>
   );
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
