@@ -183,6 +183,41 @@ app.post("/createPlaylist", async (req, res) => {
   res.statusCode = 401;
   res.jsonp({ error: "you should be authentiacated to create playlist" });
 });
+app.post("/deletePlaylist", (req, res) => {
+  const { db } = req.app;
+  const user = getUserFromDb(req.headers.user, db);
+  if (user) {
+    const { playlistId } = req.body;
+    const { id: userId } = user;
+    let isPlaylistDeletable = false;
+    const userPlaylists = getUserPlaylists(user.id, db);
+    userPlaylists.forEach((up) => {
+      if (up.id === playlistId) {
+        isPlaylistDeletable = true;
+      }
+    });
+    if (isPlaylistDeletable) {
+      const playlist = db.get("playlists").remove({ id: playlistId }).write();
+      //delete pallist_songs
+      const playlistSongs = db
+        .get("playlist_song")
+        .remove({ playlistId })
+        .write();
+      //delete user_palylists
+      const userPlaylist = db
+        .get("user_playlist")
+        .remove({ playlistId, userId })
+        .write();
+
+      res.statusCode = 200;
+      res.jsonp(getUserPlaylists(userId, db));
+      res.send();
+    } else {
+      res.statusCode = 403;
+      res.send();
+    }
+  }
+});
 app.get("/allSongs", (req, res) => {
   const { db } = req.app;
   const user = req.headers.user && getUserFromDb(req.headers.user, db);
