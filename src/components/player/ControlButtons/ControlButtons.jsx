@@ -49,23 +49,21 @@ export default function ControlButtons({
         </IconButtonWithTheme>
       </span>
 
-      <span
-        className="amplitude-play"
+      <PlayPauseButtonContainer
         style={{
           width: 50,
           height: 40,
           margin: 0,
           padding: 0,
           display: "block",
-        }}>
-        <PlayPauseButtonContainer
-          sx={{
-            top: "-5px",
-            position: "relative",
-            color: (theme) => theme.palette.accent.default,
-          }}
-        />
-      </span>
+        }}
+        sx={{
+          top: "-5px",
+          position: "relative",
+          color: (theme) => theme.palette.accent.default,
+        }}
+      />
+
       <div className={"amplitude-next"}>
         <IconButtonWithTheme>
           <SkipNextRounded

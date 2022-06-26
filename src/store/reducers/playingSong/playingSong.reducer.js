@@ -6,19 +6,29 @@ import {
   TOGGLE_SONG_REPEAT,
 } from "../../actions/songs/songs.actions";
 import { PLAY_PLAYLIST } from "../../actions/playlist/playlist.action";
-const nameInitialState = { repeat: false };
-export default function PlayingSong(state = nameInitialState, action) {
+const InitialState = { repeat: false, loading: false, playState: "stopped" };
+export default function PlayingSong(state = InitialState, action) {
   if (action.type === TOGGLE_SONG_REPEAT) {
     console.log("reducer", !state.repeat);
     return { ...state, repeat: !state.repeat };
   }
   if (action.type === PLAY_SONG) {
     return {
+      isPlaying: false,
+      playState: "stopped",
+      ended: false,
+      repeat: false,
+      loading: true,
+      ...action.payload.music,
+    };
+  } else if (action.type === "CAN_PLAY_SONG") {
+    return {
+      ...state,
       isPlaying: true,
       playState: "playing",
       ended: false,
       repeat: false,
-      ...action.payload.music,
+      loading: false,
     };
   } else if (action.type === PAUSE_SONG) {
     return { ...state, isPlaying: false, playState: "paused", ended: false };

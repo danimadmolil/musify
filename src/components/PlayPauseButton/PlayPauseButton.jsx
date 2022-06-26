@@ -1,5 +1,5 @@
 import React from "react";
-import { IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import { PlayCircleRounded, PauseCircleRounded } from "@mui/icons-material";
 import {
   playSong as playSongAction,
@@ -10,6 +10,8 @@ import {
   resume,
   getAmplitude,
 } from "../../utils/amplitudejs/amplitude.utils";
+import CircularProgress from "@mui/material/CircularProgress";
+
 const amplitude = getAmplitude();
 export default function PlayPauseButton({
   playingSong,
@@ -17,26 +19,35 @@ export default function PlayPauseButton({
   pauseSong,
   ...rest
 }) {
-  return amplitude.getPlayerState() === "playing" ? (
-    <span
-      className="amplitude-pause"
-      onClick={() => {
-        pause();
-        pauseSong(pauseSongAction());
-      }}>
-      <IconButton variant="accent" {...rest}>
-        <PauseCircleRounded style={{ width: "100%", height: "100%" }} />
-      </IconButton>
-    </span>
-  ) : (
-    <span
-      className="amplitude-play"
-      onClick={() => {
-        playSong({ type: "RESUME_SONG" });
-      }}>
-      <IconButton variant="accent" {...rest}>
-        <PlayCircleRounded style={{ width: "100%", height: "100%" }} />
-      </IconButton>
-    </span>
+  return (
+    <Box style={{ position: "relative", ...rest.style }}>
+      {playingSong.loading ? (
+        <CircularProgress
+          sx={{ position: "absolute", left: "4.9px", top: "0.5px" }}
+        />
+      ) : null}
+      {playingSong.isPlaying ? (
+        <span
+          className="amplitude-pause"
+          onClick={() => {
+            pause();
+            pauseSong(pauseSongAction());
+          }}>
+          <IconButton variant="accent" sx={{ ...rest.sx }}>
+            <PauseCircleRounded style={{ width: "100%", height: "100%" }} />
+          </IconButton>
+        </span>
+      ) : (
+        <span
+          className="amplitude-play"
+          onClick={() => {
+            playSong({ type: "RESUME_SONG" });
+          }}>
+          <IconButton variant="accent" sx={{ ...rest.sx }}>
+            <PlayCircleRounded style={{ width: "100%", height: "100%" }} />
+          </IconButton>
+        </span>
+      )}
+    </Box>
   );
 }

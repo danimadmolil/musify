@@ -47,6 +47,9 @@ function Amplitude({ playlists }) {
           dispatch(playPlaylist(activePlaylist));
         }, 200);
       };
+    getAmplitude().getConfig().callbacks["canplay"] = function () {
+      dispatch({ type: "CAN_PLAY_SONG" });
+    };
   }, []);
   useEffect(() => {
     console.log("add to playlists");
