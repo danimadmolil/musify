@@ -10,6 +10,7 @@ import {
   TableCell,
   Paper,
   Typography,
+  Skeleton,
 } from "@mui/material";
 
 import React, { useState, useEffect } from "react";
@@ -21,14 +22,14 @@ import SmoothScroll from "../../../components/SmoothScroll/SmoothScroll";
 import { createRequest } from "../../../services/api/api";
 import ObjectMapper from "../../../utils/mappers/object.maper";
 export default function AlbumPage() {
-  const [albumDetail, setAlbumDetail] = useState({});
+  const [albumDetail, setAlbumDetail] = useState(null);
   const location = useLocation();
   const params = useParams();
   console.log("params", params);
   const album = location.state && location.state.album;
   useEffect(() => {
     createRequest("/albumDetail", { albumId: Number(params.albumName) }).then(
-      (res) => setAlbumDetail(res)
+      (res) => setAlbumDetail(res.data)
     );
   }, []);
   return (
@@ -62,26 +63,27 @@ export default function AlbumPage() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {!!albumDetail.songs &&
-            albumDetail.songs
-              .map((song) =>
-                ObjectMapper(song, { file: "url", poster: "cover_art_url" })
-              )
-              .map((song) => (
-                <TableRow>
-                  <TableCell>
-                    <img
-                      style={{ width: 50, height: 50, borderRadius: 5 }}
-                      src={song.cover_art_url}
-                    />
-                  </TableCell>
-                  <TableCell>{song.name}</TableCell>
-                  <TableCell>{song.duration}</TableCell>
-                  <TableCell>
-                    <PlayButtonProgressContainer song={song} />
-                  </TableCell>
-                </TableRow>
-              ))}
+          {!!albumDetail
+            ? albumDetail.songs
+                .map((song) =>
+                  ObjectMapper(song, { file: "url", poster: "cover_art_url" })
+                )
+                .map((song) => (
+                  <TableRow>
+                    <TableCell>
+                      <img
+                        style={{ width: 50, height: 50, borderRadius: 5 }}
+                        src={song.cover_art_url}
+                      />
+                    </TableCell>
+                    <TableCell>{song.name}</TableCell>
+                    <TableCell>{song.duration}</TableCell>
+                    <TableCell>
+                      <PlayButtonProgressContainer song={song} />
+                    </TableCell>
+                  </TableRow>
+                ))
+            : null}
         </TableBody>
       </Table>
     </SmoothScroll>

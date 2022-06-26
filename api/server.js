@@ -24,7 +24,9 @@ const verifyJwt = jwt({
   audience: "musflix-auth-express-api",
   issuer: "https://musify-auth-service.eu.auth0.com/",
   algorithms: ["RS256"],
-}).unless({ path: ["/", "/albums", "/allSongs2", "/recentSongs"] });
+}).unless({
+  path: ["/", "/albums", "/allSongs2", "/recentSongs", "/albumDetail"],
+});
 //middle wares
 app.db = router.db;
 app.use(middlewares);
@@ -91,6 +93,18 @@ app.get("/auth/recentSongs", (req, res) => {
         favorite: userFavSongs[song.name] ? true : false,
       }))
   );
+});
+app.post("/albumDetail", (req, res) => {
+  const { db } = req.app;
+  const { albumId } = req.body;
+  const album = db.get("albums").find({ id: albumId }).value();
+  const songs = db
+    .get("album_song")
+    .value()
+    .filter((albumSong) => albumSong.albumId === albumId)
+    .map((albumSong) => db.get("songs").find({ id: albumSong.songId }).value());
+  res.jsonp({ ...album, songs });
+  res.send();
 });
 app.get("/recentSongs", (req, res) => {
   const { db } = req.app;
